@@ -87,6 +87,7 @@
                 </VisualStateGroup>
             </VisualStateManager.VisualStateGroups>
         <controls:MasterDetailsView
+            
             x:Name="MasterDetailsViewControl"
             ItemsSource="{x:Bind ViewModel.Movies}"
             SelectedItem="{x:Bind ViewModel.Selected, Mode=TwoWay}"

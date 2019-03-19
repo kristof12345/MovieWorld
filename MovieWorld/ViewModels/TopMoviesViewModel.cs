@@ -7,6 +7,7 @@ using Microsoft.Toolkit.Uwp.UI.Controls;
 using MovieWorld.Models;
 using MovieWorld.Services;
 using MovieWorld.Views;
+using Windows.UI.Xaml.Controls;
 
 namespace MovieWorld.ViewModels
 {
@@ -20,15 +21,13 @@ namespace MovieWorld.ViewModels
         public Movie Selected
         {
             get { return selected; }
-            //Módosul, ha null, ha a két ID nem egyezik vagy ha a részletek még nincsenek betöltve
-            set { if (selected == null || selected.Id != value.Id || !selected.Detailed) { Set(ref selected, value); SelectedMovieChanged(); } }
+            set { Set(ref selected, value); }
         }
 
-        public ObservableCollection<Movie> Movies { get; private set; }
+        public ObservableCollection<Movie> Movies { get { return DataService.MovieList; } }
 
         public TopMoviesViewModel()
         {
-            Movies = DataService.MovieList;
             SelectActorCommand = new RelayCommand<int>((int id) =>
             {
                 NavigateToActor(id);
@@ -37,14 +36,7 @@ namespace MovieWorld.ViewModels
 
         public async Task LoadDataAsync(MasterDetailsViewState viewState)
         {
-            Movies.Clear();
-
-            var data = await DataService.GetMovieListAsync();
-
-            foreach (var item in data)
-            {
-                Movies.Add(item);
-            }
+            await DataService.GetMovieListAsync();
 
             if (viewState == MasterDetailsViewState.Both && Movies.Count > 0)
             {
@@ -59,13 +51,10 @@ namespace MovieWorld.ViewModels
             //NavigationService.Navigate(typeof(PopularActorsDetailViewModel).FullName, 3);
         }
 
-        private async Task SelectedMovieChanged()
+        private async Task SelectedMovieChanged(object sender, SelectionChangedEventArgs e)
         {
-            var movieDetails = await DataService.GetMovieAsync(Selected);
-            movieDetails.Detailed = true;
-            movieDetails.Cast = await DataService.GetCastAsync(Selected);
-            Selected = movieDetails;
-            //TODO
+            await DataService.GetMovieAsync(Selected);
+            Selected = DataService.DetailedMovie;
         }
     }
 }

@@ -9,32 +9,29 @@ namespace MovieWorld.Services
     public static class DataService
     {
         public static ObservableCollection<Movie> MovieList { get; set; } = new ObservableCollection<Movie>();
-
-        public static ObservableCollection<Movie> FavouriteMovies { get; set; } = new ObservableCollection<Movie>();
+        public static Movie DetailedMovie { get; set; }
 
         //Filmek letöltése a szerverről
-        public static async Task<IEnumerable<Movie>> GetMovieListAsync()
+        public static async Task GetMovieListAsync()
         {
-            return await HttpService.ListTopMoviesAsync();
+            var list = await HttpService.ListTopMoviesAsync();
+            MovieList.Clear();
+            foreach(var movie in list) { MovieList.Add(movie); }
         }
 
         //Egy film részletes adatai
-        internal static async Task<Movie> GetMovieAsync(Movie movie)
+        internal static async Task GetMovieAsync(Movie movie)
         {
-            return await HttpService.GetMovieAsync(movie.Id);
-        }
-
-        //A stáb első 12 tagja
-        internal static async Task<List<Actor>> GetCastAsync(Movie movie)
-        {
-            //return await HttpService.GetCastAsync(movie.Id);
-            return new List<Actor>();
+            var detailedMovie = await HttpService.GetMovieAsync(movie.Id);
+            detailedMovie.Detailed = true;
+            detailedMovie.Cast = await HttpService.GetCastAsync(movie.Id);
+            DetailedMovie = detailedMovie;
         }
 
         //Egy személy részletei
-        internal static async Task<Actor> GetActorAsync(int id)
+        internal static async Task GetActorAsync(int id)
         {
-            return await HttpService.GetActorAsync(id);
+            await HttpService.GetActorAsync(id);
         }
     }
 }
