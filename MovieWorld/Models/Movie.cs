@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace MovieWorld.Models
 {
@@ -12,8 +13,10 @@ namespace MovieWorld.Models
         //Egyéb adatok
     }
 
-    public class Movie
+    public class Movie : INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler PropertyChanged;
+
         public int Id { get; set; }
 
         public bool Detailed { get; set; }
@@ -33,6 +36,7 @@ namespace MovieWorld.Models
         //Nyelvek
         public List<Language> Spoken_languages { get; set; }
 
+        //Stáb
         public List<Actor> Cast { get; set; }
 
         //Rövid leírás

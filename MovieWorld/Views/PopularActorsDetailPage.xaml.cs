@@ -24,12 +24,12 @@ namespace MovieWorld.Views
             InitializeComponent();
         }
 
-        protected override void OnNavigatedTo(NavigationEventArgs e)
+        protected async override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-            if (e.Parameter is long orderId)
+            if (e.Parameter is int orderId)
             {
-                ViewModel.Initialize(orderId);
+                await ViewModel.Initialize(orderId);
             }
         }
 
@@ -38,7 +38,7 @@ namespace MovieWorld.Views
             base.OnNavigatingFrom(e);
             if (e.NavigationMode == NavigationMode.Back)
             {
-                NavigationService.Frame.SetListDataItemForNextConnectedAnnimation(ViewModel.Item);
+                NavigationService.Frame.SetListDataItemForNextConnectedAnnimation(ViewModel.Actor);
             }
         }
     }

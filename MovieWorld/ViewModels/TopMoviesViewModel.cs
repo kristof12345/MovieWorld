@@ -7,7 +7,6 @@ using Microsoft.Toolkit.Uwp.UI.Controls;
 using MovieWorld.Models;
 using MovieWorld.Services;
 using MovieWorld.Views;
-using Windows.UI.Xaml.Controls;
 
 namespace MovieWorld.ViewModels
 {
@@ -48,13 +47,7 @@ namespace MovieWorld.ViewModels
         {
             var t = typeof(HomePage);
             var n = t.FullName;
-            //NavigationService.Navigate(typeof(PopularActorsDetailViewModel).FullName, 3);
-        }
-
-        private async Task SelectedMovieChanged(object sender, SelectionChangedEventArgs e)
-        {
-            await DataService.GetMovieAsync(Selected);
-            Selected = DataService.DetailedMovie;
+            NavigationService.Navigate(typeof(PopularActorsDetailViewModel).FullName, id);
         }
     }
 }

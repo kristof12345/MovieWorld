@@ -33,7 +33,7 @@ namespace MovieWorld.Services
         //Egy színész lekérése
         internal static async Task<Actor> GetActorAsync(int id)
         {
-            var response = await client.GetAsync($"people/{id}?api_key={apiKey}");
+            var response = await client.GetAsync($"person/{id}?api_key={apiKey}");
             var data = await response.Content.ReadAsAsync<Actor>();
             return data;
         }

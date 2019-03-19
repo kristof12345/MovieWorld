@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Linq;
-
+using System.Threading.Tasks;
 using GalaSoft.MvvmLight;
 
 using MovieWorld.Models;
@@ -10,22 +10,21 @@ namespace MovieWorld.ViewModels
 {
     public class PopularActorsDetailViewModel : ViewModelBase
     {
-        private SampleOrder _item;
+        private Actor actor;
 
-        public SampleOrder Item
+        public Actor Actor
         {
-            get { return _item; }
-            set { Set(ref _item, value); }
+            get { return actor; }
+            set { Set(ref actor, value); }
         }
 
         public PopularActorsDetailViewModel()
         {
         }
 
-        public void Initialize(long orderId)
+        public async Task Initialize(int id)
         {
-            var data = SampleDataService.GetContentGridData();
-            Item = data.First(i => i.OrderId == orderId);
+            Actor = await DataService.GetActorDataAsync(id);
         }
     }
 }

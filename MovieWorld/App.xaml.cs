@@ -28,6 +28,8 @@ namespace MovieWorld
         {
             HttpService.Initialize();
 
+            await DataService.GetMovieListAsync();
+
             if (!args.PrelaunchActivated)
             {
                 await ActivationService.ActivateAsync(args);
