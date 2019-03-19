@@ -27,8 +27,8 @@ namespace MovieWorld.Services
         //A stáb első 12 tagja
         internal static async Task<List<Actor>> GetCastAsync(Movie movie)
         {
-            var data = await HttpService.GetCastAsync(movie.Id);
-            return data.Take(12).ToList();
+            //return await HttpService.GetCastAsync(movie.Id);
+            return new List<Actor>();
         }
 
         //Egy személy részletei
