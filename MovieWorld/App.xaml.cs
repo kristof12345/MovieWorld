@@ -26,6 +26,8 @@ namespace MovieWorld
 
         protected override async void OnLaunched(LaunchActivatedEventArgs args)
         {
+            HttpService.Initialize();
+
             if (!args.PrelaunchActivated)
             {
                 await ActivationService.ActivateAsync(args);
