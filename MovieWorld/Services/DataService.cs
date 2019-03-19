@@ -30,14 +30,9 @@ namespace MovieWorld.Services
             return await HttpService.GetMovieAsync(movie.Id);
         }
 
-        internal static async Task<List<Actor>> GetCastAsync(Movie selected)
+        internal static async Task<List<Actor>> GetCastAsync(Movie movie)
         {
-            var ret = new List<Actor>
-            {
-                new Actor { Name = "Brad Pitt", Character = "asd" },
-                new Actor { Name = "Angelina Jolie", Character = "123" }
-            };
-            return ret;
+            return await HttpService.GetCastAsync(movie.Id);
         }
     }
 }

@@ -1,7 +1,6 @@
 ﻿using System;
-
+using System.Collections.Generic;
 using MovieWorld.Models;
-
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
@@ -11,7 +10,7 @@ namespace MovieWorld.Views
     {
         public Movie MasterMenuItem
         {
-            get { return GetValue(MasterMenuItemProperty) as Movie; }
+            get { var movie = GetValue(MasterMenuItemProperty) as Movie; if(movie != null) CastList.ItemsSource = movie.Cast; return movie; }
             set { SetValue(MasterMenuItemProperty, value); }
         }
 
@@ -20,6 +19,7 @@ namespace MovieWorld.Views
         public TopMoviesDetailControl()
         {
             InitializeComponent();
+            CastList.ItemsSource = new List<Actor>();
         }
 
         private static void OnMasterMenuItemPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)

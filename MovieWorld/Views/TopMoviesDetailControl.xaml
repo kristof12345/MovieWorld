@@ -3,27 +3,21 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:helpers="using:MovieWorld.Helpers"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d"
-    d:DesignHeight="300"
-    d:DesignWidth="400">
+    xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls">
     <UserControl.Resources>
         <helpers:GenreToStringConverter x:Key="GenreToStringConverter"/>
     </UserControl.Resources>
     <ScrollViewer
         Name="ForegroundElement"
         VerticalScrollMode="Enabled"
-        HorizontalAlignment="Stretch"
         Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
-        Padding="{StaticResource DetailPageMargin}">
+        Padding="{StaticResource DetailPageMargin}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
         <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
             <TextBlock
-                    VerticalAlignment="Center"
                     Text="{x:Bind MasterMenuItem.Title, Mode=OneWay}"
                     Style="{ThemeResource TitleTextBlockStyle}" />
-            <StackPanel Orientation="Horizontal">
-                <StackPanel Width="300" Orientation="Vertical">
+            <controls:DockPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch">
                     <TextBlock Text="Released" Style="{StaticResource DetailSubTitleStyle}" Margin="{StaticResource SmallTopMargin}"/>
                     <TextBlock Text="{x:Bind MasterMenuItem.Release_date, Mode=OneWay}" Style="{StaticResource DetailBodyBaseMediumStyle}" />
 
@@ -33,12 +27,12 @@
                     <TextBlock Text="Rating" Style="{StaticResource DetailSubTitleStyle}" Margin="{StaticResource SmallTopMargin}"/>
                     <TextBlock Text="{x:Bind MasterMenuItem.Popularity, Mode=OneWay}" Style="{StaticResource DetailBodyBaseMediumStyle}" />
                 </StackPanel>
-                <Image Margin="{StaticResource SmallTopMargin}">
+                <Image HorizontalAlignment="Right" Margin="12,12,12,0" Height="250">
                     <Image.Source>
                         <BitmapImage UriSource="{x:Bind MasterMenuItem.Image, Mode=OneWay}"/>
                     </Image.Source>
                 </Image>
-            </StackPanel>
+            </controls:DockPanel>
             <TextBlock Text="Tagline" Style="{StaticResource DetailSubTitleStyle}" Margin="{StaticResource MediumTopMargin}" />
             <TextBlock Style="{StaticResource DetailBodyStyle}" Text="{x:Bind MasterMenuItem.Tagline, Mode=OneWay}"/>
 
@@ -46,17 +40,31 @@
             <TextBlock Text="{x:Bind MasterMenuItem.Overview, Mode=OneWay}" Style="{StaticResource DetailBodyStyle}" />
 
             <TextBlock Text="Cast" Style="{StaticResource DetailSubTitleStyle}" Margin="{StaticResource MediumTopMargin}" />
-            <StackPanel Orientation="Horizontal">
-                <Ellipse Height="100" Width="100">
-                    <Ellipse.Fill>
-                        <ImageBrush>
-                            <ImageBrush.ImageSource>
-                                <BitmapImage UriSource="{x:Bind MasterMenuItem.Image, Mode=OneWay}"/>
-                            </ImageBrush.ImageSource>
-                        </ImageBrush>
-                    </Ellipse.Fill>
-                </Ellipse>
-            </StackPanel>
+
+            <ItemsControl x:Name="CastList">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <controls:UniformGrid Columns="5" />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+              
+                    <DataTemplate>
+                        <StackPanel Orientation="Vertical">
+                            <Ellipse Height="100" Width="100">
+                                <Ellipse.Fill>
+                                    <ImageBrush>
+                                        <ImageBrush.ImageSource>
+                                            <BitmapImage UriSource="{Binding Image, Mode=OneWay}"/>
+                                        </ImageBrush.ImageSource>
+                                    </ImageBrush>
+                                </Ellipse.Fill>
+                            </Ellipse>
+                            <TextBlock Text="{Binding Name, Mode=OneWay}"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
         </StackPanel>
     </ScrollViewer>
 </UserControl>
