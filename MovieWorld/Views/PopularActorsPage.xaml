@@ -7,7 +7,7 @@
     Style="{StaticResource PageStyle}"
     xmlns:animations="using:Microsoft.Toolkit.Uwp.UI.Animations"
     xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
-    xmlns:models="using:MovieWorld.Core.Models"
+    xmlns:models="using:MovieWorld.Models"
     mc:Ignorable="d">
 
     <Grid x:Name="ContentArea">

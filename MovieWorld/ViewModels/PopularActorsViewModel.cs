@@ -1,14 +1,10 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
-
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
-
 using Microsoft.Toolkit.Uwp.UI.Animations;
-
-using MovieWorld.Core.Models;
-using MovieWorld.Core.Services;
+using MovieWorld.Models;
 using MovieWorld.Services;
 
 namespace MovieWorld.ViewModels

@@ -7,8 +7,8 @@ using GalaSoft.MvvmLight;
 
 using Microsoft.Toolkit.Uwp.UI.Controls;
 
-using MovieWorld.Core.Models;
-using MovieWorld.Core.Services;
+using MovieWorld.Models;
+using MovieWorld.Services;
 
 namespace MovieWorld.ViewModels
 {

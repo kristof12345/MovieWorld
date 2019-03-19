@@ -119,11 +119,14 @@
     <Compile Include="Behaviors\NavigationViewHeaderBehavior.cs" />
     <Compile Include="Behaviors\NavigationViewHeaderMode.cs" />
     <Compile Include="Helpers\EnumToBooleanConverter.cs" />
+    <Compile Include="Helpers\Json.cs" />
     <Compile Include="Helpers\NavHelper.cs" />
     <Compile Include="Helpers\SettingsStorageExtensions.cs" />
+    <Compile Include="Models\SampleOrder.cs" />
     <Compile Include="Services\ActivationService.cs" />
     <Compile Include="Activation\DefaultLaunchActivationHandler.cs" />
     <Compile Include="Services\NavigationServiceEx.cs" />
+    <Compile Include="Services\SampleDataService.cs" />
     <Compile Include="Services\ThemeSelectorService.cs" />
     <Compile Include="ViewModels\HomeViewModel.cs" />
     <Compile Include="ViewModels\PopularActorsDetailViewModel.cs" />
@@ -252,12 +255,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\MovieWorld.Core\MovieWorld.Core.csproj">
-      <Project>{48536622-B66E-4A17-BB35-7EB4E5A63961}</Project>
-      <Name>MovieWorld.Core</Name>
-    </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>

@@ -1,6 +1,6 @@
 ﻿using System;
 
-using MovieWorld.Core.Models;
+using MovieWorld.Models;
 
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;

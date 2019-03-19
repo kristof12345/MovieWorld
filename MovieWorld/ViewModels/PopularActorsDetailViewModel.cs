@@ -3,8 +3,8 @@ using System.Linq;
 
 using GalaSoft.MvvmLight;
 
-using MovieWorld.Core.Models;
-using MovieWorld.Core.Services;
+using MovieWorld.Models;
+using MovieWorld.Services;
 
 namespace MovieWorld.ViewModels
 {
