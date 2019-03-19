@@ -1,8 +1,9 @@
-﻿using System;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
 using Microsoft.Toolkit.Uwp.UI.Controls;
 using MovieWorld.Models;
 using MovieWorld.Services;
@@ -12,6 +13,7 @@ namespace MovieWorld.ViewModels
     public class TopMoviesViewModel : ViewModelBase
     {
         private Movie selected;
+        public ICommand SelectActorCommand { get; set; }
 
         public Movie Selected
         {
@@ -25,6 +27,10 @@ namespace MovieWorld.ViewModels
         public TopMoviesViewModel()
         {
             Movies = DataService.MovieList;
+            SelectActorCommand = new RelayCommand(() =>
+            {
+                System.Diagnostics.Debug.WriteLine("EditCommand");
+            });
         }
 
         public async Task LoadDataAsync(MasterDetailsViewState viewState)

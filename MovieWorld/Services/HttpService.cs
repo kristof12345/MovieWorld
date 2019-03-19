@@ -1,5 +1,4 @@
-﻿using System.Diagnostics;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using System.Net.Http;
 using System;
 using System.Collections.Generic;
@@ -26,11 +25,12 @@ namespace MovieWorld.Services
         //Top filmek listázása
         internal static async Task<List<Movie>> ListTopMoviesAsync()
         {
-            var response = await client.GetAsync($"movie/top_rated?api_key={apiKey}");
+            var response = await client.GetAsync($"movie/popular?api_key={apiKey}");
             var data = await response.Content.ReadAsAsync<MovieList>();          
             return data.Results;
         }
 
+        //Stáb lekérése egy filmhez
         internal static async Task<List<Actor>> GetCastAsync(int id)
         {
             var response = await client.GetAsync($"movie/{id}/credits?api_key={apiKey}");

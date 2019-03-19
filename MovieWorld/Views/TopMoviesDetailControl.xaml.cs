@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using MovieWorld.Models;
+using MovieWorld.ViewModels;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
@@ -8,6 +9,11 @@ namespace MovieWorld.Views
 {
     public sealed partial class TopMoviesDetailControl : UserControl
     {
+        public TopMoviesViewModel ViewModel
+        {
+            get { return ViewModelLocator.Current.TopMoviesViewModel; }
+        }
+
         public Movie MasterMenuItem
         {
             get { var movie = GetValue(MasterMenuItemProperty) as Movie; if(movie != null) CastList.ItemsSource = movie.Cast; return movie; }
