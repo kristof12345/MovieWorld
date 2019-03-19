@@ -30,12 +30,20 @@ namespace MovieWorld.Services
             return data.Results;
         }
 
+        //Egy színész lekérése
+        internal static async Task<Actor> GetActorAsync(int id)
+        {
+            var response = await client.GetAsync($"people/{id}?api_key={apiKey}");
+            var data = await response.Content.ReadAsAsync<Actor>();
+            return data;
+        }
+
         //Stáb lekérése egy filmhez
         internal static async Task<List<Actor>> GetCastAsync(int id)
         {
             var response = await client.GetAsync($"movie/{id}/credits?api_key={apiKey}");
             var data = await response.Content.ReadAsAsync<ActorList>();
-            return data.Cast.Take(5).ToList();
+            return data.Cast;
         }
 
         //Egy film részletes adatainak lekérése

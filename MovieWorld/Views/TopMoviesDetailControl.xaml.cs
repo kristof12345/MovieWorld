@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using MovieWorld.Models;
 using MovieWorld.ViewModels;
 using Windows.UI.Xaml;
@@ -9,10 +8,7 @@ namespace MovieWorld.Views
 {
     public sealed partial class TopMoviesDetailControl : UserControl
     {
-        public TopMoviesViewModel ViewModel
-        {
-            get { return ViewModelLocator.Current.TopMoviesViewModel; }
-        }
+        public TopMoviesViewModel ViewModel{ get { return ViewModelLocator.Current.TopMoviesViewModel; } }
 
         public Movie MasterMenuItem
         {

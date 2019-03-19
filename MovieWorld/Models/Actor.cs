@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MovieWorld.Models
 {
@@ -10,17 +7,31 @@ namespace MovieWorld.Models
     {
         public int Id { get; set; }
         public List<Actor> Cast { get; set; }
-
         //Egyéb adatok
+    }
+
+    public enum Gender
+    {
+        Other,
+        Women,
+        Man
     }
 
     public class Actor
     {
+        public int Id { get; set; }
+
         public string Character { get; set; }
 
         public string Name { get; set; }
 
         public Uri Image { get { return new Uri("http://image.tmdb.org/t/p/w185/" + Profile_path); } }
+
+        public string Place_of_birth{get;set;}
+
+        public double Popularity { get; set; }
+
+        public Gender Gender { get; set; }
 
         public string Profile_path { get; set; }
 
