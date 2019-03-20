@@ -1,7 +1,4 @@
-﻿using System;
-
-using GalaSoft.MvvmLight.Ioc;
-
+﻿using GalaSoft.MvvmLight.Ioc;
 using MovieWorld.Services;
 using MovieWorld.Views;
 
@@ -16,19 +13,30 @@ namespace MovieWorld.ViewModels
 
         private ViewModelLocator()
         {
+            //Register NEW PAGES
             SimpleIoc.Default.Register(() => new NavigationServiceEx());
             SimpleIoc.Default.Register<ShellViewModel>();
             Register<HomeViewModel, HomePage>();
             Register<TopMoviesViewModel, TopMoviesPage>();
             Register<TopSeriesViewModel, TopSeriesPage>();
             Register<PopularActorsViewModel, PopularActorsPage>();
-            Register<PopularActorsDetailViewModel, PopularActorsDetailPage>();
+            Register<ActorDetailViewModel, ActorDetailPage>();
+            Register<MovieDetailViewModel, MovieDetailPage>();
+            Register<TvShowDetailViewModel, TvShowDetailPage>();
+            Register<SeasonDetailViewModel, SeasonDetailPage>();
             Register<SettingsViewModel, SettingsPage>();
         }
 
+        //NEW PAGES
         public SettingsViewModel SettingsViewModel => SimpleIoc.Default.GetInstance<SettingsViewModel>();
 
-        public PopularActorsDetailViewModel PopularActorsDetailViewModel => SimpleIoc.Default.GetInstance<PopularActorsDetailViewModel>();
+        public ActorDetailViewModel ActorDetailViewModel => SimpleIoc.Default.GetInstance<ActorDetailViewModel>();
+
+        public MovieDetailViewModel MovieDetailViewModel => SimpleIoc.Default.GetInstance<MovieDetailViewModel>();
+
+        public TvShowDetailViewModel TvShowDetailViewModel => SimpleIoc.Default.GetInstance<TvShowDetailViewModel>();
+
+        public SeasonDetailViewModel SeasonDetailViewModel => SimpleIoc.Default.GetInstance<SeasonDetailViewModel>();
 
         public PopularActorsViewModel PopularActorsViewModel => SimpleIoc.Default.GetInstance<PopularActorsViewModel>();
 

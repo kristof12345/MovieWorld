@@ -2,39 +2,55 @@
     x:Class="MovieWorld.Views.HomePage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    Style="{StaticResource PageStyle}"
-    mc:Ignorable="d">
+xmlns:model="using:MovieWorld.Models"
+    xmlns:views="using:MovieWorld.Views"
+    xmlns:behaviors="using:MovieWorld.Behaviors"
+    Style="{StaticResource PageStyle}">
 
     <Grid 
         x:Name="ContentArea"
-        Margin="{StaticResource SmallLeftRightMargin}">
+        Margin="{StaticResource SmallLeftRightMargin}" HorizontalAlignment="Center">
         <Pivot
-            x:Name="Items">
+            x:Name="Items"
+            HorizontalAlignment="Center"
+            HorizontalContentAlignment="Center">
             <Pivot.HeaderTemplate>
                 <DataTemplate>
                     <TextBlock
+                        TextAlignment="Center"
+                        HorizontalAlignment="Right"
                         Text="{Binding}"
                         Style="{ThemeResource SubtitleTextBlockStyle}" />
                 </DataTemplate>
             </Pivot.HeaderTemplate>
+            <!--Search-->
             <PivotItem x:Uid="Home_PivotItem1">
-                <Grid Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
-                    <!--
-                    The SystemControlPageBackgroundChromeLowBrush background represents where you should place your content. 
-                    Place your content here.
-                    -->
+                <Grid>
+                    <StackPanel Orientation="Horizontal"
+                        Margin="0,150,0,0"
+                                MaxWidth = "500"
+                             Height = "35"
+                                VerticalAlignment="Top"
+                                HorizontalAlignment="Center">
+                    <TextBox Width = "400"
+                             Text="{x:Bind ViewModel.SearchText, Mode=TwoWay}"
+                             />
+                    <Button Width = "100"
+                             Content="Search"
+                            Command="{x:Bind ViewModel.SearchCommand}"/>
+                    </StackPanel>
 
                 </Grid>
             </PivotItem>
-            
+            <!--Browse-->
             <PivotItem x:Uid="Home_PivotItem2">
-                <Grid Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
-                    <!--
-                    The SystemControlPageBackgroundChromeLowBrush background represents where you should place your content. 
-                    Place your content here.
-                    -->
+                <Grid >
+
+                </Grid>
+            </PivotItem>
+            <!--What's new-->
+            <PivotItem x:Uid="Home_PivotItem3">
+                <Grid >
 
                 </Grid>
             </PivotItem>

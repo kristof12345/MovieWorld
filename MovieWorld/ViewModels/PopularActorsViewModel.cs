@@ -35,7 +35,7 @@ namespace MovieWorld.ViewModels
             if (clickedItem != null)
             {
                 NavigationService.Frame.SetListDataItemForNextConnectedAnnimation(clickedItem);
-                NavigationService.Navigate(typeof(PopularActorsDetailViewModel).FullName, clickedItem.OrderId);
+                NavigationService.Navigate(typeof(ActorDetailViewModel).FullName, clickedItem.OrderId);
             }
         }
     }

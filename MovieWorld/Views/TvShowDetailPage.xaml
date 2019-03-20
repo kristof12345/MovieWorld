@@ -1,5 +1,5 @@
 ﻿<Page
-    x:Class="MovieWorld.Views.PopularActorsDetailPage"
+    x:Class="MovieWorld.Views.TvShowDetailPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:animations="using:Microsoft.Toolkit.Uwp.UI.Animations"
@@ -42,7 +42,7 @@
                     Margin="{StaticResource SmallRightMargin}">
                         <Image HorizontalAlignment="Left" Height="300">
                             <Image.Source>
-                                <BitmapImage UriSource="{x:Bind ViewModel.Actor.Image, Mode=OneWay}"/>
+                                <BitmapImage UriSource="{x:Bind ViewModel.TvShow.Image, Mode=OneWay}"/>
                             </Image.Source>
                         </Image>
                     </Grid>
@@ -50,36 +50,36 @@
                     x:Name="title"
                     RelativePanel.AlignTopWithPanel="True"
                     RelativePanel.RightOf="itemHero"
-                    Text="{x:Bind ViewModel.Actor.Name, Mode=OneWay}"
+                    Text="{x:Bind ViewModel.TvShow.Name, Mode=OneWay}"
                     Style="{ThemeResource TitleTextBlockStyle}"
                     Margin="{StaticResource XXSmallTopMargin}" />
 
                     <StackPanel x:Name="group1" RelativePanel.Below="itemHero">
                         <StackPanel x:Name="birthplace" Margin="{StaticResource SmallTopMargin}">
                             <TextBlock Text="Place of birth" Style="{StaticResource DetailSubTitleStyle}" />
-                            <TextBlock Text="{x:Bind ViewModel.Actor.Place_of_birth, Mode=OneWay}" Style="{StaticResource DetailBodyBaseMediumStyle}" />
+                            <TextBlock Text="{x:Bind ViewModel.TvShow.first_air_date, Mode=OneWay}" Style="{StaticResource DetailBodyBaseMediumStyle}" />
                         </StackPanel>
 
                         <StackPanel x:Name="gender" Margin="{StaticResource SmallTopMargin}">
                             <TextBlock Text="Gender" Style="{StaticResource DetailSubTitleStyle}" />
-                            <TextBlock Text="{x:Bind ViewModel.Actor.Gender, Mode=OneWay}" Style="{StaticResource DetailBodyBaseMediumStyle}" />
+                            <TextBlock Text="{x:Bind ViewModel.TvShow.Number_of_episodes, Mode=OneWay}" Style="{StaticResource DetailBodyBaseMediumStyle}" />
                         </StackPanel>
                     </StackPanel>
 
                     <StackPanel x:Name="group2" RelativePanel.Below="group1">
                         <StackPanel x:Name="birthdate" Margin="{StaticResource SmallTopMargin}">
                             <TextBlock Text="Date of birth" Style="{StaticResource DetailSubTitleStyle}" />
-                            <TextBlock Text="{x:Bind ViewModel.Actor.Birthday, Mode=OneWay}" Style="{StaticResource DetailBodyBaseMediumStyle}" />
+                            <TextBlock Text="{x:Bind ViewModel.TvShow.Number_of_seasons, Mode=OneWay}" Style="{StaticResource DetailBodyBaseMediumStyle}" />
                         </StackPanel>
 
                         <StackPanel x:Name="popularity" Margin="{StaticResource SmallTopMargin}">
                             <TextBlock Text="Popularity" Style="{StaticResource DetailSubTitleStyle}" />
-                            <TextBlock Text="{x:Bind ViewModel.Actor.Popularity, Mode=OneWay}" Style="{StaticResource DetailBodyBaseMediumStyle}" />
+                            <TextBlock Text="{x:Bind ViewModel.TvShow.Popularity, Mode=OneWay}" Style="{StaticResource DetailBodyBaseMediumStyle}" />
                         </StackPanel>
                     </StackPanel>
                 </RelativePanel>
                 <TextBlock Text="Biography" Style="{StaticResource DetailSubTitleStyle}" Margin="{StaticResource SmallTopMargin}" />
-                <TextBlock Style="{StaticResource DetailBodyStyle}" Text="{x:Bind ViewModel.Actor.Biography, Mode=OneWay}" />
+                <TextBlock Style="{StaticResource DetailBodyStyle}" Text="{x:Bind ViewModel.TvShow.Overview, Mode=OneWay}" />
                 <TextBlock Text="Movies" Style="{StaticResource DetailSubTitleStyle}" Margin="{StaticResource SmallTopMargin}" />
                 <ItemsControl x:Name="MovieList">
                     <ItemsControl.ItemsPanel>

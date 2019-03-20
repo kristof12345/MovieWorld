@@ -40,7 +40,7 @@ namespace MovieWorld.ViewModels
 
         public void NavigateToSeason(int id)
         {
-            NavigationService.Navigate(typeof(PopularActorsDetailViewModel).FullName, id);
+            NavigationService.Navigate(typeof(ActorDetailViewModel).FullName, id);
         }
     }
 }

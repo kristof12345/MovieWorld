@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using MovieWorld.Models;
 using System.Linq;
+using System;
 
 namespace MovieWorld.Services
 {
@@ -30,6 +31,11 @@ namespace MovieWorld.Services
                     }
                 }
             }
+        }
+
+        internal static Task<Movie> GetMovieDataAsync(int id)
+        {
+            throw new NotImplementedException();
         }
     }
 }

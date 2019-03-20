@@ -131,6 +131,7 @@
     <Compile Include="Models\Movie.cs" />
     <Compile Include="Models\Role.cs" />
     <Compile Include="Models\SampleOrder.cs" />
+    <Compile Include="Models\SearchRequest.cs" />
     <Compile Include="Models\TvShow.cs" />
     <Compile Include="Services\ActivationService.cs" />
     <Compile Include="Activation\DefaultLaunchActivationHandler.cs" />
@@ -142,18 +143,30 @@
     <Compile Include="Services\ThemeSelectorService.cs" />
     <Compile Include="Services\TvShowDataService.cs" />
     <Compile Include="ViewModels\HomeViewModel.cs" />
-    <Compile Include="ViewModels\PopularActorsDetailViewModel.cs" />
+    <Compile Include="ViewModels\ActorDetailViewModel.cs" />
+    <Compile Include="ViewModels\MovieDetailViewModel.cs" />
     <Compile Include="ViewModels\PopularActorsViewModel.cs" />
+    <Compile Include="ViewModels\SeasonDetailViewModel.cs" />
     <Compile Include="ViewModels\SettingsViewModel.cs" />
     <Compile Include="ViewModels\ShellViewModel.cs" />
     <Compile Include="ViewModels\TopMoviesViewModel.cs" />
     <Compile Include="ViewModels\TopSeriesViewModel.cs" />
+    <Compile Include="ViewModels\TvShowDetailViewModel.cs" />
     <Compile Include="ViewModels\ViewModelLocator.cs" />
     <Compile Include="Views\HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\PopularActorsDetailPage.xaml.cs">
-      <DependentUpon>PopularActorsDetailPage.xaml</DependentUpon>
+    <Compile Include="Views\MovieDetailPage.xaml.cs">
+      <DependentUpon>MovieDetailPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SeasonDetailPage.xaml.cs">
+      <DependentUpon>SeasonDetailPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TvShowDetailPage.xaml.cs">
+      <DependentUpon>TvShowDetailPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ActorDetailPage.xaml.cs">
+      <DependentUpon>ActorDetailPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\PopularActorsPage.xaml.cs">
       <DependentUpon>PopularActorsPage.xaml</DependentUpon>
@@ -208,7 +221,19 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\PopularActorsDetailPage.xaml">
+    <Page Include="Views\MovieDetailPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\SeasonDetailPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\TvShowDetailPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ActorDetailPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

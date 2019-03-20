@@ -6,16 +6,13 @@ using Windows.UI.Xaml.Navigation;
 
 namespace MovieWorld.Views
 {
-    public sealed partial class PopularActorsDetailPage : Page
+    public sealed partial class ActorDetailPage : Page
     {
-        private PopularActorsDetailViewModel ViewModel
-        {
-            get { return ViewModelLocator.Current.PopularActorsDetailViewModel; }
-        }
+        public ActorDetailViewModel ViewModel{get { return ViewModelLocator.Current.ActorDetailViewModel; }}
 
         public NavigationServiceEx NavigationService => ViewModelLocator.Current.NavigationService;
 
-        public PopularActorsDetailPage()
+        public ActorDetailPage()
         {
             InitializeComponent();
             

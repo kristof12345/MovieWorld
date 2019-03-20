@@ -154,7 +154,7 @@
     <comment>Third Pivot item title for Home</comment>
   </data>
   <data name="Shell_Home.Content" xml:space="preserve">
-    <value>Home</value>
+    <value>Movie World</value>
     <comment>Navigation view item name for Home</comment>
   </data>
   <data name="TopMovies_NoSelection.Text" xml:space="preserve">
