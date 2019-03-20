@@ -1,10 +1,6 @@
-﻿using System;
-
-using Microsoft.Toolkit.Uwp.UI.Animations;
-
+﻿using Microsoft.Toolkit.Uwp.UI.Animations;
 using MovieWorld.Services;
 using MovieWorld.ViewModels;
-
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 
@@ -22,6 +18,7 @@ namespace MovieWorld.Views
         public PopularActorsDetailPage()
         {
             InitializeComponent();
+            
         }
 
         protected async override void OnNavigatedTo(NavigationEventArgs e)
@@ -30,6 +27,7 @@ namespace MovieWorld.Views
             if (e.Parameter is int orderId)
             {
                 await ViewModel.Initialize(orderId);
+                MovieList.ItemsSource = ViewModel.Actor.Movies;
             }
         }
 

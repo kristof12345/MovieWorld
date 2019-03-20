@@ -53,5 +53,13 @@ namespace MovieWorld.Services
             var data = await response.Content.ReadAsAsync<Movie>();
             return data;
         }
+
+        //Egy színész filmjeinek lekérése
+        internal static async Task<List<Actor>> GetMoviesForActorAsync(int id)
+        {
+            var response = await client.GetAsync($"person/{id}/movie_credits?api_key={apiKey}");
+            var data = await response.Content.ReadAsAsync<ActorList>();
+            return data.Cast;
+        }
     }
 }

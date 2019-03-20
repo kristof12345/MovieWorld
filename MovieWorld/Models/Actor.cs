@@ -29,9 +29,15 @@ namespace MovieWorld.Models
 
         public string Place_of_birth{get;set;}
 
+        public string Birthday { get; set; }
+
+        public string Biography { get; set; }
+
         public double Popularity { get; set; }
 
         public Gender Gender { get; set; }
+
+        public List<Movie> Movies { get; set; }
 
         public string Profile_path { get; set; }
 

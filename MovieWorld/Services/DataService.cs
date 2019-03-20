@@ -23,7 +23,7 @@ namespace MovieWorld.Services
                 foreach (var movie in list)
                 {
                     var cast  = await HttpService.GetCastAsync(movie.Id);
-                    movie.Cast = cast.Take(12).ToList();
+                    movie.Cast = cast.Where(c => c.Profile_path !=null).Take(12).ToList();
                     var details = await HttpService.GetMovieAsync(movie.Id);
                     movie.Genres = details.Genres;
                     MovieList.Add(movie);

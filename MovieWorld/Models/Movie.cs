@@ -13,10 +13,8 @@ namespace MovieWorld.Models
         //Egyéb adatok
     }
 
-    public class Movie : INotifyPropertyChanged
+    public class Movie
     {
-        public event PropertyChangedEventHandler PropertyChanged;
-
         public int Id { get; set; }
 
         public bool Detailed { get; set; }
