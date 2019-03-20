@@ -1,9 +1,22 @@
 <ResourceDictionary
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-
     <Style TargetType="Page" x:Key="PageStyle">
         <Setter Property="Background" Value="{ThemeResource ApplicationPageBackgroundThemeBrush}" />
     </Style>
-
+    <!--Transparent button-->
+    <ResourceDictionary.ThemeDictionaries>
+        <ResourceDictionary x:Key="Light">
+            <SolidColorBrush x:Key="ButtonBackground" Color="Transparent"/>
+            <SolidColorBrush x:Key="ButtonBackgroundPointerOver" Color="Transparent"/>
+            <SolidColorBrush x:Key="ButtonBackgroundPressed" Color="Transparent"/>
+            <SolidColorBrush x:Key="ButtonBorderBrushPointerOver" Color="Transparent"/>
+        </ResourceDictionary>
+        <ResourceDictionary x:Key="Dark">
+            <SolidColorBrush x:Key="ButtonBackground" Color="Transparent"/>
+            <SolidColorBrush x:Key="ButtonBackgroundPointerOver" Color="Transparent"/>
+            <SolidColorBrush x:Key="ButtonBackgroundPressed" Color="Transparent"/>
+            <SolidColorBrush x:Key="ButtonBorderBrushPointerOver" Color="Transparent"/>
+        </ResourceDictionary>
+    </ResourceDictionary.ThemeDictionaries>
 </ResourceDictionary>

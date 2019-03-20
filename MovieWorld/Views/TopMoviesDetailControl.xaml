@@ -8,7 +8,6 @@
     <UserControl.Resources>
         <helpers:GenreToStringConverter x:Key="GenreToStringConverter"/>
     </UserControl.Resources>
-
     <ScrollViewer
         x:Name="ForegroundElement"
         VerticalScrollMode="Enabled"
@@ -40,7 +39,6 @@
             <TextBlock Text="{x:Bind MasterMenuItem.Overview, Mode=OneWay}" Style="{StaticResource DetailBodyStyle}" />
 
             <TextBlock Text="Cast" Style="{StaticResource DetailSubTitleStyle}" Margin="{StaticResource MediumTopMargin}" />
-
             <ItemsControl x:Name="CastList">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
@@ -50,18 +48,6 @@
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
                         <Button Command="{Binding Path= ViewModel.SelectActorCommand, ElementName=MovieDetailsControl}" CommandParameter="{Binding Id, Mode=OneWay}">
-                            <Button.Resources>
-                                <ResourceDictionary>
-                                    <ResourceDictionary.ThemeDictionaries>
-                                        <ResourceDictionary x:Key="Light">
-                                            <SolidColorBrush x:Key="ButtonBackground" Color="Transparent"/>
-                                            <SolidColorBrush x:Key="ButtonBackgroundPointerOver" Color="Transparent"/>
-                                            <SolidColorBrush x:Key="ButtonBackgroundPressed" Color="Transparent"/>
-                                            <SolidColorBrush x:Key="ButtonBorderBrushPointerOver" Color="Transparent"/>
-                                        </ResourceDictionary>
-                                    </ResourceDictionary.ThemeDictionaries>
-                                </ResourceDictionary>
-                            </Button.Resources>
                             <StackPanel Orientation="Vertical" >
                                 <Ellipse Height="100" Width="100">
                                     <Ellipse.Fill>

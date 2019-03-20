@@ -8,7 +8,7 @@
     <UserControl.Resources>
         <helpers:GenreToStringConverter x:Key="GenreToStringConverter"/>
     </UserControl.Resources>
-    
+   
     <ScrollViewer
         Name="ForegroundElement"
         VerticalScrollMode="Enabled"
@@ -41,7 +41,6 @@
             <TextBlock Text="{x:Bind MasterMenuItem.Overview, Mode=OneWay}" Style="{StaticResource DetailBodyStyle}" />
 
             <TextBlock Text="Seasons" Style="{StaticResource DetailSubTitleStyle}" Margin="{StaticResource MediumTopMargin}" />
-
             <ItemsControl x:Name="SeasonList">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
@@ -51,18 +50,6 @@
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
                         <Button Command="{Binding Path= ViewModel.SelectSeasonCommand, ElementName=ShowDetailsControl}" CommandParameter="{Binding Id, Mode=OneWay}">
-                            <Button.Resources>
-                                <ResourceDictionary>
-                                    <ResourceDictionary.ThemeDictionaries>
-                                        <ResourceDictionary x:Key="Light">
-                                            <SolidColorBrush x:Key="ButtonBackground" Color="Transparent"/>
-                                            <SolidColorBrush x:Key="ButtonBackgroundPointerOver" Color="Transparent"/>
-                                            <SolidColorBrush x:Key="ButtonBackgroundPressed" Color="Transparent"/>
-                                            <SolidColorBrush x:Key="ButtonBorderBrushPointerOver" Color="Transparent"/>
-                                        </ResourceDictionary>
-                                    </ResourceDictionary.ThemeDictionaries>
-                                </ResourceDictionary>
-                            </Button.Resources>
                             <StackPanel Orientation="Vertical" >
                                 <Rectangle Height="150" Width="100">
                                     <Rectangle.Fill>
