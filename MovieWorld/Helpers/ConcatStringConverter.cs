@@ -7,9 +7,9 @@ namespace MovieWorld.Helpers
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            if (value is string && parameter is string)
+            if (value is int && parameter is string)
             {
-                return (string)value + (string)parameter;
+                return value.ToString() + " " + (string)parameter;
             }
             throw new ArgumentException("Invalid value.");
         }

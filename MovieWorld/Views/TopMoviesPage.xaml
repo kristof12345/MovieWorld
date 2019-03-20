@@ -2,15 +2,12 @@
     x:Class="MovieWorld.Views.TopMoviesPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Style="{StaticResource PageStyle}"
     xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
     xmlns:model="using:MovieWorld.Models"
     xmlns:views="using:MovieWorld.Views"
     xmlns:behaviors="using:MovieWorld.Behaviors"
-    behaviors:NavigationViewHeaderBehavior.HeaderMode="Never"
-    mc:Ignorable="d">
+    behaviors:NavigationViewHeaderBehavior.HeaderMode="Never">
     <Page.Transitions>
         <TransitionCollection>
             <NavigationThemeTransition />

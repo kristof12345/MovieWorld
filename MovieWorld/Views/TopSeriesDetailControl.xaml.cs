@@ -1,5 +1,5 @@
 ﻿using System;
-
+using System.Collections.Generic;
 using MovieWorld.Models;
 
 using Windows.UI.Xaml;
@@ -9,17 +9,18 @@ namespace MovieWorld.Views
 {
     public sealed partial class TopSeriesDetailControl : UserControl
     {
-        public SampleOrder MasterMenuItem
+        public TvShow MasterMenuItem
         {
-            get { return GetValue(MasterMenuItemProperty) as SampleOrder; }
+            get { var show = GetValue(MasterMenuItemProperty) as TvShow; if (show != null) SeasonList.ItemsSource = show.Seasons; return show; }
             set { SetValue(MasterMenuItemProperty, value); }
         }
 
-        public static readonly DependencyProperty MasterMenuItemProperty = DependencyProperty.Register("MasterMenuItem", typeof(SampleOrder), typeof(TopSeriesDetailControl), new PropertyMetadata(null, OnMasterMenuItemPropertyChanged));
+        public static readonly DependencyProperty MasterMenuItemProperty = DependencyProperty.Register("MasterMenuItem", typeof(TvShow), typeof(TopSeriesDetailControl), new PropertyMetadata(null, OnMasterMenuItemPropertyChanged));
 
         public TopSeriesDetailControl()
         {
             InitializeComponent();
+            SeasonList.ItemsSource = new List<Season>();
         }
 
         private static void OnMasterMenuItemPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)

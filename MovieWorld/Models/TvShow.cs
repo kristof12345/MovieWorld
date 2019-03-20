@@ -70,12 +70,16 @@ namespace MovieWorld.Models
 
     public class Season
     {
+        public string Name { get; set; }
+
+        //Kép
+        public Uri Image { get { return new Uri("http://image.tmdb.org/t/p/w185/" + Poster_path); } }
+
         public string air_date { get; set; }
         public int episode_count { get; set; }
         public int id { get; set; }
-        public string name { get; set; }
         public string overview { get; set; }
-        public string poster_path { get; set; }
+        public string Poster_path { get; set; }
         public int season_number { get; set; }
     }
 }

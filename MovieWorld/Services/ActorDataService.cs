@@ -15,7 +15,11 @@ namespace MovieWorld.Services
         internal static async Task<Actor> GetActorDataAsync(int id)
         {
             var actor = await HttpService.GetActorAsync(id);
-            actor.Roles = await HttpService.GetMoviesForActorAsync(id);
+            var roles = await HttpService.GetMoviesForActorAsync(id);
+            if (roles != null)
+            {
+                actor.Roles = roles.Where(c => c.Poster_path != null).ToList();
+            }
             return actor;
         }
     }

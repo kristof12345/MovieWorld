@@ -40,8 +40,6 @@ namespace MovieWorld.ViewModels
 
         public void NavigateToActor(int id)
         {
-            var t = typeof(HomePage);
-            var n = t.FullName;
             NavigationService.Navigate(typeof(PopularActorsDetailViewModel).FullName, id);
         }
     }

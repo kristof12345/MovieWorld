@@ -6,6 +6,7 @@ using GalaSoft.MvvmLight.Command;
 using Microsoft.Toolkit.Uwp.UI.Controls;
 using MovieWorld.Models;
 using MovieWorld.Services;
+using MovieWorld.Views;
 
 namespace MovieWorld.ViewModels
 {
@@ -13,7 +14,7 @@ namespace MovieWorld.ViewModels
     {
         private TvShow selected;
 
-        public RelayCommand<int> SelectActorCommand { get; set; }
+        public RelayCommand<int> SelectSeasonCommand { get; set; }
         public NavigationServiceEx NavigationService => ViewModelLocator.Current.NavigationService;
 
         public TvShow Selected{ get { return selected; }set { Set(ref selected, value); } }
@@ -21,7 +22,10 @@ namespace MovieWorld.ViewModels
 
         public TopSeriesViewModel()
         {
-            //COMMAND
+            SelectSeasonCommand = new RelayCommand<int>((int id) =>
+            {
+                NavigateToSeason(id);
+            });
         }
 
         public async Task LoadDataAsync(MasterDetailsViewState viewState)
@@ -32,6 +36,11 @@ namespace MovieWorld.ViewModels
             {
                 Selected = Shows.First();
             }
+        }
+
+        public void NavigateToSeason(int id)
+        {
+            NavigationService.Navigate(typeof(PopularActorsDetailViewModel).FullName, id);
         }
     }
 }
