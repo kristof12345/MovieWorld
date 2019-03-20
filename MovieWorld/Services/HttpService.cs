@@ -7,15 +7,15 @@ using System.Linq;
 
 namespace MovieWorld.Services
 {
-    public static class HttpService
+    public class HttpService
     {
-        private static HttpClient client = null;
-        private static HttpClientHandler handler = new HttpClientHandler();
+        private HttpClient client = null;
+        private HttpClientHandler handler = new HttpClientHandler();
 
         private static readonly string apiKey = "ccb62859a8fb8ace60f8a20b8dc8bd38";
         private static readonly Uri baseAddress = new Uri("https://api.themoviedb.org/3/");
 
-        internal static void Initialize()
+        public HttpService()
         {
             handler.ClientCertificateOptions = ClientCertificateOption.Manual;
             handler.ServerCertificateCustomValidationCallback = (httpRequestMessage, cert, cetChain, policyErrors) => { return true; };
@@ -23,7 +23,7 @@ namespace MovieWorld.Services
         }
 
         //Top filmek listázása
-        internal static async Task<List<Movie>> ListTopMoviesAsync()
+        internal async Task<List<Movie>> ListTopMoviesAsync()
         {
             var response = await client.GetAsync($"movie/popular?api_key={apiKey}");
             var data = await response.Content.ReadAsAsync<MovieList>();          
@@ -31,7 +31,7 @@ namespace MovieWorld.Services
         }
 
         //Egy színész lekérése
-        internal static async Task<Actor> GetActorAsync(int id)
+        internal async Task<Actor> GetActorAsync(int id)
         {
             var response = await client.GetAsync($"person/{id}?api_key={apiKey}");
             var data = await response.Content.ReadAsAsync<Actor>();
@@ -39,7 +39,7 @@ namespace MovieWorld.Services
         }
 
         //Stáb lekérése egy filmhez
-        internal static async Task<List<Actor>> GetCastAsync(int id)
+        internal async Task<List<Actor>> GetCastAsync(int id)
         {
             var response = await client.GetAsync($"movie/{id}/credits?api_key={apiKey}");
             var data = await response.Content.ReadAsAsync<ActorList>();
@@ -47,7 +47,7 @@ namespace MovieWorld.Services
         }
 
         //Egy film részletes adatainak lekérése
-        internal static async Task<Movie> GetMovieAsync(int id)
+        internal async Task<Movie> GetMovieAsync(int id)
         {
             var response = await client.GetAsync($"movie/{id}?api_key={apiKey}");
             var data = await response.Content.ReadAsAsync<Movie>();
@@ -55,10 +55,10 @@ namespace MovieWorld.Services
         }
 
         //Egy színész filmjeinek lekérése
-        internal static async Task<List<Actor>> GetMoviesForActorAsync(int id)
+        internal async Task<List<Role>> GetMoviesForActorAsync(int id)
         {
             var response = await client.GetAsync($"person/{id}/movie_credits?api_key={apiKey}");
-            var data = await response.Content.ReadAsAsync<ActorList>();
+            var data = await response.Content.ReadAsAsync<RoleList>();
             return data.Cast;
         }
     }

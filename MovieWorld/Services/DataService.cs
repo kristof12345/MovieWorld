@@ -2,7 +2,6 @@
 using System.Threading.Tasks;
 using MovieWorld.Models;
 using System.Linq;
-using System;
 
 namespace MovieWorld.Services
 {
@@ -11,6 +10,8 @@ namespace MovieWorld.Services
         public static ObservableCollection<Movie> MovieList { get; set; } = new ObservableCollection<Movie>();
 
         public static Movie DetailedMovie { get; set; }
+
+        private static HttpService HttpService { get; set; } = new HttpService();
 
         //Filmek letöltése a szerverről
         public static async Task GetMovieListAsync()
@@ -34,7 +35,9 @@ namespace MovieWorld.Services
         //Egy színész adatai
         internal static async Task<Actor> GetActorDataAsync(int id)
         {
-            return await HttpService.GetActorAsync(id);
+            var actor = await HttpService.GetActorAsync(id);
+            actor.Roles = await HttpService.GetMoviesForActorAsync(id);
+            return actor;
         }
 
         //Egy film részletes adatai

@@ -21,8 +21,6 @@ namespace MovieWorld.Models
     {
         public int Id { get; set; }
 
-        public string Character { get; set; }
-
         public string Name { get; set; }
 
         public Uri Image { get { return new Uri("http://image.tmdb.org/t/p/w185/" + Profile_path); } }
@@ -37,13 +35,13 @@ namespace MovieWorld.Models
 
         public Gender Gender { get; set; }
 
-        public List<Movie> Movies { get; set; }
+        public List<Role> Roles { get; set; }
 
         public string Profile_path { get; set; }
 
         public override string ToString()
         {
-            return $"{Character} {Name}";
+            return $"{Name} {Birthday}";
         }
     }
 }

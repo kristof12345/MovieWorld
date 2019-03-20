@@ -135,9 +135,8 @@
     <Compile Include="Helpers\NavHelper.cs" />
     <Compile Include="Helpers\SettingsStorageExtensions.cs" />
     <Compile Include="Models\Actor.cs" />
-    <Compile Include="Models\CrewMember.cs" />
     <Compile Include="Models\Movie.cs" />
-    <Compile Include="Models\Person.cs" />
+    <Compile Include="Models\Role.cs" />
     <Compile Include="Models\SampleOrder.cs" />
     <Compile Include="Models\Serie.cs" />
     <Compile Include="Services\ActivationService.cs" />

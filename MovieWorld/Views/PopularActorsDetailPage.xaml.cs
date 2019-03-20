@@ -27,7 +27,7 @@ namespace MovieWorld.Views
             if (e.Parameter is int orderId)
             {
                 await ViewModel.Initialize(orderId);
-                MovieList.ItemsSource = ViewModel.Actor.Movies;
+                MovieList.ItemsSource = ViewModel.Actor.Roles;
             }
         }
 
