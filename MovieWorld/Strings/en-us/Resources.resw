@@ -142,12 +142,16 @@
     <comment>The page is unknown or not registered in navigation service</comment>
   </data>
   <data name="Home_PivotItem1.Header" xml:space="preserve">  
-    <value>Item 1</value>
+    <value>Search</value>
     <comment>First Pivot item title for Home</comment>
   </data>
   <data name="Home_PivotItem2.Header" xml:space="preserve">
-    <value>Item 2</value>
+    <value>Browse</value>
     <comment>Second Pivot item title for Home</comment>
+  </data>
+  <data name="Home_PivotItem3.Header" xml:space="preserve">
+    <value>What's new</value>
+    <comment>Third Pivot item title for Home</comment>
   </data>
   <data name="Shell_Home.Content" xml:space="preserve">
     <value>Home</value>

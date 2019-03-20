@@ -2,7 +2,9 @@
     x:Class="MovieWorld.Views.PopularActorsDetailPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:animations="using:Microsoft.Toolkit.Uwp.UI.Animations">
+    xmlns:animations="using:Microsoft.Toolkit.Uwp.UI.Animations"
+    xmlns:behaviors="using:MovieWorld.Behaviors"
+    behaviors:NavigationViewHeaderBehavior.HeaderMode="Never">
     <ScrollViewer VerticalScrollMode="Enabled"
         HorizontalAlignment="Stretch"
         Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
