@@ -13,17 +13,12 @@ namespace MovieWorld.ViewModels
     public class TopMoviesViewModel : ViewModelBase
     {
         private Movie selected;
-        public RelayCommand<int> SelectActorCommand { get; set; }
 
+        public RelayCommand<int> SelectActorCommand { get; set; }
         public NavigationServiceEx NavigationService => ViewModelLocator.Current.NavigationService;
 
-        public Movie Selected
-        {
-            get { return selected; }
-            set { Set(ref selected, value); }
-        }
-
-        public ObservableCollection<Movie> Movies { get { return DataService.MovieList; } }
+        public Movie Selected{get { return selected; }set { Set(ref selected, value); } }
+        public ObservableCollection<Movie> Movies { get { return MovieDataService.TopMoviesList; } }
 
         public TopMoviesViewModel()
         {
@@ -35,7 +30,7 @@ namespace MovieWorld.ViewModels
 
         public async Task LoadDataAsync(MasterDetailsViewState viewState)
         {
-            await DataService.GetMovieListAsync();
+            await MovieDataService.GetTopMoviesAsync();
 
             if (viewState == MasterDetailsViewState.Both && Movies.Count > 0)
             {

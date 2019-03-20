@@ -26,7 +26,7 @@ namespace MovieWorld
 
         protected override async void OnLaunched(LaunchActivatedEventArgs args)
         {
-            var t1 = DataService.GetMovieListAsync();
+            var t1 = MovieDataService.GetTopMoviesAsync();
 
             await t1;
 

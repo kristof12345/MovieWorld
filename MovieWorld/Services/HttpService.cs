@@ -61,5 +61,21 @@ namespace MovieWorld.Services
             var data = await response.Content.ReadAsAsync<RoleList>();
             return data.Cast;
         }
+
+        //Top sorozatok listázása
+        internal async Task<List<TvShow>> ListTopShowsAsync()
+        {
+            var response = await client.GetAsync($"tv/popular?api_key={apiKey}");
+            var data = await response.Content.ReadAsAsync<TvShowList>();
+            return data.Results;
+        }
+
+        //Egy sorozat részleteinek lekérése
+        internal async Task<TvShow> GetShowAsync(int id)
+        {
+            var response = await client.GetAsync($"tv/{id}?api_key={apiKey}");
+            var data = await response.Content.ReadAsAsync<TvShow>();
+            return data;
+        }
     }
 }

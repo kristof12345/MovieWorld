@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
-
 using GalaSoft.MvvmLight;
-
+using GalaSoft.MvvmLight.Command;
 using Microsoft.Toolkit.Uwp.UI.Controls;
-
 using MovieWorld.Models;
 using MovieWorld.Services;
 
@@ -14,34 +11,26 @@ namespace MovieWorld.ViewModels
 {
     public class TopSeriesViewModel : ViewModelBase
     {
-        private SampleOrder _selected;
+        private TvShow selected;
 
-        public SampleOrder Selected
-        {
-            get { return _selected; }
-            set { Set(ref _selected, value); }
-        }
+        public RelayCommand<int> SelectActorCommand { get; set; }
+        public NavigationServiceEx NavigationService => ViewModelLocator.Current.NavigationService;
 
-        public ObservableCollection<SampleOrder> SampleItems { get; private set; } = new ObservableCollection<SampleOrder>();
+        public TvShow Selected{ get { return selected; }set { Set(ref selected, value); } }
+        public ObservableCollection<TvShow> Shows { get { return TvShowDataService.TopTvShowsList; } }
 
         public TopSeriesViewModel()
         {
+            //COMMAND
         }
 
         public async Task LoadDataAsync(MasterDetailsViewState viewState)
         {
-            SampleItems.Clear();
-
-            var data = await SampleDataService.GetSampleModelDataAsync();
-
-            foreach (var item in data)
-            {
-                SampleItems.Add(item);
-            }
+            await TvShowDataService.GetTopShowsAsync();
 
             if (viewState == MasterDetailsViewState.Both)
             {
-                Selected = SampleItems.First();
+                Selected = Shows.First();
             }
         }
     }

@@ -24,7 +24,7 @@ namespace MovieWorld.ViewModels
 
         public async Task Initialize(int id)
         {
-            Actor = await DataService.GetActorDataAsync(id);
+            Actor = await ActorDataService.GetActorDataAsync(id);
         }
     }
 }

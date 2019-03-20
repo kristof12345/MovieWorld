@@ -129,6 +129,7 @@
     <Compile Include="Activation\ActivationHandler.cs" />
     <Compile Include="Behaviors\NavigationViewHeaderBehavior.cs" />
     <Compile Include="Behaviors\NavigationViewHeaderMode.cs" />
+    <Compile Include="Helpers\ConcatStringConverter.cs" />
     <Compile Include="Helpers\EnumToBooleanConverter.cs" />
     <Compile Include="Helpers\GenreToStringConverter.cs" />
     <Compile Include="Helpers\Json.cs" />
@@ -138,14 +139,16 @@
     <Compile Include="Models\Movie.cs" />
     <Compile Include="Models\Role.cs" />
     <Compile Include="Models\SampleOrder.cs" />
-    <Compile Include="Models\Serie.cs" />
+    <Compile Include="Models\TvShow.cs" />
     <Compile Include="Services\ActivationService.cs" />
     <Compile Include="Activation\DefaultLaunchActivationHandler.cs" />
-    <Compile Include="Services\DataService.cs" />
+    <Compile Include="Services\ActorDataService.cs" />
+    <Compile Include="Services\MovieDataService.cs" />
     <Compile Include="Services\HttpService.cs" />
     <Compile Include="Services\NavigationServiceEx.cs" />
     <Compile Include="Services\SampleDataService.cs" />
     <Compile Include="Services\ThemeSelectorService.cs" />
+    <Compile Include="Services\TvShowDataService.cs" />
     <Compile Include="ViewModels\HomeViewModel.cs" />
     <Compile Include="ViewModels\PopularActorsDetailViewModel.cs" />
     <Compile Include="ViewModels\PopularActorsViewModel.cs" />
