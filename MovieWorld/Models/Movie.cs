@@ -33,7 +33,7 @@ namespace MovieWorld.Models
         public List<Language> Spoken_languages { get; set; }
 
         //Stáb
-        public List<Actor> Cast { get; set; }
+        public List<Actor> Cast { get; set; } = new List<Actor>();
 
         //Rövid leírás
         public string Tagline { get; set; }

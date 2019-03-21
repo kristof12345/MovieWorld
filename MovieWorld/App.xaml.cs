@@ -26,11 +26,11 @@ namespace MovieWorld
 
         protected override async void OnLaunched(LaunchActivatedEventArgs args)
         {
-            var t1 = MovieDataService.GetTopMoviesAsync();
-            var t2 = TvShowDataService.GetTopShowsAsync();
+            //var t1 = MovieDataService.GetTopMoviesAsync();
+            //var t2 = TvShowDataService.GetTopShowsAsync();
 
-            await t1;
-            await t2;
+            //await t1;
+            //await t2;
 
             if (!args.PrelaunchActivated)
             {

@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using MovieWorld.Models;
 using System.Linq;
+using System.Diagnostics;
 
 namespace MovieWorld.Services
 {
@@ -43,6 +44,8 @@ namespace MovieWorld.Services
         {
             var response = await client.GetAsync($"movie/{id}/credits?api_key={apiKey}");
             var data = await response.Content.ReadAsAsync<ActorList>();
+            if (data.Cast.Count == 0)
+                Debug.WriteLine("HIBA");
             return data.Cast;
         }
 

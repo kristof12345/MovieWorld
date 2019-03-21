@@ -21,7 +21,6 @@ namespace MovieWorld.Views
         public TopMoviesDetailControl()
         {
             InitializeComponent();
-            CastList.ItemsSource = new List<Actor>();
         }
 
         private static void OnMasterMenuItemPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)

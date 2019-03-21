@@ -1,4 +1,5 @@
 ﻿<Page
+    x:Name="MovieDetailsPage"
     x:Class="MovieWorld.Views.MovieDetailPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -79,28 +80,30 @@
                 <TextBlock Text="Tagline" Style="{StaticResource DetailSubTitleStyle}" Margin="{StaticResource SmallTopMargin}" />
                 <TextBlock Text="{x:Bind ViewModel.Movie.Tagline, Mode=OneWay}" Style="{StaticResource DetailBodyStyle}" />
 
+                <TextBlock Text="Overview" Style="{StaticResource DetailSubTitleStyle}" Margin="{StaticResource SmallTopMargin}" />
+                <TextBlock Text="{x:Bind ViewModel.Movie.Overview, Mode=OneWay}" Style="{StaticResource DetailBodyStyle}" />
+
                 <TextBlock Text="Cast" Style="{StaticResource DetailSubTitleStyle}" Margin="{StaticResource SmallTopMargin}" />
-                <ItemsControl x:Name="MovieList">
+                <ItemsControl x:Name="CastList">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
-                            <ItemsWrapGrid MaximumRowsOrColumns="10" Orientation="Horizontal" ItemWidth="130" ItemHeight="200"/>
+                            <ItemsWrapGrid MaximumRowsOrColumns="6" Orientation="Horizontal"/>
                         </ItemsPanelTemplate>
                     </ItemsControl.ItemsPanel>
-                    
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <Button HorizontalAlignment="Center" VerticalAlignment="Top" Command="{Binding Path= ViewModel.SelectMovieCommand}" CommandParameter="{Binding ViewModel.Actor.Id, Mode=OneWay}">
+                            <Button Command="{Binding Path= ViewModel.SelectActorCommand, ElementName=MovieDetailsPage}" CommandParameter="{Binding Id, Mode=OneWay}">
                                 <StackPanel Orientation="Vertical" >
-                                    <Rectangle Height="150" Width="100">
-                                        <Rectangle.Fill>
+                                    <Ellipse Height="100" Width="100">
+                                        <Ellipse.Fill>
                                             <ImageBrush>
                                                 <ImageBrush.ImageSource>
                                                     <BitmapImage UriSource="{Binding Image, Mode=OneWay}"/>
                                                 </ImageBrush.ImageSource>
                                             </ImageBrush>
-                                        </Rectangle.Fill>
-                                    </Rectangle>
-                                    <TextBlock TextAlignment="Center" Text="{Binding Title, Mode=OneWay}" TextWrapping="Wrap"/>
+                                        </Ellipse.Fill>
+                                    </Ellipse>
+                                    <TextBlock TextAlignment="Center" Text="{Binding Name, Mode=OneWay}"/>
                                 </StackPanel>
                             </Button>
                         </DataTemplate>

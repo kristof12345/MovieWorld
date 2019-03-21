@@ -7,7 +7,7 @@ namespace MovieWorld.Views
 {
     public sealed partial class MovieDetailPage : Page
     {
-        private MovieDetailViewModel ViewModel
+        public MovieDetailViewModel ViewModel
         {
             get { return ViewModelLocator.Current.MovieDetailViewModel; }
         }
@@ -17,7 +17,6 @@ namespace MovieWorld.Views
         public MovieDetailPage()
         {
             InitializeComponent();
-            
         }
 
         protected async override void OnNavigatedTo(NavigationEventArgs e)
@@ -26,6 +25,7 @@ namespace MovieWorld.Views
             if (e.Parameter is int orderId)
             {
                 await ViewModel.Initialize(orderId);
+                CastList.ItemsSource = ViewModel.Movie.Cast;
             }
         }
     }

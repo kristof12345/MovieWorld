@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using MovieWorld.Models;
 using System.Linq;
 using System;
+using System.Diagnostics;
 
 namespace MovieWorld.Services
 {
@@ -21,16 +22,20 @@ namespace MovieWorld.Services
             {
                 var list = await HttpService.ListTopMoviesAsync();
                 TopMoviesList.Clear();
-
+                /*
                 foreach (var movie in list)
                 {
                     var details = await HttpService.GetMovieAsync(movie.Id);
                     var cast  = await HttpService.GetCastAsync(movie.Id);
-                    if (cast != null)
+                    if (cast.Count != 0)
                     {
                         details.Cast = cast.Where(c => c.Profile_path != null).Take(12).ToList();
                         TopMoviesList.Add(details);
                     }
+                }*/
+                foreach (var movie in list)
+                {
+                    TopMoviesList.Add(movie);
                 }
             }
         }

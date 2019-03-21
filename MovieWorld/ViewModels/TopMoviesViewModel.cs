@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using GalaSoft.MvvmLight;
@@ -6,7 +7,7 @@ using GalaSoft.MvvmLight.Command;
 using Microsoft.Toolkit.Uwp.UI.Controls;
 using MovieWorld.Models;
 using MovieWorld.Services;
-using MovieWorld.Views;
+using Windows.UI.Xaml.Controls;
 
 namespace MovieWorld.ViewModels
 {
@@ -17,15 +18,28 @@ namespace MovieWorld.ViewModels
         public RelayCommand<int> SelectActorCommand { get; set; }
         public NavigationServiceEx NavigationService => ViewModelLocator.Current.NavigationService;
 
-        public Movie Selected{get { return selected; }set { Set(ref selected, value); } }
+        public Movie Selected{
+            get { return selected; }
+            set { Set(ref selected, value); } }
         public ObservableCollection<Movie> Movies { get { return MovieDataService.TopMoviesList; } }
 
         public TopMoviesViewModel()
         {
+            MovieSelected += this.MovieChanged;
             SelectActorCommand = new RelayCommand<int>((int id) =>
             {
                 NavigateToActor(id);
             });
+        }
+
+        public async void MovieChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var selected = (Movie)e.AddedItems.First();
+            if (selected != null && selected.Cast.Count == 0)
+            {
+                await MovieDataService.GetMovieDataAsync(selected.Id);
+                Selected = MovieDataService.CurrentMovie;
+            }
         }
 
         public async Task LoadDataAsync(MasterDetailsViewState viewState)
@@ -34,9 +48,11 @@ namespace MovieWorld.ViewModels
 
             if (viewState == MasterDetailsViewState.Both && Movies.Count > 0)
             {
-                Selected = Movies.First();
+                await MovieDataService.GetMovieDataAsync(Movies.First().Id);
+                Selected = MovieDataService.CurrentMovie;
             }
         }
+        public SelectionChangedEventHandler MovieSelected;
 
         public void NavigateToActor(int id)
         {

@@ -6,7 +6,7 @@ namespace MovieWorld.Models
     public class ActorList
     {
         public int Id { get; set; }
-        public List<Actor> Cast { get; set; }
+        public List<Actor> Cast { get; set; } = new List<Actor>();
         //Egyéb adatok
     }
 
