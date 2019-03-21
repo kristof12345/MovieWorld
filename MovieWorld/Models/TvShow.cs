@@ -11,64 +11,68 @@ namespace MovieWorld.Models
 
     public class TvShow
     {
+        public int Id { get; set; }
+
+        //Cím
+        public string Name { get; set; }
+
+        //Megjelenés
+        public string First_air_date { get; set; }
+
+        //Utolsú vetítés
+        public string Last_air_date { get; set; }
+
+        //Műfajok
+        public List<Genre> Genres { get; set; }
+
+        //Évadok
+        public List<Season> Seasons { get; set; } = new List<Season>();
+
+        //Csatornák
+        public List<Network> Networks { get; set; }
+
+        //Gyártó cégk
+        public List<Company> Production_companies { get; set; }
+
+        //Évadok száma
+        public int Number_of_episodes { get; set; }
+
+        //Részek száma
+        public int Number_of_seasons { get; set; }
+
+        //Hosszú leírás
+        public string Overview { get; set; }
+
+        //Népszerűség
+        public float Popularity { get; set; }
+
         //Kép
         public Uri Image { get { return new Uri("http://image.tmdb.org/t/p/w185/" + Poster_path); } }
 
-        public string backdrop_path { get; set; }
-        public List<Creator> Created_by { get; set; }
-        public int[] episode_run_time { get; set; }
-        public string first_air_date { get; set; }
-        public List<Genre> Genres { get; set; }
-        public string homepage { get; set; }
-        public int Id { get; set; }
-        public bool in_production { get; set; }
-        public string[] languages { get; set; }
-        public string last_air_date { get; set; }
-        public string Name { get; set; }
-        public List<Network> Networks { get; set; }
-        public int Number_of_episodes { get; set; }
-        public int Number_of_seasons { get; set; }
-        public string Overview { get; set; }
-        public float Popularity { get; set; }
+        //Egyéb adatok
+        public string Backdrop_path { get; set; }
         public string Poster_path { get; set; }
-        public List<Company> Production_companies { get; set; }
-        public List<Season> Seasons { get; set; } = new List<Season>();
-        public string status { get; set; }
-        public string type { get; set; }
-        public float vote_average { get; set; }
-        public int vote_count { get; set; }
-
-    }
-
-    public class Creator
-    {
-        public int id { get; set; }
-        public string credit_id { get; set; }
-        public string name { get; set; }
-        public int gender { get; set; }
-        public string profile_path { get; set; }
     }
 
     public class Network
     {
-        public string name { get; set; }
-        public int id { get; set; }
-        public string logo_path { get; set; }
-        public string origin_country { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }      
+        public string Logo_path { get; set; }
     }
 
     public class Company
     {
-        public int id { get; set; }
-        public string logo_path { get; set; }
-        public string name { get; set; }
-        public string origin_country { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string Logo_path { get; set; }
     }
 
     public class Season
     {
         public int Id { get; set; }
 
+        //Cím
         public string Name { get; set; }
 
         //Évad sorszáma
@@ -77,13 +81,17 @@ namespace MovieWorld.Models
         //Kép
         public Uri Image { get { return new Uri("http://image.tmdb.org/t/p/w185/" + Poster_path); } }
 
+        //Megjelenés
         public string Air_date { get; set; }
+
+        //Epizódok száma
         public int Episode_count { get; set; }
+
+        //Hosszú leírás
         public string Overview { get; set; }
 
         //Egyéb adatok
         public string Poster_path { get; set; }
-
     }
 
     public class SeasonId

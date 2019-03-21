@@ -30,14 +30,5 @@ namespace MovieWorld.Views
                 await ViewModel.Initialize(seasonId.ShowId, seasonId.SeasonNumber);
             }
         }
-
-        protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)
-        {
-            base.OnNavigatingFrom(e);
-            if (e.NavigationMode == NavigationMode.Back)
-            {
-                //NavigationService.Frame.SetListDataItemForNextConnectedAnnimation(ViewModel.Actor);
-            }
-        }
     }
 }

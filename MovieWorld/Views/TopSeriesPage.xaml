@@ -29,7 +29,7 @@
                 </Image>
                 <StackPanel Grid.Column="1" Margin="{StaticResource SmallLeftMargin}" VerticalAlignment="Center">
                     <TextBlock Text="{Binding Name}" Style="{ThemeResource ListTitleStyle}"/>
-                    <TextBlock Text="{Binding Number_of_seasons, Converter={StaticResource ConcatStringConverter}, ConverterParameter= seasons}"  Style="{StaticResource ListSubTitleStyle}"/>
+                    <TextBlock Text="{Binding First_air_date, Converter={StaticResource ConcatStringConverter}, ConverterParameter= seasons}"  Style="{StaticResource ListSubTitleStyle}"/>
                 </StackPanel>
             </Grid>
         </DataTemplate>
