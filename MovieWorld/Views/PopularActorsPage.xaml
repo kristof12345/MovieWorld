@@ -2,14 +2,10 @@
     x:Class="MovieWorld.Views.PopularActorsPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Style="{StaticResource PageStyle}"
     xmlns:animations="using:Microsoft.Toolkit.Uwp.UI.Animations"
     xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
-    xmlns:models="using:MovieWorld.Models"
-    mc:Ignorable="d">
-
+    xmlns:models="using:MovieWorld.Models">
     <Grid x:Name="ContentArea">
         <controls:AdaptiveGridView
             ItemsSource="{x:Bind ViewModel.Source,Mode=OneWay}"

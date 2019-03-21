@@ -6,7 +6,7 @@
     xmlns:helpers="using:MovieWorld.Helpers"
     xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls">
     <UserControl.Resources>
-        <helpers:ListToStringConverter x:Key="GenreToStringConverter"/>
+        <helpers:GenreToStringConverter x:Key="GenreToStringConverter"/>
     </UserControl.Resources>
 
     <ScrollViewer

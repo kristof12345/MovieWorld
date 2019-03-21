@@ -7,11 +7,6 @@
     xmlns:behaviors="using:MovieWorld.Behaviors"
     xmlns:helpers="using:MovieWorld.Helpers"
     behaviors:NavigationViewHeaderBehavior.HeaderMode="Never">
-    <Page.Resources>
-        <helpers:GenreToStringConverter x:Key="GenreToStringConverter"/>
-        <helpers:LanguageToStringConverter x:Key="LanguageToStringConverter"/>
-        <helpers:ConcatStringConverter x:Key="ConcatStringConverter"/>
-    </Page.Resources>
     <ScrollViewer VerticalScrollMode="Enabled"
         Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid

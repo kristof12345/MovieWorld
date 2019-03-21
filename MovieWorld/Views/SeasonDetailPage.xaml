@@ -6,7 +6,6 @@
     xmlns:behaviors="using:MovieWorld.Behaviors"
     behaviors:NavigationViewHeaderBehavior.HeaderMode="Never">
     <ScrollViewer VerticalScrollMode="Enabled"
-        HorizontalAlignment="Stretch"
         Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid
         x:Name="ContentArea"
@@ -19,69 +18,69 @@
                             <AdaptiveTrigger MinWindowWidth="600" />
                         </VisualState.StateTriggers>
                         <VisualState.Setters>
-                            <Setter Target="group1.(RelativePanel.RightOf)" Value="itemHero" />
-                            <Setter Target="group1.(RelativePanel.Below)" Value="title" />
-                            <Setter Target="group2.(RelativePanel.RightOf)" Value="group1" />
-                            <Setter Target="group2.(RelativePanel.Below)" Value="title" />
-                            <Setter Target="group1.Width" Value="200" />
+                            <Setter Target="group.(RelativePanel.Below)" Value="itemHero" />
+                            <Setter Target="itemHero.(RelativePanel.Below)" Value="title" />
                         </VisualState.Setters>
                     </VisualState>
                 </VisualStateGroup>
             </VisualStateManager.VisualStateGroups>
 
-            <StackPanel x:Name="contentPanel">
-                <RelativePanel>
-                    <Grid
-                    RelativePanel.AlignTopWithPanel="True"
-                    RelativePanel.AlignLeftWithPanel="True"
-                    x:Name="itemHero"
-                    animations:Connected.Key="animationKeyPopularActors"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Top"
-                    Padding="{StaticResource XSmallLeftTopRightBottomMargin}"
-                    Margin="{StaticResource SmallRightMargin}">
-                        <Image HorizontalAlignment="Left" Height="300">
-                            <Image.Source>
-                                <BitmapImage UriSource="{x:Bind ViewModel.Season.Image, Mode=OneWay}"/>
-                            </Image.Source>
-                        </Image>
-                    </Grid>
-                    <TextBlock
-                    x:Name="title"
-                    RelativePanel.AlignTopWithPanel="True"
-                    RelativePanel.RightOf="itemHero"
-                    Text="{x:Bind ViewModel.Season.Name, Mode=OneWay}"
-                    Style="{ThemeResource TitleTextBlockStyle}"
-                    Margin="{StaticResource XXSmallTopMargin}" />
+            <StackPanel>
+                <RelativePanel Margin="{StaticResource SmallTopMargin}">
+                    <TextBlock x:Name="title"
+                        RelativePanel.AlignTopWithPanel="True"
+                        Text="{x:Bind ViewModel.Season.Name, Mode=OneWay}"
+                        Style="{ThemeResource TitleTextBlockStyle}">
+                    </TextBlock>
 
-                    <StackPanel x:Name="group1" RelativePanel.Below="itemHero">
-                        <StackPanel x:Name="birthplace" Margin="{StaticResource SmallTopMargin}">
-                            <TextBlock Text="Place of birth" Style="{StaticResource DetailSubTitleStyle}" />
-                            <TextBlock Text="{x:Bind ViewModel.Season.Air_date, Mode=OneWay}" Style="{StaticResource DetailBodyBaseMediumStyle}" />
-                        </StackPanel>
+                    <Image x:Name="itemHero" RelativePanel.Below="title" RelativePanel.AlignLeftWithPanel="True" Height="300" Margin="0,12,20,12">
+                        <Image.Source>
+                            <BitmapImage UriSource="{x:Bind ViewModel.Season.Image, Mode=OneWay}"/>
+                        </Image.Source>
+                    </Image>
 
-                        <StackPanel x:Name="gender" Margin="{StaticResource SmallTopMargin}">
-                            <TextBlock Text="Gender" Style="{StaticResource DetailSubTitleStyle}" />
-                            <TextBlock Text="{x:Bind ViewModel.Season.Episode_count, Mode=OneWay}" Style="{StaticResource DetailBodyBaseMediumStyle}" />
-                        </StackPanel>
-                    </StackPanel>
+                    <StackPanel x:Name="group" RelativePanel.RightOf="itemHero" RelativePanel.AlignTopWith="itemHero">
+                        <TextBlock Text="Release date" Style="{StaticResource DetailSubTitleStyle}" Margin="{StaticResource SmallTopMargin}"/>
+                        <TextBlock Text="{x:Bind ViewModel.Season.Air_date, Mode=OneWay}" Style="{StaticResource DetailBodyBaseMediumStyle}" />
 
-                    <StackPanel x:Name="group2" RelativePanel.Below="group1">
-                        <StackPanel x:Name="birthdate" Margin="{StaticResource SmallTopMargin}">
-                            <TextBlock Text="Date of birth" Style="{StaticResource DetailSubTitleStyle}" />
-                            <TextBlock Text="{x:Bind ViewModel.Season.Name, Mode=OneWay}" Style="{StaticResource DetailBodyBaseMediumStyle}" />
-                        </StackPanel>
-
-                        <StackPanel x:Name="popularity" Margin="{StaticResource SmallTopMargin}">
-                            <TextBlock Text="Popularity" Style="{StaticResource DetailSubTitleStyle}" />
-                            <TextBlock Text="{x:Bind ViewModel.Season.Name, Mode=OneWay}" Style="{StaticResource DetailBodyBaseMediumStyle}" />
-                        </StackPanel>
+                        <TextBlock Text="Episode count" Style="{StaticResource DetailSubTitleStyle}" Margin="{StaticResource SmallTopMargin}"/>
+                        <TextBlock Text="{x:Bind ViewModel.Season.Episode_count, Mode=OneWay}" Style="{StaticResource DetailBodyBaseMediumStyle}" />
+                        
                     </StackPanel>
                 </RelativePanel>
-                <TextBlock Text="Biography" Style="{StaticResource DetailSubTitleStyle}" Margin="{StaticResource SmallTopMargin}" />
-                <TextBlock Style="{StaticResource DetailBodyStyle}" Text="{x:Bind ViewModel.Season.Overview, Mode=OneWay}" />
-                <TextBlock Text="Movies" Style="{StaticResource DetailSubTitleStyle}" Margin="{StaticResource SmallTopMargin}" />
-                <ItemsControl x:Name="MovieList">
+
+                <TextBlock Text="Overview" Style="{StaticResource DetailSubTitleStyle}" Margin="{StaticResource SmallTopMargin}" />
+                <TextBlock Text="{x:Bind ViewModel.Season.Overview, Mode=OneWay}" Style="{StaticResource DetailBodyStyle}" />
+
+                <TextBlock Text="Cast" Style="{StaticResource DetailSubTitleStyle}" Margin="{StaticResource SmallTopMargin}" />
+                <ItemsControl x:Name="CastList" ItemsSource="{x:Bind ViewModel.Season.Cast, Mode=OneWay}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <ItemsWrapGrid MaximumRowsOrColumns="10" Orientation="Horizontal"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Button Command="{Binding Path= ViewModel.SelectActorCommand, ElementName=MovieDetailsPage}" CommandParameter="{Binding Id, Mode=OneWay}">
+                                <StackPanel Orientation="Vertical" >
+                                    <Ellipse Height="100" Width="100">
+                                        <Ellipse.Fill>
+                                            <ImageBrush>
+                                                <ImageBrush.ImageSource>
+                                                    <BitmapImage UriSource="{Binding Image, Mode=OneWay}"/>
+                                                </ImageBrush.ImageSource>
+                                            </ImageBrush>
+                                        </Ellipse.Fill>
+                                    </Ellipse>
+                                    <TextBlock TextAlignment="Center" Text="{Binding Name, Mode=OneWay}"/>
+                                </StackPanel>
+                            </Button>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+
+                <TextBlock Text="Episode list" Style="{StaticResource DetailSubTitleStyle}" Margin="{StaticResource SmallTopMargin}" />
+                <ItemsControl x:Name="SimilarList" ItemsSource="{x:Bind ViewModel.Season.Episodes, Mode=OneWay}">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
                             <ItemsWrapGrid MaximumRowsOrColumns="10" Orientation="Horizontal" ItemWidth="130" ItemHeight="200"/>
@@ -89,7 +88,7 @@
                     </ItemsControl.ItemsPanel>
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <Button HorizontalAlignment="Center" VerticalAlignment="Top" Command="{Binding Path= ViewModel.SelectMovieCommand}" CommandParameter="{Binding ViewModel.Actor.Id, Mode=OneWay}">
+                            <Button HorizontalAlignment="Center" VerticalAlignment="Top" Command="{Binding Path= ViewModel.SelectMovieCommand, ElementName=MovieDetailsPage}" CommandParameter="{Binding Id, Mode=OneWay}">
                                 <StackPanel Orientation="Vertical" >
                                     <Rectangle Height="150" Width="100">
                                         <Rectangle.Fill>

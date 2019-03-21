@@ -6,7 +6,6 @@
     xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
     xmlns:model="using:MovieWorld.Models"
     xmlns:views="using:MovieWorld.Views"
-    xmlns:helpers="using:MovieWorld.Helpers"
     xmlns:behaviors="using:MovieWorld.Behaviors"
     behaviors:NavigationViewHeaderBehavior.HeaderMode="Never">
     <Page.Transitions>
@@ -15,7 +14,6 @@
         </TransitionCollection>
     </Page.Transitions>
     <Page.Resources>
-        <helpers:ConcatStringConverter x:Key="ConcatStringConverter"/>
         <DataTemplate x:Key="ItemTemplate" x:DataType="model:TvShow">
             <Grid Height="60">
                 <Grid.ColumnDefinitions>
@@ -29,7 +27,7 @@
                 </Image>
                 <StackPanel Grid.Column="1" Margin="{StaticResource SmallLeftMargin}" VerticalAlignment="Center">
                     <TextBlock Text="{Binding Name}" Style="{ThemeResource ListTitleStyle}"/>
-                    <TextBlock Text="{Binding First_air_date, Converter={StaticResource ConcatStringConverter}, ConverterParameter= seasons}"  Style="{StaticResource ListSubTitleStyle}"/>
+                    <TextBlock Text="{Binding First_air_date}"  Style="{StaticResource ListSubTitleStyle}"/>
                 </StackPanel>
             </Grid>
         </DataTemplate>
