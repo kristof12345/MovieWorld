@@ -1,5 +1,5 @@
 ﻿using System;
-
+using System.Threading.Tasks;
 using MovieWorld.Services;
 
 using Windows.ApplicationModel.Activation;
@@ -26,11 +26,7 @@ namespace MovieWorld
 
         protected override async void OnLaunched(LaunchActivatedEventArgs args)
         {
-            //var t1 = MovieDataService.GetTopMoviesAsync();
-            //var t2 = TvShowDataService.GetTopShowsAsync();
-
-            //await t1;
-            //await t2;
+            //await PreloadData();
 
             if (!args.PrelaunchActivated)
             {
@@ -51,6 +47,15 @@ namespace MovieWorld
         private UIElement CreateShell()
         {
             return new Views.ShellPage();
+        }
+
+        private async Task PreloadData()
+        {
+            var t1 = MovieDataService.GetTopMoviesAsync();
+            var t2 = TvShowDataService.GetTopShowsAsync();
+
+            await t1;
+            await t2;
         }
     }
 }

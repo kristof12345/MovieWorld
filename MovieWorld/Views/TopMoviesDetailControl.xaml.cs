@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using MovieWorld.Models;
+﻿using MovieWorld.Models;
 using MovieWorld.ViewModels;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;

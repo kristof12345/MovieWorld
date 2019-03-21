@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using MovieWorld.Models;
+﻿using MovieWorld.Models;
 using MovieWorld.ViewModels;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -22,7 +20,6 @@ namespace MovieWorld.Views
         public TopSeriesDetailControl()
         {
             InitializeComponent();
-            SeasonList.ItemsSource = new List<Season>();
         }
 
         private static void OnMasterMenuItemPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)

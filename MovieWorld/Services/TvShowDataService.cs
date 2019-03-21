@@ -1,9 +1,6 @@
 ﻿using MovieWorld.Models;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace MovieWorld.Services
@@ -12,14 +9,9 @@ namespace MovieWorld.Services
     {
         private static HttpService HttpService { get; set; } = new HttpService();
 
-        public static ObservableCollection<TvShow> TopTvShowsList { get; set; } = new ObservableCollection<TvShow>();
-        public static Season CurrentSeason { get; internal set; }
-        public static TvShow CurrentShow { get; internal set; }
-
-        internal static Task GetShowAsync(int id)
-        {
-            throw new NotImplementedException();
-        }
+        public static ObservableCollection<TvShow> TopTvShowsList { get; private set; } = new ObservableCollection<TvShow>();
+        public static Season CurrentSeason { get; private set; }
+        public static TvShow CurrentShow { get; private set; }
 
         //Top sorozatok letöltése a szerverről
         internal static async Task GetTopShowsAsync()
@@ -31,15 +23,22 @@ namespace MovieWorld.Services
 
                 foreach (var show in list)
                 {
-                    var details = await HttpService.GetShowAsync(show.Id);
-                    TopTvShowsList.Add(details);
+                    TopTvShowsList.Add(show);
                 }
             }
         }
 
-        internal static Task GetSeasonAsync(int id)
+        //Egy sorozat adatainak letöltése
+        internal static async Task GetShowDataAsync(int id)
         {
-            throw new NotImplementedException();
+            var show = await HttpService.GetShowAsync(id);
+            CurrentShow = show;
+        }
+
+        internal static async Task GetSeasonAsync(int showId, int seasonNumber)
+        {
+            var season = await HttpService.GetSeasonAsync(showId, seasonNumber);
+            CurrentSeason = season;
         }
     }
 }

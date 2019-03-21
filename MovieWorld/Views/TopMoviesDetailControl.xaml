@@ -7,6 +7,8 @@
     xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls">
     <UserControl.Resources>
         <helpers:GenreToStringConverter x:Key="GenreToStringConverter"/>
+        <helpers:LanguageToStringConverter x:Key="LanguageToStringConverter"/>
+        <helpers:ConcatStringConverter x:Key="ConcatStringConverter"/>
     </UserControl.Resources>
     <ScrollViewer
         x:Name="ForegroundElement"
@@ -17,14 +19,20 @@
             <TextBlock Text="{x:Bind MasterMenuItem.Title, Mode=OneWay}" Style="{ThemeResource TitleTextBlockStyle}" />
             <controls:DockPanel >
                 <StackPanel Orientation="Vertical">
-                    <TextBlock Text="Released" Style="{StaticResource DetailSubTitleStyle}" Margin="{StaticResource SmallTopMargin}"/>
+                    <TextBlock Text="Release date" Style="{StaticResource DetailSubTitleStyle}" Margin="{StaticResource SmallTopMargin}"/>
                     <TextBlock Text="{x:Bind MasterMenuItem.Release_date, Mode=OneWay}" Style="{StaticResource DetailBodyBaseMediumStyle}" />
 
                     <TextBlock Text="Genres" Style="{StaticResource DetailSubTitleStyle}" Margin="{StaticResource SmallTopMargin}"/>
                     <TextBlock Text="{x:Bind MasterMenuItem.Genres, Mode=OneWay, Converter={StaticResource GenreToStringConverter}}" Style="{StaticResource DetailBodyBaseMediumStyle}" />
 
-                    <TextBlock Text="Rating" Style="{StaticResource DetailSubTitleStyle}" Margin="{StaticResource SmallTopMargin}"/>
+                    <TextBlock Text="Popularity" Style="{StaticResource DetailSubTitleStyle}" Margin="{StaticResource SmallTopMargin}" />
                     <TextBlock Text="{x:Bind MasterMenuItem.Popularity, Mode=OneWay}" Style="{StaticResource DetailBodyBaseMediumStyle}" />
+
+                    <TextBlock Text="Runtime" Style="{StaticResource DetailSubTitleStyle}" Margin="{StaticResource SmallTopMargin}"/>
+                    <TextBlock Text="{x:Bind MasterMenuItem.Runtime, Mode=OneWay, Converter={StaticResource ConcatStringConverter}, ConverterParameter=minutes}" Style="{StaticResource DetailBodyBaseMediumStyle}" />
+
+                    <TextBlock Text="Budget" Style="{StaticResource DetailSubTitleStyle}" Margin="{StaticResource SmallTopMargin}"/>
+                    <TextBlock Text="{x:Bind MasterMenuItem.Budget, Mode=OneWay, Converter={StaticResource ConcatStringConverter}, ConverterParameter=USD}" Style="{StaticResource DetailBodyBaseMediumStyle}" />
                 </StackPanel>
                 <Image HorizontalAlignment="Right" Margin="12,12,12,0" Height="300">
                     <Image.Source>
@@ -32,6 +40,10 @@
                     </Image.Source>
                 </Image>
             </controls:DockPanel>
+
+            <TextBlock Text="Spoken languages" Style="{StaticResource DetailSubTitleStyle}" Margin="{StaticResource MediumTopMargin}" />
+            <TextBlock Style="{StaticResource DetailBodyStyle}" Text="{x:Bind MasterMenuItem.Spoken_languages, Mode=OneWay, Converter={StaticResource LanguageToStringConverter}}"/>
+
             <TextBlock Text="Tagline" Style="{StaticResource DetailSubTitleStyle}" Margin="{StaticResource MediumTopMargin}" />
             <TextBlock Style="{StaticResource DetailBodyStyle}" Text="{x:Bind MasterMenuItem.Tagline, Mode=OneWay}"/>
 
@@ -42,7 +54,7 @@
             <ItemsControl x:Name="CastList">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <ItemsWrapGrid MaximumRowsOrColumns="6" Orientation="Horizontal"/>
+                        <ItemsWrapGrid MaximumRowsOrColumns="8" Orientation="Horizontal"/>
                     </ItemsPanelTemplate>
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>
@@ -59,6 +71,33 @@
                                     </Ellipse.Fill>
                                 </Ellipse>
                                 <TextBlock TextAlignment="Center" Text="{Binding Name, Mode=OneWay}"/>
+                            </StackPanel>
+                        </Button>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+
+            <TextBlock Text="Similar movies" Style="{StaticResource DetailSubTitleStyle}" Margin="{StaticResource SmallTopMargin}" />
+            <ItemsControl x:Name="MovieList">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <ItemsWrapGrid MaximumRowsOrColumns="10" Orientation="Horizontal" ItemWidth="130" ItemHeight="200"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Button HorizontalAlignment="Center" VerticalAlignment="Top" Command="{Binding Path= ViewModel.SelectMovieCommand, ElementName=MovieDetailsControl}" CommandParameter="{Binding Id, Mode=OneWay}">
+                            <StackPanel Orientation="Vertical" >
+                                <Rectangle Height="150" Width="100">
+                                    <Rectangle.Fill>
+                                        <ImageBrush>
+                                            <ImageBrush.ImageSource>
+                                                <BitmapImage UriSource="{Binding Image, Mode=OneWay}"/>
+                                            </ImageBrush.ImageSource>
+                                        </ImageBrush>
+                                    </Rectangle.Fill>
+                                </Rectangle>
+                                <TextBlock TextAlignment="Center" Text="{Binding Title, Mode=OneWay}" TextWrapping="Wrap"/>
                             </StackPanel>
                         </Button>
                     </DataTemplate>

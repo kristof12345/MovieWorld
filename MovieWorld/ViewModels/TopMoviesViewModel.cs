@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using GalaSoft.MvvmLight;
@@ -17,22 +16,21 @@ namespace MovieWorld.ViewModels
 
         public RelayCommand<int> SelectActorCommand { get; set; }
         public NavigationServiceEx NavigationService => ViewModelLocator.Current.NavigationService;
+        public SelectionChangedEventHandler SelectionChanged;
 
-        public Movie Selected{
-            get { return selected; }
-            set { Set(ref selected, value); } }
+        public Movie Selected { get { return selected; } set { Set(ref selected, value); } }
         public ObservableCollection<Movie> Movies { get { return MovieDataService.TopMoviesList; } }
 
         public TopMoviesViewModel()
         {
-            MovieSelected += this.MovieChanged;
+            SelectionChanged += SelectedMovieChanged;
             SelectActorCommand = new RelayCommand<int>((int id) =>
             {
                 NavigateToActor(id);
             });
         }
 
-        public async void MovieChanged(object sender, SelectionChangedEventArgs e)
+        public async void SelectedMovieChanged(object sender, SelectionChangedEventArgs e)
         {
             var selected = (Movie)e.AddedItems.First();
             if (selected != null && selected.Cast.Count == 0)
@@ -52,7 +50,6 @@ namespace MovieWorld.ViewModels
                 Selected = MovieDataService.CurrentMovie;
             }
         }
-        public SelectionChangedEventHandler MovieSelected;
 
         public void NavigateToActor(int id)
         {

@@ -90,6 +90,7 @@
             ItemsSource="{x:Bind ViewModel.Shows}"
             SelectedItem="{x:Bind ViewModel.Selected, Mode=TwoWay}"
             ItemTemplate="{StaticResource ItemTemplate}"
+            SelectionChanged="ViewModel.SelectionChanged"
             DetailsTemplate="{StaticResource DetailsTemplate}"
             NoSelectionContentTemplate="{StaticResource NoSelectionContentTemplate}"
             BorderBrush="Transparent"

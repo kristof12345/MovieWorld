@@ -31,6 +31,13 @@ namespace MovieWorld.Services
             return data.Results;
         }
 
+        internal async Task<Season> GetSeasonAsync(int showId, int seasonNumber)
+        {
+            var response = await client.GetAsync($"tv/{showId}/season/{seasonNumber}?api_key={apiKey}");
+            var data = await response.Content.ReadAsAsync<Season>();
+            return data;
+        }
+
         //Egy színész lekérése
         internal async Task<Actor> GetActorAsync(int id)
         {

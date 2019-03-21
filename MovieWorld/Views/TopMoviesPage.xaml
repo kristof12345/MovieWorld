@@ -88,7 +88,7 @@
             ItemsSource="{x:Bind ViewModel.Movies}"
             SelectedItem="{x:Bind ViewModel.Selected, Mode=TwoWay}"
             ItemTemplate="{StaticResource ItemTemplate}"
-            SelectionChanged="ViewModel.MovieSelected"
+            SelectionChanged="ViewModel.SelectionChanged"
             DetailsTemplate="{StaticResource DetailsTemplate}"
             NoSelectionContentTemplate="{StaticResource NoSelectionContentTemplate}"
             BorderBrush="Transparent"

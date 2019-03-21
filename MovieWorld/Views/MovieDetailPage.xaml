@@ -39,7 +39,7 @@
                         Text="{x:Bind ViewModel.Movie.Title, Mode=OneWay}"
                         Style="{ThemeResource TitleTextBlockStyle}">
                     </TextBlock>
-                    
+
                     <Image x:Name="itemHero" RelativePanel.Below="title" RelativePanel.AlignLeftWithPanel="True" Height="300" Margin="0,12,20,12">
                         <Image.Source>
                             <BitmapImage UriSource="{x:Bind ViewModel.Movie.Image, Mode=OneWay}"/>
@@ -47,30 +47,22 @@
                     </Image>
 
                     <StackPanel x:Name="group" RelativePanel.RightOf="itemHero" RelativePanel.AlignTopWith="itemHero">
-                        <StackPanel Margin="{StaticResource SmallTopMargin}">
-                            <TextBlock Text="Release date" Style="{StaticResource DetailSubTitleStyle}" />
-                            <TextBlock Text="{x:Bind ViewModel.Movie.Release_date, Mode=OneWay}" Style="{StaticResource DetailBodyBaseMediumStyle}" />
-                        </StackPanel>
+                        <TextBlock Text="Release date" Style="{StaticResource DetailSubTitleStyle}" Margin="{StaticResource SmallTopMargin}"/>
+                        <TextBlock Text="{x:Bind ViewModel.Movie.Release_date, Mode=OneWay}" Style="{StaticResource DetailBodyBaseMediumStyle}" />
 
-                        <StackPanel Margin="{StaticResource SmallTopMargin}">
-                            <TextBlock Text="Genres" Style="{StaticResource DetailSubTitleStyle}" />
-                            <TextBlock Text="{x:Bind ViewModel.Movie.Genres, Mode=OneWay, Converter={StaticResource GenreToStringConverter}}" Style="{StaticResource DetailBodyBaseMediumStyle}" />
-                        </StackPanel>
+                        <TextBlock Text="Genres" Style="{StaticResource DetailSubTitleStyle}" Margin="{StaticResource SmallTopMargin}"/>
+                        <TextBlock Text="{x:Bind ViewModel.Movie.Genres, Mode=OneWay, Converter={StaticResource GenreToStringConverter}}" Style="{StaticResource DetailBodyBaseMediumStyle}" />
 
-                        <StackPanel Margin="{StaticResource SmallTopMargin}">
-                            <TextBlock Text="Popularity" Style="{StaticResource DetailSubTitleStyle}" />
-                            <TextBlock Text="{x:Bind ViewModel.Movie.Popularity, Mode=OneWay}" Style="{StaticResource DetailBodyBaseMediumStyle}" />
-                        </StackPanel>
 
-                        <StackPanel Margin="{StaticResource SmallTopMargin}">
-                            <TextBlock Text="Runtime" Style="{StaticResource DetailSubTitleStyle}" />
-                            <TextBlock Text="{x:Bind ViewModel.Movie.Runtime, Mode=OneWay, Converter={StaticResource ConcatStringConverter}, ConverterParameter=minutes}" Style="{StaticResource DetailBodyBaseMediumStyle}" />
-                        </StackPanel>
+                        <TextBlock Text="Popularity" Style="{StaticResource DetailSubTitleStyle}" Margin="{StaticResource SmallTopMargin}"/>
+                        <TextBlock Text="{x:Bind ViewModel.Movie.Popularity, Mode=OneWay}" Style="{StaticResource DetailBodyBaseMediumStyle}" />
 
-                        <StackPanel Margin="{StaticResource SmallTopMargin}">
-                            <TextBlock Text="Budget" Style="{StaticResource DetailSubTitleStyle}" />
-                            <TextBlock Text="{x:Bind ViewModel.Movie.Budget, Mode=OneWay, Converter={StaticResource ConcatStringConverter}, ConverterParameter=USD}" Style="{StaticResource DetailBodyBaseMediumStyle}" />
-                        </StackPanel>
+                        <TextBlock Text="Runtime" Style="{StaticResource DetailSubTitleStyle}" Margin="{StaticResource SmallTopMargin}"/>
+                        <TextBlock Text="{x:Bind ViewModel.Movie.Runtime, Mode=OneWay, Converter={StaticResource ConcatStringConverter}, ConverterParameter=minutes}" Style="{StaticResource DetailBodyBaseMediumStyle}" />
+
+
+                        <TextBlock Text="Budget" Style="{StaticResource DetailSubTitleStyle}" Margin="{StaticResource SmallTopMargin}"/>
+                        <TextBlock Text="{x:Bind ViewModel.Movie.Budget, Mode=OneWay, Converter={StaticResource ConcatStringConverter}, ConverterParameter=USD}" Style="{StaticResource DetailBodyBaseMediumStyle}" />
                     </StackPanel>
                 </RelativePanel>
 
@@ -87,7 +79,7 @@
                 <ItemsControl x:Name="CastList">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
-                            <ItemsWrapGrid MaximumRowsOrColumns="6" Orientation="Horizontal"/>
+                            <ItemsWrapGrid MaximumRowsOrColumns="8" Orientation="Horizontal"/>
                         </ItemsPanelTemplate>
                     </ItemsControl.ItemsPanel>
                     <ItemsControl.ItemTemplate>
@@ -104,6 +96,33 @@
                                         </Ellipse.Fill>
                                     </Ellipse>
                                     <TextBlock TextAlignment="Center" Text="{Binding Name, Mode=OneWay}"/>
+                                </StackPanel>
+                            </Button>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+
+                <TextBlock Text="Similar movies" Style="{StaticResource DetailSubTitleStyle}" Margin="{StaticResource SmallTopMargin}" />
+                <ItemsControl x:Name="MovieList">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <ItemsWrapGrid MaximumRowsOrColumns="10" Orientation="Horizontal" ItemWidth="130" ItemHeight="200"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Button HorizontalAlignment="Center" VerticalAlignment="Top" Command="{Binding Path= ViewModel.SelectMovieCommand, ElementName=MovieDetailsPage}" CommandParameter="{Binding Id, Mode=OneWay}">
+                                <StackPanel Orientation="Vertical" >
+                                    <Rectangle Height="150" Width="100">
+                                        <Rectangle.Fill>
+                                            <ImageBrush>
+                                                <ImageBrush.ImageSource>
+                                                    <BitmapImage UriSource="{Binding Image, Mode=OneWay}"/>
+                                                </ImageBrush.ImageSource>
+                                            </ImageBrush>
+                                        </Rectangle.Fill>
+                                    </Rectangle>
+                                    <TextBlock TextAlignment="Center" Text="{Binding Title, Mode=OneWay}" TextWrapping="Wrap"/>
                                 </StackPanel>
                             </Button>
                         </DataTemplate>
