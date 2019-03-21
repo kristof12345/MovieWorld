@@ -46,6 +46,9 @@ namespace MovieWorld.Models
         //Népszerűség
         public float Popularity { get; set; }
 
+        //Hasonló sorozatok
+        public List<TvShow> SimilarSeries { get; set; }
+
         //Kép
         public Uri Image { get { return new Uri("http://image.tmdb.org/t/p/w185/" + Poster_path); } }
 
@@ -59,6 +62,7 @@ namespace MovieWorld.Models
         public int Id { get; set; }
         public string Name { get; set; }      
         public string Logo_path { get; set; }
+        public Uri Image { get { return new Uri("http://image.tmdb.org/t/p/w185/" + Logo_path); } }
     }
 
     public class Company
@@ -66,6 +70,7 @@ namespace MovieWorld.Models
         public int Id { get; set; }
         public string Name { get; set; }
         public string Logo_path { get; set; }
+        public Uri Image { get { return new Uri("http://image.tmdb.org/t/p/w185/" + Logo_path); } }
     }
 
     public class Season

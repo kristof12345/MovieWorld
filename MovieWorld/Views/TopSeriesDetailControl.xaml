@@ -8,25 +8,30 @@
     <UserControl.Resources>
         <helpers:GenreToStringConverter x:Key="GenreToStringConverter"/>
     </UserControl.Resources>
-   
+
     <ScrollViewer
-        Name="ForegroundElement"
+        x:Name="ForegroundElement"
         VerticalScrollMode="Enabled"
-        HorizontalAlignment="Stretch"
         Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
-        Padding="{StaticResource DetailPageMargin}">
+        Padding="{StaticResource DetailPageMargin}" >
         <StackPanel Orientation="Vertical">
             <TextBlock Text="{x:Bind MasterMenuItem.Name, Mode=OneWay}" Style="{ThemeResource TitleTextBlockStyle}" />
             <controls:DockPanel >
                 <StackPanel Orientation="Vertical">
-                    <TextBlock Text="Released" Style="{StaticResource DetailSubTitleStyle}" Margin="{StaticResource SmallTopMargin}"/>
-                    <TextBlock Text="{x:Bind MasterMenuItem.first_air_date, Mode=OneWay}" Style="{StaticResource DetailBodyBaseMediumStyle}" />
+                    <TextBlock Text="Release date" Style="{StaticResource DetailSubTitleStyle}" Margin="{StaticResource SmallTopMargin}"/>
+                    <TextBlock Text="{x:Bind MasterMenuItem.First_air_date, Mode=OneWay}" Style="{StaticResource DetailBodyBaseMediumStyle}" />
 
                     <TextBlock Text="Genres" Style="{StaticResource DetailSubTitleStyle}" Margin="{StaticResource SmallTopMargin}"/>
                     <TextBlock Text="{x:Bind MasterMenuItem.Genres, Mode=OneWay, Converter={StaticResource GenreToStringConverter}}" Style="{StaticResource DetailBodyBaseMediumStyle}" />
 
-                    <TextBlock Text="Rating" Style="{StaticResource DetailSubTitleStyle}" Margin="{StaticResource SmallTopMargin}"/>
+                    <TextBlock Text="Popularity" Style="{StaticResource DetailSubTitleStyle}" Margin="{StaticResource SmallTopMargin}" />
                     <TextBlock Text="{x:Bind MasterMenuItem.Popularity, Mode=OneWay}" Style="{StaticResource DetailBodyBaseMediumStyle}" />
+
+                    <TextBlock Text="Number of seasons" Style="{StaticResource DetailSubTitleStyle}" Margin="{StaticResource SmallTopMargin}"/>
+                    <TextBlock Text="{x:Bind MasterMenuItem.Number_of_seasons, Mode=OneWay}" Style="{StaticResource DetailBodyBaseMediumStyle}" />
+
+                    <TextBlock Text="Number of episodes" Style="{StaticResource DetailSubTitleStyle}" Margin="{StaticResource SmallTopMargin}"/>
+                    <TextBlock Text="{x:Bind MasterMenuItem.Number_of_episodes, Mode=OneWay}" Style="{StaticResource DetailBodyBaseMediumStyle}" />
                 </StackPanel>
                 <Image HorizontalAlignment="Right" Margin="12,12,12,0" Height="300">
                     <Image.Source>
@@ -34,8 +39,6 @@
                     </Image.Source>
                 </Image>
             </controls:DockPanel>
-            <TextBlock Text="Number of episodes" Style="{StaticResource DetailSubTitleStyle}" Margin="{StaticResource MediumTopMargin}" />
-            <TextBlock Style="{StaticResource DetailBodyStyle}" Text="{x:Bind MasterMenuItem.Number_of_episodes, Mode=OneWay}"/>
 
             <TextBlock Text="Overview" Style="{StaticResource DetailSubTitleStyle}" Margin="{StaticResource MediumTopMargin}" />
             <TextBlock Text="{x:Bind MasterMenuItem.Overview, Mode=OneWay}" Style="{StaticResource DetailBodyStyle}" />
@@ -52,6 +55,60 @@
                         <Button Command="{Binding Path= ViewModel.SelectSeasonCommand, ElementName=ShowDetailsControl}" CommandParameter="{Binding Season_number, Mode=OneWay}">
                             <StackPanel Orientation="Vertical" >
                                 <Rectangle Height="150" Width="100">
+                                    <Rectangle.Fill>
+                                        <ImageBrush>
+                                            <ImageBrush.ImageSource>
+                                                <BitmapImage UriSource="{Binding Image, Mode=OneWay}"/>
+                                            </ImageBrush.ImageSource>
+                                        </ImageBrush>
+                                    </Rectangle.Fill>
+                                </Rectangle>
+                                <TextBlock TextAlignment="Center" Text="{Binding Name, Mode=OneWay}" TextWrapping="Wrap"/>
+                            </StackPanel>
+                        </Button>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+
+            <TextBlock Text="Similar series" Style="{StaticResource DetailSubTitleStyle}" Margin="{StaticResource SmallTopMargin}" />
+            <ItemsControl x:Name="SimilarList" ItemsSource="{x:Bind MasterMenuItem.SimilarSeries, Mode=OneWay}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <ItemsWrapGrid MaximumRowsOrColumns="10" Orientation="Horizontal" ItemWidth="130" ItemHeight="200"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Button HorizontalAlignment="Center" VerticalAlignment="Top" Command="{Binding Path= ViewModel.SelectShowCommand, ElementName=ShowDetailsControl}" CommandParameter="{Binding Id, Mode=OneWay}">
+                            <StackPanel Orientation="Vertical" >
+                                <Rectangle Height="150" Width="100">
+                                    <Rectangle.Fill>
+                                        <ImageBrush>
+                                            <ImageBrush.ImageSource>
+                                                <BitmapImage UriSource="{Binding Image, Mode=OneWay}"/>
+                                            </ImageBrush.ImageSource>
+                                        </ImageBrush>
+                                    </Rectangle.Fill>
+                                </Rectangle>
+                                <TextBlock TextAlignment="Center" Text="{Binding Title, Mode=OneWay}" TextWrapping="Wrap"/>
+                            </StackPanel>
+                        </Button>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+
+            <TextBlock Text="Similar movies" Style="{StaticResource DetailSubTitleStyle}" Margin="{StaticResource SmallTopMargin}" />
+            <ItemsControl x:Name="Networks" ItemsSource="{x:Bind MasterMenuItem.Networks, Mode=OneWay}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <ItemsWrapGrid MaximumRowsOrColumns="10" Orientation="Horizontal" ItemWidth="130" ItemHeight="200"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Button HorizontalAlignment="Center" VerticalAlignment="Top" Command="{Binding Path= ViewModel.SelectNetworkCommand, ElementName=ShowDetailsControl}" CommandParameter="{Binding Id, Mode=OneWay}">
+                            <StackPanel Orientation="Vertical" >
+                                <Rectangle Height="150" Width="150">
                                     <Rectangle.Fill>
                                         <ImageBrush>
                                             <ImageBrush.ImageSource>
