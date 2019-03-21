@@ -96,7 +96,7 @@
                                         </ImageBrush>
                                     </Rectangle.Fill>
                                 </Rectangle>
-                                <TextBlock TextAlignment="Center" Text="{Binding Title, Mode=OneWay}" TextWrapping="Wrap"/>
+                                <TextBlock TextAlignment="Center" Text="{Binding Name, Mode=OneWay}" TextWrapping="Wrap"/>
                             </StackPanel>
                         </Button>
                     </DataTemplate>

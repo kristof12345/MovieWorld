@@ -3,7 +3,6 @@ using System.Net.Http;
 using System;
 using System.Collections.Generic;
 using MovieWorld.Models;
-using System.Linq;
 using System.Diagnostics;
 
 namespace MovieWorld.Services
@@ -36,6 +35,13 @@ namespace MovieWorld.Services
             var response = await client.GetAsync($"movie/{id}/similar?api_key={apiKey}");
             var data = await response.Content.ReadAsAsync<MovieList>();
             return data.Results;
+        }
+
+        internal async Task<List<Actor>> GetSeasonCastAsync(int showId, int seasonNumber)
+        {
+            var response = await client.GetAsync($"tv/{showId}/season/{seasonNumber}/credits?api_key={apiKey}");
+            var data = await response.Content.ReadAsAsync<ActorList>();
+            return data.Cast;
         }
 
         internal async Task<List<TvShow>> GetSimilarShowsAsync(int id)

@@ -1,5 +1,6 @@
 ﻿using MovieWorld.Models;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace MovieWorld.Services
@@ -39,6 +40,9 @@ namespace MovieWorld.Services
         internal static async Task GetSeasonAsync(int showId, int seasonNumber)
         {
             var season = await HttpService.GetSeasonAsync(showId, seasonNumber);
+            var cast = await HttpService.GetSeasonCastAsync(showId, seasonNumber);
+            //Csak a fontosabb szereplők
+            season.Cast = cast.Where(a => a.Profile_path != null).Take(18).ToList();
             CurrentSeason = season;
         }
     }

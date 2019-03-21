@@ -17,10 +17,7 @@ namespace MovieWorld.ViewModels
 
         public SeasonDetailViewModel()
         {
-            SelectActorCommand = new RelayCommand<int>((int id) =>
-            {
-                NavigateToActor(id);
-            });
+            SelectActorCommand = new RelayCommand<int>((int id) =>{NavigateToActor(id); });
         }
 
         public async Task Initialize(int showId, int seasonNumber)
