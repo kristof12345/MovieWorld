@@ -5,14 +5,14 @@ using Windows.UI.Xaml.Data;
 
 namespace MovieWorld.Helpers
 {
-    public class GenreToStringConverter : IValueConverter
+    public class LanguageToStringConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            if (value is List<Genre>)
+            if (value is List<Language>)
             {
                 var str = "";
-                foreach (var g in (List<Genre>)value) { str += g.Name; str+= " "; }
+                foreach (var g in (List<Language>)value) { str += g.Name; str+= " "; }
 
                 return str;
             }

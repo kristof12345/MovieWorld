@@ -4,9 +4,14 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:animations="using:Microsoft.Toolkit.Uwp.UI.Animations"
     xmlns:behaviors="using:MovieWorld.Behaviors"
+    xmlns:helpers="using:MovieWorld.Helpers"
     behaviors:NavigationViewHeaderBehavior.HeaderMode="Never">
+    <Page.Resources>
+        <helpers:GenreToStringConverter x:Key="GenreToStringConverter"/>
+        <helpers:LanguageToStringConverter x:Key="LanguageToStringConverter"/>
+        <helpers:ConcatStringConverter x:Key="ConcatStringConverter"/>
+    </Page.Resources>
     <ScrollViewer VerticalScrollMode="Enabled"
-        HorizontalAlignment="Stretch"
         Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid
         x:Name="ContentArea"
@@ -19,74 +24,69 @@
                             <AdaptiveTrigger MinWindowWidth="600" />
                         </VisualState.StateTriggers>
                         <VisualState.Setters>
-                            <Setter Target="group1.(RelativePanel.RightOf)" Value="itemHero" />
-                            <Setter Target="group1.(RelativePanel.Below)" Value="title" />
-                            <Setter Target="group2.(RelativePanel.RightOf)" Value="group1" />
-                            <Setter Target="group2.(RelativePanel.Below)" Value="title" />
-                            <Setter Target="group1.Width" Value="200" />
+                            <Setter Target="group.(RelativePanel.Below)" Value="itemHero" />
+                            <Setter Target="itemHero.(RelativePanel.Below)" Value="title" />
                         </VisualState.Setters>
                     </VisualState>
                 </VisualStateGroup>
             </VisualStateManager.VisualStateGroups>
 
-            <StackPanel x:Name="contentPanel">
-                <RelativePanel>
-                    <Grid
-                    RelativePanel.AlignTopWithPanel="True"
-                    RelativePanel.AlignLeftWithPanel="True"
-                    x:Name="itemHero"
-                    animations:Connected.Key="animationKeyPopularActors"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Top"
-                    Padding="{StaticResource XSmallLeftTopRightBottomMargin}"
-                    Margin="{StaticResource SmallRightMargin}">
-                        <Image HorizontalAlignment="Left" Height="300">
-                            <Image.Source>
-                                <BitmapImage UriSource="{x:Bind ViewModel.Movie.Image, Mode=OneWay}"/>
-                            </Image.Source>
-                        </Image>
-                    </Grid>
-                    <TextBlock
-                    x:Name="title"
-                    RelativePanel.AlignTopWithPanel="True"
-                    RelativePanel.RightOf="itemHero"
-                    Text="{x:Bind ViewModel.Movie.Title, Mode=OneWay}"
-                    Style="{ThemeResource TitleTextBlockStyle}"
-                    Margin="{StaticResource XXSmallTopMargin}" />
+            <StackPanel>
+                <RelativePanel Margin="{StaticResource SmallTopMargin}">
+                    <TextBlock x:Name="title"
+                        RelativePanel.AlignTopWithPanel="True"
+                        Text="{x:Bind ViewModel.Movie.Title, Mode=OneWay}"
+                        Style="{ThemeResource TitleTextBlockStyle}">
+                    </TextBlock>
+                    
+                    <Image x:Name="itemHero" RelativePanel.Below="title" RelativePanel.AlignLeftWithPanel="True" Height="300" Margin="0,12,20,12">
+                        <Image.Source>
+                            <BitmapImage UriSource="{x:Bind ViewModel.Movie.Image, Mode=OneWay}"/>
+                        </Image.Source>
+                    </Image>
 
-                    <StackPanel x:Name="group1" RelativePanel.Below="itemHero">
-                        <StackPanel x:Name="birthplace" Margin="{StaticResource SmallTopMargin}">
-                            <TextBlock Text="Place of birth" Style="{StaticResource DetailSubTitleStyle}" />
+                    <StackPanel x:Name="group" RelativePanel.RightOf="itemHero" RelativePanel.AlignTopWith="itemHero">
+                        <StackPanel Margin="{StaticResource SmallTopMargin}">
+                            <TextBlock Text="Release date" Style="{StaticResource DetailSubTitleStyle}" />
                             <TextBlock Text="{x:Bind ViewModel.Movie.Release_date, Mode=OneWay}" Style="{StaticResource DetailBodyBaseMediumStyle}" />
                         </StackPanel>
 
-                        <StackPanel x:Name="gender" Margin="{StaticResource SmallTopMargin}">
-                            <TextBlock Text="Gender" Style="{StaticResource DetailSubTitleStyle}" />
-                            <TextBlock Text="{x:Bind ViewModel.Movie.Genres, Mode=OneWay}" Style="{StaticResource DetailBodyBaseMediumStyle}" />
-                        </StackPanel>
-                    </StackPanel>
-
-                    <StackPanel x:Name="group2" RelativePanel.Below="group1">
-                        <StackPanel x:Name="birthdate" Margin="{StaticResource SmallTopMargin}">
-                            <TextBlock Text="Date of birth" Style="{StaticResource DetailSubTitleStyle}" />
-                            <TextBlock Text="{x:Bind ViewModel.Movie.Budget, Mode=OneWay}" Style="{StaticResource DetailBodyBaseMediumStyle}" />
+                        <StackPanel Margin="{StaticResource SmallTopMargin}">
+                            <TextBlock Text="Genres" Style="{StaticResource DetailSubTitleStyle}" />
+                            <TextBlock Text="{x:Bind ViewModel.Movie.Genres, Mode=OneWay, Converter={StaticResource GenreToStringConverter}}" Style="{StaticResource DetailBodyBaseMediumStyle}" />
                         </StackPanel>
 
-                        <StackPanel x:Name="popularity" Margin="{StaticResource SmallTopMargin}">
+                        <StackPanel Margin="{StaticResource SmallTopMargin}">
                             <TextBlock Text="Popularity" Style="{StaticResource DetailSubTitleStyle}" />
-                            <TextBlock Text="{x:Bind ViewModel.Movie.Homepage, Mode=OneWay}" Style="{StaticResource DetailBodyBaseMediumStyle}" />
+                            <TextBlock Text="{x:Bind ViewModel.Movie.Popularity, Mode=OneWay}" Style="{StaticResource DetailBodyBaseMediumStyle}" />
+                        </StackPanel>
+
+                        <StackPanel Margin="{StaticResource SmallTopMargin}">
+                            <TextBlock Text="Runtime" Style="{StaticResource DetailSubTitleStyle}" />
+                            <TextBlock Text="{x:Bind ViewModel.Movie.Runtime, Mode=OneWay, Converter={StaticResource ConcatStringConverter}, ConverterParameter=minutes}" Style="{StaticResource DetailBodyBaseMediumStyle}" />
+                        </StackPanel>
+
+                        <StackPanel Margin="{StaticResource SmallTopMargin}">
+                            <TextBlock Text="Budget" Style="{StaticResource DetailSubTitleStyle}" />
+                            <TextBlock Text="{x:Bind ViewModel.Movie.Budget, Mode=OneWay, Converter={StaticResource ConcatStringConverter}, ConverterParameter=USD}" Style="{StaticResource DetailBodyBaseMediumStyle}" />
                         </StackPanel>
                     </StackPanel>
                 </RelativePanel>
-                <TextBlock Text="Biography" Style="{StaticResource DetailSubTitleStyle}" Margin="{StaticResource SmallTopMargin}" />
-                <TextBlock Style="{StaticResource DetailBodyStyle}" Text="{x:Bind ViewModel.Movie.Tagline, Mode=OneWay}" />
-                <TextBlock Text="Movies" Style="{StaticResource DetailSubTitleStyle}" Margin="{StaticResource SmallTopMargin}" />
+
+                <TextBlock Text="Spoken languages" Style="{StaticResource DetailSubTitleStyle}" Margin="{StaticResource MediumTopMargin}" />
+                <TextBlock Style="{StaticResource DetailBodyStyle}" Text="{x:Bind ViewModel.Movie.Spoken_languages, Mode=OneWay, Converter={StaticResource LanguageToStringConverter}}"/>
+
+                <TextBlock Text="Tagline" Style="{StaticResource DetailSubTitleStyle}" Margin="{StaticResource SmallTopMargin}" />
+                <TextBlock Text="{x:Bind ViewModel.Movie.Tagline, Mode=OneWay}" Style="{StaticResource DetailBodyStyle}" />
+
+                <TextBlock Text="Cast" Style="{StaticResource DetailSubTitleStyle}" Margin="{StaticResource SmallTopMargin}" />
                 <ItemsControl x:Name="MovieList">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
                             <ItemsWrapGrid MaximumRowsOrColumns="10" Orientation="Horizontal" ItemWidth="130" ItemHeight="200"/>
                         </ItemsPanelTemplate>
                     </ItemsControl.ItemsPanel>
+                    
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
                             <Button HorizontalAlignment="Center" VerticalAlignment="Top" Command="{Binding Path= ViewModel.SelectMovieCommand}" CommandParameter="{Binding ViewModel.Actor.Id, Mode=OneWay}">

@@ -21,8 +21,8 @@ namespace MovieWorld.ViewModels
 
         public async Task Initialize(int id)
         {
-            //TODO
-            //Season = await MovieDataService.GetMovieDataAsync(id);
+            await TvShowDataService.GetSeasonAsync(id);
+            Season = TvShowDataService.CurrentSeason;
         }
     }
 }

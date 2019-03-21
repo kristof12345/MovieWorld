@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using GalaSoft.MvvmLight;
 using MovieWorld.Models;
+using MovieWorld.Services;
 
 namespace MovieWorld.ViewModels
 {
@@ -20,8 +21,8 @@ namespace MovieWorld.ViewModels
 
         public async Task Initialize(int id)
         {
-            //TODO
-            //TvShow = await TvShowDataService.GetTvShowDataAsync(id);
+            await TvShowDataService.GetShowAsync(id);
+            TvShow = TvShowDataService.CurrentShow;
         }
     }
 }

@@ -1,23 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 
 namespace MovieWorld.Models
 {
-
     class MovieList
     {
         public int Page { get; set; }
         public List<Movie> Results { get; set; }
-
-        //Egyéb adatok
     }
 
     public class Movie
     {
+        //Azonosító
         public int Id { get; set; }
-
-        public bool Detailed { get; set; }
 
         //Cím
         public string Title { get; set; }
@@ -27,6 +22,9 @@ namespace MovieWorld.Models
 
         //Népszerűség
         public float Popularity { get; set; }
+
+        //Játékidő
+        public int Runtime { get; set; }
 
         //Műfajok
         public List<Genre> Genres { get; set; }
@@ -44,22 +42,17 @@ namespace MovieWorld.Models
         public string Overview { get; set; }
 
         //Kép
-        public Uri Image { get { return new Uri("http://image.tmdb.org/t/p/w185/" + Poster_path); } }
+        public Uri Image { get { return new Uri("http://image.tmdb.org/t/p/original/" + Poster_path); } }
+
+        //Háttétkép
+        public Uri Backgroung { get { return new Uri("http://image.tmdb.org/t/p/origonal/" + Backdrop_path); } }
 
         //Egyéb adatok
-
         public string Backdrop_path { get; set; }
+        public string Poster_path { get; set; }
         public int Budget { get; set; }      
         public string Homepage { get; set; }       
-        public string Original_language { get; set; }      
-        public string Poster_path { get; set; }       
-        public int Runtime { get; set; }       
-        public string Status { get; set; }      
-
-        public override string ToString()
-        {
-            return $"{Title} {Release_date} {Popularity}";
-        }
+        public string Original_language { get; set; }        
     }
 
     public class Genre
@@ -67,7 +60,6 @@ namespace MovieWorld.Models
         public int Id { get; set; }
         public string Name { get; set; }
     }
-
 
     public class Language
     {

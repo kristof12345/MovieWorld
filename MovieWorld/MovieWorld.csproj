@@ -123,6 +123,7 @@
     <Compile Include="Behaviors\NavigationViewHeaderMode.cs" />
     <Compile Include="Helpers\ConcatStringConverter.cs" />
     <Compile Include="Helpers\EnumToBooleanConverter.cs" />
+    <Compile Include="Helpers\LanguageToStringConverter.cs" />
     <Compile Include="Helpers\GenreToStringConverter.cs" />
     <Compile Include="Helpers\Json.cs" />
     <Compile Include="Helpers\NavHelper.cs" />

@@ -12,6 +12,8 @@ namespace MovieWorld.Services
 
         public static ObservableCollection<Movie> TopMoviesList { get; set; } = new ObservableCollection<Movie>();
 
+        public static Movie CurrentMovie { get; set; }
+
         //Top filmek letöltése a szerverről
         internal static async Task GetTopMoviesAsync()
         {
@@ -33,9 +35,11 @@ namespace MovieWorld.Services
             }
         }
 
-        internal static Task<Movie> GetMovieDataAsync(int id)
+        internal static async Task GetMovieDataAsync(int id)
         {
-            throw new NotImplementedException();
+            var movie = await HttpService.GetMovieAsync(id);
+            movie.Cast = await HttpService.GetCastAsync(id);
+            CurrentMovie = movie;
         }
     }
 }
