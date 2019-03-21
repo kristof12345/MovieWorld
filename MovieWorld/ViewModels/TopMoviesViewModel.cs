@@ -14,8 +14,8 @@ namespace MovieWorld.ViewModels
     {
         private Movie selected;
 
-        public RelayCommand<int> SelectActorCommand { get; set; }
-        public RelayCommand<int> SelectMovieCommand { get; set; }
+        public RelayCommand<int> SelectActorCommand { get; private set; }
+        public RelayCommand<int> SelectMovieCommand { get; private set; }
         public NavigationServiceEx NavigationService => ViewModelLocator.Current.NavigationService;
         public SelectionChangedEventHandler SelectionChanged;
 
@@ -29,7 +29,7 @@ namespace MovieWorld.ViewModels
             SelectMovieCommand = new RelayCommand<int>((int id) =>{NavigateToMovie(id);});
         }
 
-        public async void SelectedMovieChanged(object sender, SelectionChangedEventArgs e)
+        private async void SelectedMovieChanged(object sender, SelectionChangedEventArgs e)
         {
             var selected = (Movie)e.AddedItems.First();
             if (selected != null && selected.Cast.Count == 0)
@@ -50,12 +50,12 @@ namespace MovieWorld.ViewModels
             }
         }
 
-        public void NavigateToActor(int id)
+        private void NavigateToActor(int id)
         {
             NavigationService.Navigate(typeof(ActorDetailViewModel).FullName, id);
         }
 
-        public void NavigateToMovie(int id)
+        private void NavigateToMovie(int id)
         {
             NavigationService.Navigate(typeof(MovieDetailViewModel).FullName, id);
         }
