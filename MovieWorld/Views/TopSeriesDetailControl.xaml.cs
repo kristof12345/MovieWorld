@@ -11,7 +11,7 @@ namespace MovieWorld.Views
 
         public TvShow MasterMenuItem
         {
-            get { var show = GetValue(MasterMenuItemProperty) as TvShow; if (show != null) SeasonList.ItemsSource = show.Seasons; return show; }
+            get { return GetValue(MasterMenuItemProperty) as TvShow; }
             set { SetValue(MasterMenuItemProperty, value); }
         }
 

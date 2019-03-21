@@ -15,6 +15,7 @@ namespace MovieWorld.ViewModels
         private Movie selected;
 
         public RelayCommand<int> SelectActorCommand { get; set; }
+        public RelayCommand<int> SelectMovieCommand { get; set; }
         public NavigationServiceEx NavigationService => ViewModelLocator.Current.NavigationService;
         public SelectionChangedEventHandler SelectionChanged;
 
@@ -24,10 +25,8 @@ namespace MovieWorld.ViewModels
         public TopMoviesViewModel()
         {
             SelectionChanged += SelectedMovieChanged;
-            SelectActorCommand = new RelayCommand<int>((int id) =>
-            {
-                NavigateToActor(id);
-            });
+            SelectActorCommand = new RelayCommand<int>((int id) => {NavigateToActor(id);});
+            SelectMovieCommand = new RelayCommand<int>((int id) =>{NavigateToMovie(id);});
         }
 
         public async void SelectedMovieChanged(object sender, SelectionChangedEventArgs e)
@@ -54,6 +53,11 @@ namespace MovieWorld.ViewModels
         public void NavigateToActor(int id)
         {
             NavigationService.Navigate(typeof(ActorDetailViewModel).FullName, id);
+        }
+
+        public void NavigateToMovie(int id)
+        {
+            NavigationService.Navigate(typeof(MovieDetailViewModel).FullName, id);
         }
     }
 }

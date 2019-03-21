@@ -82,7 +82,7 @@
                 <TextBlock Text="Biography" Style="{StaticResource DetailSubTitleStyle}" Margin="{StaticResource SmallTopMargin}" />
                 <TextBlock Style="{StaticResource DetailBodyStyle}" Text="{x:Bind ViewModel.Actor.Biography, Mode=OneWay}" />
                 <TextBlock Text="Movies" Style="{StaticResource DetailSubTitleStyle}" Margin="{StaticResource SmallTopMargin}" />
-                <ItemsControl x:Name="MovieList">
+                <ItemsControl x:Name="MovieList" ItemsSource="{x:Bind ViewModel.Actor.Roles, Mode=OneWay}">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
                             <ItemsWrapGrid MaximumRowsOrColumns="10" Orientation="Horizontal" ItemWidth="130" ItemHeight="200"/>

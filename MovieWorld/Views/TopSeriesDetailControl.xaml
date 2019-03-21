@@ -41,7 +41,7 @@
             <TextBlock Text="{x:Bind MasterMenuItem.Overview, Mode=OneWay}" Style="{StaticResource DetailBodyStyle}" />
 
             <TextBlock Text="Seasons" Style="{StaticResource DetailSubTitleStyle}" Margin="{StaticResource MediumTopMargin}" />
-            <ItemsControl x:Name="SeasonList">
+            <ItemsControl x:Name="SeasonList" ItemsSource="{x:Bind MasterMenuItem.Seasons, Mode=OneWay}">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
                         <ItemsWrapGrid MaximumRowsOrColumns="10" Orientation="Horizontal" ItemWidth="130" ItemHeight="200"/>

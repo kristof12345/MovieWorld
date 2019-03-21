@@ -51,10 +51,10 @@
             <TextBlock Text="{x:Bind MasterMenuItem.Overview, Mode=OneWay}" Style="{StaticResource DetailBodyStyle}" />
 
             <TextBlock Text="Cast" Style="{StaticResource DetailSubTitleStyle}" Margin="{StaticResource MediumTopMargin}" />
-            <ItemsControl x:Name="CastList">
+            <ItemsControl x:Name="CastList" ItemsSource="{x:Bind MasterMenuItem.Cast, Mode=OneWay}">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <ItemsWrapGrid MaximumRowsOrColumns="8" Orientation="Horizontal"/>
+                        <ItemsWrapGrid MaximumRowsOrColumns="10" Orientation="Horizontal"/>
                     </ItemsPanelTemplate>
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>
@@ -78,7 +78,7 @@
             </ItemsControl>
 
             <TextBlock Text="Similar movies" Style="{StaticResource DetailSubTitleStyle}" Margin="{StaticResource SmallTopMargin}" />
-            <ItemsControl x:Name="MovieList">
+            <ItemsControl x:Name="SimilarList" ItemsSource="{x:Bind MasterMenuItem.SimilarMovies, Mode=OneWay}">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
                         <ItemsWrapGrid MaximumRowsOrColumns="10" Orientation="Horizontal" ItemWidth="130" ItemHeight="200"/>

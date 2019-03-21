@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading.Tasks;
 using MovieWorld.Models;
 
@@ -30,7 +31,12 @@ namespace MovieWorld.Services
         internal static async Task GetMovieDataAsync(int id)
         {
             var movie = await HttpService.GetMovieAsync(id);
-            movie.Cast = await HttpService.GetCastAsync(id);
+            var cast = await HttpService.GetCastAsync(id);
+            var similar = await HttpService.GetSimilarMoviesAsync(id);
+            //Csak a fontosabb szereplők
+            movie.Cast = cast.Where(a => a.Profile_path != null).Take(18).ToList();
+            //Csak az első 12 találat
+            movie.SimilarMovies = similar.Take(12).ToList();
             CurrentMovie = movie;
         }
     }

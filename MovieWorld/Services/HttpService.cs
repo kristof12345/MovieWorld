@@ -31,6 +31,13 @@ namespace MovieWorld.Services
             return data.Results;
         }
 
+        internal async Task<List<Movie>> GetSimilarMoviesAsync(int id)
+        {
+            var response = await client.GetAsync($"movie/{id}/similar?api_key={apiKey}");
+            var data = await response.Content.ReadAsAsync<MovieList>();
+            return data.Results;
+        }
+
         internal async Task<Season> GetSeasonAsync(int showId, int seasonNumber)
         {
             var response = await client.GetAsync($"tv/{showId}/season/{seasonNumber}?api_key={apiKey}");

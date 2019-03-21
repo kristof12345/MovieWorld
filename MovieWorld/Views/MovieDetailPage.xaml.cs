@@ -22,10 +22,9 @@ namespace MovieWorld.Views
         protected async override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-            if (e.Parameter is int orderId)
+            if (e.Parameter is int movieId)
             {
-                await ViewModel.Initialize(orderId);
-                CastList.ItemsSource = ViewModel.Movie.Cast;
+                await ViewModel.Initialize(movieId);
             }
         }
     }

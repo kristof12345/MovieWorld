@@ -35,6 +35,9 @@ namespace MovieWorld.Models
         //Stáb
         public List<Actor> Cast { get; set; } = new List<Actor>();
 
+        //Hasonló filmek
+        public List<Movie> SimilarMovies { get; set; } = new List<Movie>();
+
         //Rövid leírás
         public string Tagline { get; set; }
 

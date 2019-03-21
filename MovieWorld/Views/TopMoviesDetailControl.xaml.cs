@@ -11,7 +11,7 @@ namespace MovieWorld.Views
 
         public Movie MasterMenuItem
         {
-            get { var movie = GetValue(MasterMenuItemProperty) as Movie; if(movie != null) CastList.ItemsSource = movie.Cast; return movie; }
+            get { return GetValue(MasterMenuItemProperty) as Movie; }
             set { SetValue(MasterMenuItemProperty, value); }
         }
 
