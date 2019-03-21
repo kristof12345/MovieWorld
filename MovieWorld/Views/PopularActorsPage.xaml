@@ -5,10 +5,12 @@
     Style="{StaticResource PageStyle}"
     xmlns:animations="using:Microsoft.Toolkit.Uwp.UI.Animations"
     xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
-    xmlns:models="using:MovieWorld.Models">
+        xmlns:models="using:MovieWorld.Models"
+>
     <Grid x:Name="ContentArea">
+        <TextBox Text="{x:Bind ViewModel.SearchText, Mode=TwoWay}" Width="200" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,10,0,0"/>
         <controls:AdaptiveGridView
-            ItemsSource="{x:Bind ViewModel.Source,Mode=OneWay}"
+            ItemsSource="{x:Bind ViewModel.Source, Mode=OneWay}"
             ItemClickCommand="{x:Bind ViewModel.ItemClickCommand}"
             StretchContentForSingleRow="False"
             SelectionMode="None"
@@ -17,21 +19,26 @@
             animations:Connected.ListItemElementName="itemThumbnail"
             animations:Connected.ListItemKey="animationKeyPopularActors"
             DesiredWidth="180"
-            ItemHeight="160">
+            ItemHeight="200" HorizontalAlignment="Stretch" Margin="0,60,0,0" VerticalAlignment="Stretch">
             <controls:AdaptiveGridView.ItemTemplate>
-                <DataTemplate x:DataType="models:SampleOrder">
+                <DataTemplate x:DataType="models:Actor">
                     <Grid
                         x:Name="itemThumbnail"
                         Padding="{StaticResource XSmallLeftTopRightBottomMargin}"
                         Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
                         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                            <FontIcon
-                                Glyph="{x:Bind Symbol}" />
                             <TextBlock
                                 Margin="{StaticResource XXSmallTopMargin}"
                                 HorizontalAlignment="Center"
-                                Text="{x:Bind Company}"
-                                Style="{ThemeResource BodyTextStyle}" />
+                                Text="{x:Bind Name}"
+                                Style="{ThemeResource BodyTextStyle}" >
+                            </TextBlock>
+                            <Image>
+                                <Image.Source>
+                                    <BitmapImage UriSource="{x:Bind Image, Mode=OneWay}"/>
+                                </Image.Source>
+                            </Image>
+                            
                         </StackPanel>
                     </Grid>
                 </DataTemplate>

@@ -2,9 +2,6 @@
     x:Class="MovieWorld.Views.HomePage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-xmlns:model="using:MovieWorld.Models"
-    xmlns:views="using:MovieWorld.Views"
-    xmlns:behaviors="using:MovieWorld.Behaviors"
     Style="{StaticResource PageStyle}">
 
     <Grid 
@@ -28,16 +25,21 @@ xmlns:model="using:MovieWorld.Models"
                 <Grid>
                     <StackPanel Orientation="Horizontal"
                         Margin="0,150,0,0"
-                                MaxWidth = "500"
+                                MaxWidth = "800"
                              Height = "35"
                                 VerticalAlignment="Top"
                                 HorizontalAlignment="Center">
                     <TextBox Width = "400"
                              Text="{x:Bind ViewModel.SearchText, Mode=TwoWay}"
                              />
-                    <Button Width = "100"
+                        <Button Width = "100"
                              Content="Search"
-                            Command="{x:Bind ViewModel.SearchCommand}"/>
+                                Command="{x:Bind ViewModel.SearchCommand}"/>
+                        <Button Width = "100"
+                             Content="Transparent"
+                            Command="{x:Bind ViewModel.SearchCommand}">
+
+                        </Button>
                     </StackPanel>
 
                 </Grid>

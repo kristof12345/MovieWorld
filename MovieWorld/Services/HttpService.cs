@@ -30,6 +30,13 @@ namespace MovieWorld.Services
             return data.Results;
         }
 
+        internal async Task<List<Actor>> GetPopularActorsAsync()
+        {
+            var response = await client.GetAsync($"person/popular?api_key={apiKey}");
+            var data = await response.Content.ReadAsAsync<PersonList>();
+            return data.Results;
+        }
+
         internal async Task<List<Movie>> GetSimilarMoviesAsync(int id)
         {
             var response = await client.GetAsync($"movie/{id}/similar?api_key={apiKey}");

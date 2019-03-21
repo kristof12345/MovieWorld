@@ -10,6 +10,13 @@ namespace MovieWorld.Models
         //Egyéb adatok
     }
 
+    public class PersonList
+    {
+        public int Page { get; set; }
+        public List<Actor> Results { get; set; } = new List<Actor>();
+        //Egyéb adatok
+    }
+
     public enum Gender
     {
         Other,

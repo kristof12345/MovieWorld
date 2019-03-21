@@ -7,6 +7,19 @@
     xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls">
     <UserControl.Resources>
         <helpers:GenreToStringConverter x:Key="GenreToStringConverter"/>
+        <!--Transparent button-->
+        <ResourceDictionary x:Key="Light">
+            <SolidColorBrush x:Key="ButtonBackground" Color="Transparent"/>
+            <SolidColorBrush x:Key="ButtonBackgroundPointerOver" Color="Transparent"/>
+            <SolidColorBrush x:Key="ButtonBackgroundPressed" Color="Transparent"/>
+            <SolidColorBrush x:Key="ButtonBorderBrushPointerOver" Color="Transparent"/>
+        </ResourceDictionary>
+        <ResourceDictionary x:Key="Dark">
+            <SolidColorBrush x:Key="ButtonBackground" Color="Transparent"/>
+            <SolidColorBrush x:Key="ButtonBackgroundPointerOver" Color="Transparent"/>
+            <SolidColorBrush x:Key="ButtonBackgroundPressed" Color="Transparent"/>
+            <SolidColorBrush x:Key="ButtonBorderBrushPointerOver" Color="Transparent"/>
+        </ResourceDictionary>
     </UserControl.Resources>
 
     <ScrollViewer
@@ -59,6 +72,14 @@
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
                         <Button Command="{Binding Path= ViewModel.SelectSeasonCommand, ElementName=ShowDetailsControl}" CommandParameter="{Binding Season_number, Mode=OneWay}">
+                            <Button.Resources>
+                                <ResourceDictionary>
+                                    <SolidColorBrush x:Key="ButtonBackground" Color="Transparent"/>
+                                    <SolidColorBrush x:Key="ButtonBackgroundPointerOver" Color="Transparent"/>
+                                    <SolidColorBrush x:Key="ButtonBackgroundPressed" Color="Transparent"/>
+                                    <SolidColorBrush x:Key="ButtonBorderBrushPointerOver" Color="Transparent"/>
+                                </ResourceDictionary>
+                            </Button.Resources>
                             <StackPanel Orientation="Vertical" >
                                 <Rectangle Height="150" Width="100">
                                     <Rectangle.Fill>
@@ -86,6 +107,14 @@
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
                         <Button HorizontalAlignment="Center" VerticalAlignment="Top" Command="{Binding Path= ViewModel.SelectShowCommand, ElementName=ShowDetailsControl}" CommandParameter="{Binding Id, Mode=OneWay}">
+                            <Button.Resources>
+                                <ResourceDictionary>
+                                    <SolidColorBrush x:Key="ButtonBackground" Color="Transparent"/>
+                                    <SolidColorBrush x:Key="ButtonBackgroundPointerOver" Color="Transparent"/>
+                                    <SolidColorBrush x:Key="ButtonBackgroundPressed" Color="Transparent"/>
+                                    <SolidColorBrush x:Key="ButtonBorderBrushPointerOver" Color="Transparent"/>
+                                </ResourceDictionary>
+                            </Button.Resources>
                             <StackPanel Orientation="Vertical" >
                                 <Rectangle Height="150" Width="100">
                                     <Rectangle.Fill>

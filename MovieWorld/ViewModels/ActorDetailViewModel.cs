@@ -8,10 +8,10 @@ namespace MovieWorld.ViewModels
 {
     public class ActorDetailViewModel : ViewModelBase
     {
+        private Actor actor;
+
         public RelayCommand<int> SelectMovieCommand { get; set; }
         public NavigationServiceEx NavigationService => ViewModelLocator.Current.NavigationService;
-
-        private Actor actor;
 
         public Actor Actor
         {
@@ -29,7 +29,8 @@ namespace MovieWorld.ViewModels
 
         public async Task Initialize(int id)
         {
-            Actor = await ActorDataService.GetActorDataAsync(id);
+            await ActorDataService.GetActorDataAsync(id);
+            Actor = ActorDataService.CurrentActor;
         }
 
         public void NavigateToMovie(int id)

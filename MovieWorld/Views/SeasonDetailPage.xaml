@@ -63,6 +63,14 @@
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
                             <Button Command="{Binding Path= ViewModel.SelectActorCommand, ElementName=SeasonDetailsPage}" CommandParameter="{Binding Id, Mode=OneWay}">
+                                <Button.Resources>
+                                    <ResourceDictionary>
+                                        <SolidColorBrush x:Key="ButtonBackground" Color="Transparent"/>
+                                        <SolidColorBrush x:Key="ButtonBackgroundPointerOver" Color="Transparent"/>
+                                        <SolidColorBrush x:Key="ButtonBackgroundPressed" Color="Transparent"/>
+                                        <SolidColorBrush x:Key="ButtonBorderBrushPointerOver" Color="Transparent"/>
+                                    </ResourceDictionary>
+                                </Button.Resources>
                                 <StackPanel Orientation="Vertical" >
                                     <Ellipse Height="100" Width="100">
                                         <Ellipse.Fill>
@@ -90,6 +98,14 @@
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
                             <Button HorizontalAlignment="Center" VerticalAlignment="Top" Command="{Binding Path= ViewModel.SelectMovieCommand, ElementName=MovieDetailsPage}" CommandParameter="{Binding Episode_number, Mode=OneWay}">
+                                <Button.Resources>
+                                    <ResourceDictionary>
+                                        <SolidColorBrush x:Key="ButtonBackground" Color="Transparent"/>
+                                        <SolidColorBrush x:Key="ButtonBackgroundPointerOver" Color="Transparent"/>
+                                        <SolidColorBrush x:Key="ButtonBackgroundPressed" Color="Transparent"/>
+                                        <SolidColorBrush x:Key="ButtonBorderBrushPointerOver" Color="Transparent"/>
+                                    </ResourceDictionary>
+                                </Button.Resources>
                                 <StackPanel Orientation="Vertical" >
                                     <Image Width="300">
                                         <Image.Source>
