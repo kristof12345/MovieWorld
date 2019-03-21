@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using GalaSoft.MvvmLight;
@@ -12,14 +13,21 @@ namespace MovieWorld.ViewModels
     public class PopularActorsViewModel : ViewModelBase
     {
         public NavigationServiceEx NavigationService => ViewModelLocator.Current.NavigationService;
+        public RelayCommand SearchCommand { get; private set; }
         private ICommand _itemClickCommand;
         public ICommand ItemClickCommand => _itemClickCommand ?? (_itemClickCommand = new RelayCommand<Actor>(OnItemClick));
 
         public string SearchText { get; set; }
-        public ObservableCollection<Actor> Source{get {  return ActorDataService.PopularActorsList;} }
+        public ObservableCollection<Actor> Source{get {  return ActorDataService.ActorsList;} }
 
         public PopularActorsViewModel()
         {
+            SearchCommand = new RelayCommand(() => { SearchActors(); });
+        }
+
+        private async void SearchActors()
+        {
+            await ActorDataService.Search(SearchText);
         }
 
         private void OnItemClick(Actor clickedItem)

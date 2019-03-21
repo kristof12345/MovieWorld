@@ -32,7 +32,17 @@ namespace MovieWorld.Services
 
         internal async Task<List<Actor>> GetPopularActorsAsync()
         {
-            var response = await client.GetAsync($"person/popular?api_key={apiKey}");
+            var response1 = await client.GetAsync($"person/popular?api_key={apiKey}");
+            var data1 = await response1.Content.ReadAsAsync<PersonList>();
+            var response2 = await client.GetAsync($"person/popular?api_key={apiKey}&page=2");
+            var data2 = await response2.Content.ReadAsAsync<PersonList>();
+            data1.Results.AddRange(data2.Results);
+            return data1.Results;
+        }
+
+        internal async Task<List<Actor>> SearchActorsAsync(string searchText)
+        {
+            var response = await client.GetAsync($"search/person?api_key={apiKey}&query={searchText}");
             var data = await response.Content.ReadAsAsync<PersonList>();
             return data.Results;
         }

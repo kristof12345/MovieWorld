@@ -12,7 +12,7 @@ namespace MovieWorld.Services
     {
         private static HttpService HttpService { get; set; } = new HttpService();
 
-        public static ObservableCollection<Actor> PopularActorsList { get; private set; } = new ObservableCollection<Actor>();
+        public static ObservableCollection<Actor> ActorsList { get; private set; } = new ObservableCollection<Actor>();
         public static Actor CurrentActor { get; private set; }
 
         //Egy színész adatai
@@ -31,10 +31,21 @@ namespace MovieWorld.Services
         internal static async Task GetPopularActorsAsync()
         {
             var list = await HttpService.GetPopularActorsAsync();
-            PopularActorsList.Clear();
+            ActorsList.Clear();
             foreach(var actor in list)
             {
-                PopularActorsList.Add(actor);
+                ActorsList.Add(actor);
+            }
+        }
+
+        internal static async Task Search(string searchText)
+        {
+            var list = await HttpService.SearchActorsAsync(searchText);
+            ActorsList.Clear();
+            foreach (var actor in list)
+            {
+                if(actor.Profile_path != null)
+                ActorsList.Add(actor);
             }
         }
     }

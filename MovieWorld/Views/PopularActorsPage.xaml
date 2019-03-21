@@ -8,7 +8,10 @@
         xmlns:models="using:MovieWorld.Models"
 >
     <Grid x:Name="ContentArea">
-        <TextBox Text="{x:Bind ViewModel.SearchText, Mode=TwoWay}" Width="200" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,10,0,0"/>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,10,0,0">
+            <TextBox Text="{x:Bind ViewModel.SearchText, Mode=TwoWay}" Width="200"/>
+            <Button Content="Search people" Command="{x:Bind ViewModel.SearchCommand}"/>
+        </StackPanel>
         <controls:AdaptiveGridView
             ItemsSource="{x:Bind ViewModel.Source, Mode=OneWay}"
             ItemClickCommand="{x:Bind ViewModel.ItemClickCommand}"
@@ -19,26 +22,24 @@
             animations:Connected.ListItemElementName="itemThumbnail"
             animations:Connected.ListItemKey="animationKeyPopularActors"
             DesiredWidth="180"
-            ItemHeight="200" HorizontalAlignment="Stretch" Margin="0,60,0,0" VerticalAlignment="Stretch">
+            ItemHeight="300" HorizontalAlignment="Stretch" Margin="0,60,0,0" VerticalAlignment="Stretch">
             <controls:AdaptiveGridView.ItemTemplate>
                 <DataTemplate x:DataType="models:Actor">
                     <Grid
                         x:Name="itemThumbnail"
-                        Padding="{StaticResource XSmallLeftTopRightBottomMargin}"
                         Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
-                        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                            <TextBlock
-                                Margin="{StaticResource XXSmallTopMargin}"
-                                HorizontalAlignment="Center"
-                                Text="{x:Bind Name}"
-                                Style="{ThemeResource BodyTextStyle}" >
-                            </TextBlock>
-                            <Image>
+                        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <Image VerticalAlignment="Top" >
                                 <Image.Source>
                                     <BitmapImage UriSource="{x:Bind Image, Mode=OneWay}"/>
                                 </Image.Source>
                             </Image>
-                            
+                            <TextBlock
+                            HorizontalAlignment="Center"
+                                Text="{x:Bind Name}"
+                                Style="{ThemeResource BodyTextStyle}"
+                                VerticalAlignment="Bottom" >
+                            </TextBlock>
                         </StackPanel>
                     </Grid>
                 </DataTemplate>
