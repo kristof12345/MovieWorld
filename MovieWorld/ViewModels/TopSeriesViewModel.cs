@@ -52,7 +52,8 @@ namespace MovieWorld.ViewModels
 
         public void NavigateToSeason(int id)
         {
-            NavigationService.Navigate(typeof(ActorDetailViewModel).FullName, id);
+            var param = new SeasonId { ShowId = selected.Id, SeasonNumber = id };
+            NavigationService.Navigate(typeof(SeasonDetailViewModel).FullName, param);
         }
     }
 }

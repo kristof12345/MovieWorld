@@ -49,7 +49,7 @@
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <Button Command="{Binding Path= ViewModel.SelectSeasonCommand, ElementName=ShowDetailsControl}" CommandParameter="{Binding Id, Mode=OneWay}">
+                        <Button Command="{Binding Path= ViewModel.SelectSeasonCommand, ElementName=ShowDetailsControl}" CommandParameter="{Binding Season_number, Mode=OneWay}">
                             <StackPanel Orientation="Vertical" >
                                 <Rectangle Height="150" Width="100">
                                     <Rectangle.Fill>

@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MovieWorld.Models
 {
@@ -35,7 +32,7 @@ namespace MovieWorld.Models
         public float Popularity { get; set; }
         public string Poster_path { get; set; }
         public List<Company> Production_companies { get; set; }
-        public List<Season> Seasons { get; set; }
+        public List<Season> Seasons { get; set; } = new List<Season>();
         public string status { get; set; }
         public string type { get; set; }
         public float vote_average { get; set; }
@@ -74,14 +71,24 @@ namespace MovieWorld.Models
 
         public string Name { get; set; }
 
+        //Évad sorszáma
+        public int Season_number { get; set; }
+
         //Kép
         public Uri Image { get { return new Uri("http://image.tmdb.org/t/p/w185/" + Poster_path); } }
 
         public string Air_date { get; set; }
-        public int episode_count { get; set; }
-        public int id { get; set; }
-        public string overview { get; set; }
+        public int Episode_count { get; set; }
+        public string Overview { get; set; }
+
+        //Egyéb adatok
         public string Poster_path { get; set; }
-        public int season_number { get; set; }
+
+    }
+
+    public class SeasonId
+    {
+        public int ShowId { get; set; }
+        public int SeasonNumber { get; set; }
     }
 }

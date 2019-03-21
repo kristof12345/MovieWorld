@@ -21,7 +21,7 @@ namespace MovieWorld.ViewModels
 
         public async Task Initialize(int id)
         {
-            await TvShowDataService.GetShowAsync(id);
+            await TvShowDataService.GetShowDataAsync(id);
             TvShow = TvShowDataService.CurrentShow;
         }
     }

@@ -57,12 +57,12 @@
                     <StackPanel x:Name="group1" RelativePanel.Below="itemHero">
                         <StackPanel x:Name="birthplace" Margin="{StaticResource SmallTopMargin}">
                             <TextBlock Text="Place of birth" Style="{StaticResource DetailSubTitleStyle}" />
-                            <TextBlock Text="{x:Bind ViewModel.Season.air_date, Mode=OneWay}" Style="{StaticResource DetailBodyBaseMediumStyle}" />
+                            <TextBlock Text="{x:Bind ViewModel.Season.Air_date, Mode=OneWay}" Style="{StaticResource DetailBodyBaseMediumStyle}" />
                         </StackPanel>
 
                         <StackPanel x:Name="gender" Margin="{StaticResource SmallTopMargin}">
                             <TextBlock Text="Gender" Style="{StaticResource DetailSubTitleStyle}" />
-                            <TextBlock Text="{x:Bind ViewModel.Season.episode_count, Mode=OneWay}" Style="{StaticResource DetailBodyBaseMediumStyle}" />
+                            <TextBlock Text="{x:Bind ViewModel.Season.Episode_count, Mode=OneWay}" Style="{StaticResource DetailBodyBaseMediumStyle}" />
                         </StackPanel>
                     </StackPanel>
 
@@ -79,7 +79,7 @@
                     </StackPanel>
                 </RelativePanel>
                 <TextBlock Text="Biography" Style="{StaticResource DetailSubTitleStyle}" Margin="{StaticResource SmallTopMargin}" />
-                <TextBlock Style="{StaticResource DetailBodyStyle}" Text="{x:Bind ViewModel.Season.overview, Mode=OneWay}" />
+                <TextBlock Style="{StaticResource DetailBodyStyle}" Text="{x:Bind ViewModel.Season.Overview, Mode=OneWay}" />
                 <TextBlock Text="Movies" Style="{StaticResource DetailSubTitleStyle}" Margin="{StaticResource SmallTopMargin}" />
                 <ItemsControl x:Name="MovieList">
                     <ItemsControl.ItemsPanel>

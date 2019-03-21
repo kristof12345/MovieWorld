@@ -1,4 +1,5 @@
 ﻿using Microsoft.Toolkit.Uwp.UI.Animations;
+using MovieWorld.Models;
 using MovieWorld.Services;
 using MovieWorld.ViewModels;
 using Windows.UI.Xaml.Controls;
@@ -8,7 +9,7 @@ namespace MovieWorld.Views
 {
     public sealed partial class SeasonDetailPage : Page
     {
-        private SeasonDetailViewModel ViewModel
+        public SeasonDetailViewModel ViewModel
         {
             get { return ViewModelLocator.Current.SeasonDetailViewModel; }
         }
@@ -24,10 +25,9 @@ namespace MovieWorld.Views
         protected async override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-            if (e.Parameter is int orderId)
+            if (e.Parameter is SeasonId seasonId)
             {
-                await ViewModel.Initialize(orderId);
-                //MovieList.ItemsSource = ViewModel.Actor.Roles;
+                await ViewModel.Initialize(seasonId.ShowId, seasonId.SeasonNumber);
             }
         }
 
