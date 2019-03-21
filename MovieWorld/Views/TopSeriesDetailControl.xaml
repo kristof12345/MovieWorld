@@ -6,7 +6,7 @@
     xmlns:helpers="using:MovieWorld.Helpers"
     xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls">
     <UserControl.Resources>
-        <helpers:GenreToStringConverter x:Key="GenreToStringConverter"/>
+        <helpers:ListToStringConverter x:Key="GenreToStringConverter"/>
     </UserControl.Resources>
 
     <ScrollViewer
@@ -43,6 +43,12 @@
             <TextBlock Text="Overview" Style="{StaticResource DetailSubTitleStyle}" Margin="{StaticResource MediumTopMargin}" />
             <TextBlock Text="{x:Bind MasterMenuItem.Overview, Mode=OneWay}" Style="{StaticResource DetailBodyStyle}" />
 
+            <TextBlock Text="Networks" Style="{StaticResource DetailSubTitleStyle}" Margin="{StaticResource SmallTopMargin}" />
+            <TextBlock Text="{x:Bind MasterMenuItem.Genres, Mode=OneWay, Converter={StaticResource GenreToStringConverter}}" Style="{StaticResource DetailBodyBaseMediumStyle}" />
+
+            <TextBlock Text="Networks" Style="{StaticResource DetailSubTitleStyle}" Margin="{StaticResource SmallTopMargin}" />
+            <TextBlock Text="{x:Bind MasterMenuItem.Genres, Mode=OneWay, Converter={StaticResource GenreToStringConverter}}" Style="{StaticResource DetailBodyBaseMediumStyle}" />
+            
             <TextBlock Text="Seasons" Style="{StaticResource DetailSubTitleStyle}" Margin="{StaticResource MediumTopMargin}" />
             <ItemsControl x:Name="SeasonList" ItemsSource="{x:Bind MasterMenuItem.Seasons, Mode=OneWay}">
                 <ItemsControl.ItemsPanel>
@@ -91,33 +97,6 @@
                                     </Rectangle.Fill>
                                 </Rectangle>
                                 <TextBlock TextAlignment="Center" Text="{Binding Title, Mode=OneWay}" TextWrapping="Wrap"/>
-                            </StackPanel>
-                        </Button>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
-
-            <TextBlock Text="Similar movies" Style="{StaticResource DetailSubTitleStyle}" Margin="{StaticResource SmallTopMargin}" />
-            <ItemsControl x:Name="Networks" ItemsSource="{x:Bind MasterMenuItem.Networks, Mode=OneWay}">
-                <ItemsControl.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <ItemsWrapGrid MaximumRowsOrColumns="10" Orientation="Horizontal" ItemWidth="130" ItemHeight="200"/>
-                    </ItemsPanelTemplate>
-                </ItemsControl.ItemsPanel>
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <Button HorizontalAlignment="Center" VerticalAlignment="Top" Command="{Binding Path= ViewModel.SelectNetworkCommand, ElementName=ShowDetailsControl}" CommandParameter="{Binding Id, Mode=OneWay}">
-                            <StackPanel Orientation="Vertical" >
-                                <Rectangle Height="150" Width="150">
-                                    <Rectangle.Fill>
-                                        <ImageBrush>
-                                            <ImageBrush.ImageSource>
-                                                <BitmapImage UriSource="{Binding Image, Mode=OneWay}"/>
-                                            </ImageBrush.ImageSource>
-                                        </ImageBrush>
-                                    </Rectangle.Fill>
-                                </Rectangle>
-                                <TextBlock TextAlignment="Center" Text="{Binding Name, Mode=OneWay}" TextWrapping="Wrap"/>
                             </StackPanel>
                         </Button>
                     </DataTemplate>

@@ -14,7 +14,8 @@ namespace MovieWorld.ViewModels
     {
         private TvShow selected;
 
-        public RelayCommand<int> SelectSeasonCommand { get; set; }
+        public RelayCommand<int> SelectSeasonCommand { get; private set; }
+        public RelayCommand<int> SelectShowCommand { get; private set; }
         public NavigationServiceEx NavigationService => ViewModelLocator.Current.NavigationService;
         public SelectionChangedEventHandler SelectionChanged;
 
@@ -24,10 +25,8 @@ namespace MovieWorld.ViewModels
         public TopSeriesViewModel()
         {
             SelectionChanged += this.SelectedShowChanged;
-            SelectSeasonCommand = new RelayCommand<int>((int id) =>
-            {
-                NavigateToSeason(id);
-            });
+            SelectSeasonCommand = new RelayCommand<int>((int id) =>{NavigateToSeason(id);});
+            SelectShowCommand = new RelayCommand<int>((int id) => { NavigateToShow(id); });
         }
 
         public async void SelectedShowChanged(object sender, SelectionChangedEventArgs e)
@@ -50,10 +49,15 @@ namespace MovieWorld.ViewModels
             }
         }
 
-        public void NavigateToSeason(int id)
+        private void NavigateToSeason(int id)
         {
             var param = new SeasonId { ShowId = selected.Id, SeasonNumber = id };
             NavigationService.Navigate(typeof(SeasonDetailViewModel).FullName, param);
+        }
+
+        private void NavigateToShow(int id)
+        {
+            NavigationService.Navigate(typeof(TvShowDetailViewModel).FullName, id);
         }
     }
 }

@@ -1,5 +1,4 @@
 ﻿using MovieWorld.Models;
-using System;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 
@@ -32,6 +31,8 @@ namespace MovieWorld.Services
         internal static async Task GetShowDataAsync(int id)
         {
             var show = await HttpService.GetShowAsync(id);
+            var similar = await HttpService.GetSimilarShowsAsync(id);
+            show.SimilarSeries = similar;
             CurrentShow = show;
         }
 

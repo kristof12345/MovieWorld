@@ -63,6 +63,7 @@ namespace MovieWorld.Models
         public string Name { get; set; }      
         public string Logo_path { get; set; }
         public Uri Image { get { return new Uri("http://image.tmdb.org/t/p/w185/" + Logo_path); } }
+        public override string ToString() { return Name; }
     }
 
     public class Company
@@ -71,6 +72,7 @@ namespace MovieWorld.Models
         public string Name { get; set; }
         public string Logo_path { get; set; }
         public Uri Image { get { return new Uri("http://image.tmdb.org/t/p/w185/" + Logo_path); } }
+        public override string ToString() { return Name; }
     }
 
     public class Season
