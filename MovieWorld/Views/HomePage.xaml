@@ -43,7 +43,7 @@
                                  Height="30"
                                  Text="{x:Bind ViewModel.SearchText, Mode=TwoWay}">
                         </TextBox>
-                        
+
                         <RadioButton Margin = "5" Checked = "ViewModel.HandleCheck" GroupName="Selection" Content = "Movie" x:Name="movie"/>
                         <RadioButton Margin = "5" Checked = "ViewModel.HandleCheck" GroupName="Selection" Content = "TvShow" x:Name="tv" />
 
@@ -68,9 +68,7 @@
                         <controls:AdaptiveGridView.ItemTemplate>
                             <DataTemplate x:DataType="models:Movie">
                                 <Grid
-                                    Height="300"
-                                VerticalAlignment="Top"
-                                Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
+                                VerticalAlignment="Top">
                                     <StackPanel Orientation="Vertical" VerticalAlignment="Top">
                                         <Image >
                                             <Image.Source>
@@ -89,7 +87,7 @@
                     </controls:AdaptiveGridView>
                     <controls:AdaptiveGridView
                         Visibility="{x:Bind ViewModel.ShowGridVisibility, Mode=OneWay}"
-                        Grid.Row="1"
+                        Grid.Row="1" Grid.Column="0"
                         ItemsSource="{x:Bind ViewModel.SearchedShowsSource, Mode=OneWay}"
                         ItemClickCommand="{x:Bind ViewModel.TvShowClickCommand}"
                         StretchContentForSingleRow="False"
@@ -102,10 +100,8 @@
                         <controls:AdaptiveGridView.ItemTemplate>
                             <DataTemplate x:DataType="models:TvShow">
                                 <Grid
-                                    Height="300"
-                                VerticalAlignment="Top"
-                                Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
-                                    <StackPanel Orientation="Vertical" VerticalAlignment="Top">
+                                VerticalAlignment="Top">
+                                    <StackPanel Orientation="Vertical">
                                         <Image >
                                             <Image.Source>
                                                 <BitmapImage UriSource="{x:Bind Image, Mode=OneWay}"/>
@@ -160,10 +156,8 @@
                         <controls:AdaptiveGridView.ItemTemplate>
                             <DataTemplate x:DataType="models:Movie">
                                 <Grid
-                                    Height="300"
-                                VerticalAlignment="Top"
-                                Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
-                                    <StackPanel Orientation="Vertical" VerticalAlignment="Top">
+                                VerticalAlignment="Top">
+                                    <StackPanel Orientation="Vertical">
                                         <Image >
                                             <Image.Source>
                                                 <BitmapImage UriSource="{x:Bind Image, Mode=OneWay}"/>
@@ -199,10 +193,8 @@
                         <controls:AdaptiveGridView.ItemTemplate>
                             <DataTemplate x:DataType="models:TvShow">
                                 <Grid
-                                    Height="300"
-                                    VerticalAlignment="Top"
-                                    Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
-                                    <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Top">
+                                    VerticalAlignment="Top">
+                                    <StackPanel Orientation="Vertical">
                                         <Image  >
                                             <Image.Source>
                                                 <BitmapImage UriSource="{x:Bind Image, Mode=OneWay}"/>

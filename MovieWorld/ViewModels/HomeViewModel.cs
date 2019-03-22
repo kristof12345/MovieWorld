@@ -17,7 +17,7 @@ namespace MovieWorld.ViewModels
         public RelayCommand<TvShow> TvShowClickCommand { get; private set; }
         public NavigationServiceEx NavigationService => ViewModelLocator.Current.NavigationService;
 
-        public string SearchText { get; set; }
+        public string SearchText { get; set; } = "";
         public string SearchCategory { get; set; } = "movie";
         public ObservableCollection<Movie> SearchedMoviesSource { get; } = new ObservableCollection<Movie>();
         public ObservableCollection<TvShow> SearchedShowsSource { get; } = new ObservableCollection<TvShow>();
