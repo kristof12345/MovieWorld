@@ -19,14 +19,14 @@ namespace MovieWorld.Services
         {
             handler.ClientCertificateOptions = ClientCertificateOption.Manual;
             handler.ServerCertificateCustomValidationCallback = (httpRequestMessage, cert, cetChain, policyErrors) => { return true; };
-            client = new HttpClient(handler){ BaseAddress = baseAddress };
+            client = new HttpClient(handler) { BaseAddress = baseAddress };
         }
 
         //Top filmek listázása
         internal async Task<List<Movie>> ListTopMoviesAsync()
         {
             var response = await client.GetAsync($"movie/popular?api_key={apiKey}");
-            var data = await response.Content.ReadAsAsync<MovieList>();          
+            var data = await response.Content.ReadAsAsync<MovieList>();
             return data.Results;
         }
 
@@ -38,6 +38,34 @@ namespace MovieWorld.Services
             var data2 = await response2.Content.ReadAsAsync<PersonList>();
             data1.Results.AddRange(data2.Results);
             return data1.Results;
+        }
+
+        internal async Task<List<Movie>> SearchMoviesAsync(string searchParams)
+        {
+            var response = await client.GetAsync($"search/movie?api_key={apiKey}&query={searchParams}");
+            var data = await response.Content.ReadAsAsync<MovieList>();
+            return data.Results;
+        }
+
+        internal async Task<List<TvShow>> SearchShowsAsync(string searchParams)
+        {
+            var response = await client.GetAsync($"search/tv?api_key={apiKey}&query={searchParams}");
+            var data = await response.Content.ReadAsAsync<TvShowList>();
+            return data.Results;
+        }
+
+        internal async Task<List<Movie>> ListLatestMoviesAsync()
+        {
+            var response = await client.GetAsync($"movie/now_playing?api_key={apiKey}");
+            var data = await response.Content.ReadAsAsync<MovieList>();
+            return data.Results;
+        }
+
+        internal async Task<List<TvShow>> ListLatestShowsAsync()
+        {
+            var response = await client.GetAsync($"tv/airing_today?api_key={apiKey}");
+            var data = await response.Content.ReadAsAsync<TvShowList>();
+            return data.Results;
         }
 
         internal async Task<List<Actor>> SearchActorsAsync(string searchText)

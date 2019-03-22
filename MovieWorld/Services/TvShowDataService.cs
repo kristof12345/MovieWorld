@@ -1,4 +1,6 @@
 ﻿using MovieWorld.Models;
+using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
@@ -12,6 +14,7 @@ namespace MovieWorld.Services
         public static ObservableCollection<TvShow> TopTvShowsList { get; private set; } = new ObservableCollection<TvShow>();
         public static Season CurrentSeason { get; private set; }
         public static TvShow CurrentShow { get; private set; }
+        public static ObservableCollection<TvShow> LatestTvShowsList { get; private set; } = new ObservableCollection<TvShow>();
 
         //Top sorozatok letöltése a szerverről
         internal static async Task GetTopShowsAsync()
@@ -24,6 +27,21 @@ namespace MovieWorld.Services
                 foreach (var show in list)
                 {
                     TopTvShowsList.Add(show);
+                }
+            }
+        }
+
+        //A legújabb sorozatok letöltése a szerverről
+        internal static async Task GetLatestShowsAsync()
+        {
+            if (LatestTvShowsList.Count == 0)
+            {
+                var list = await HttpService.ListLatestShowsAsync();
+                LatestTvShowsList.Clear();
+
+                foreach (var show in list)
+                {
+                    LatestTvShowsList.Add(show);
                 }
             }
         }
@@ -44,6 +62,11 @@ namespace MovieWorld.Services
             //Csak a fontosabb szereplők
             season.Cast = cast.Where(a => a.Profile_path != null).Take(18).ToList();
             CurrentSeason = season;
+        }
+
+        internal static Task<List<TvShow>> SearchShowsAsync(string searchParams)
+        {
+            return HttpService.SearchShowsAsync(searchParams);
         }
     }
 }

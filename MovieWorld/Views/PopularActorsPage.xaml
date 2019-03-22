@@ -5,12 +5,11 @@
     Style="{StaticResource PageStyle}"
     xmlns:animations="using:Microsoft.Toolkit.Uwp.UI.Animations"
     xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
-        xmlns:models="using:MovieWorld.Models"
->
+    xmlns:models="using:MovieWorld.Models">
     <Grid x:Name="ContentArea">
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,10,0,0">
-            <TextBox Text="{x:Bind ViewModel.SearchText, Mode=TwoWay}" Width="200"/>
-            <Button Content="Search people" Command="{x:Bind ViewModel.SearchCommand}"/>
+            <TextBox Text="{x:Bind ViewModel.SearchText, Mode=TwoWay}" Width="200" Margin="0,0,10,0"/>
+            <Button Content="Search people" Command="{x:Bind ViewModel.SearchCommand}" Margin="10,0,0,0"/>
         </StackPanel>
         <controls:AdaptiveGridView
             ItemsSource="{x:Bind ViewModel.Source, Mode=OneWay}"

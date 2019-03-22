@@ -1,5 +1,6 @@
 ﻿using MovieWorld.ViewModels;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Navigation;
 
 namespace MovieWorld.Views
 {
@@ -13,6 +14,12 @@ namespace MovieWorld.Views
         public HomePage()
         {
             InitializeComponent();
+        }
+
+        protected override async void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+            await ViewModel.LoadDataAsync();
         }
     }
 }

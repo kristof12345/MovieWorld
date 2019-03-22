@@ -17,7 +17,7 @@ namespace MovieWorld.ViewModels
         private ICommand _itemClickCommand;
         public ICommand ItemClickCommand => _itemClickCommand ?? (_itemClickCommand = new RelayCommand<Actor>(OnItemClick));
 
-        public string SearchText { get; set; }
+        public string SearchText { get; set; } = "";
         public ObservableCollection<Actor> Source{get {  return ActorDataService.ActorsList;} }
 
         public PopularActorsViewModel()
@@ -41,7 +41,14 @@ namespace MovieWorld.ViewModels
 
         internal async Task LoadDataAsync()
         {
-            await ActorDataService.GetPopularActorsAsync();
+            if (SearchText == "")
+            {
+                await ActorDataService.GetPopularActorsAsync();
+            }
+            else
+            {
+                await ActorDataService.Search(SearchText);
+            }
         }
     }
 }

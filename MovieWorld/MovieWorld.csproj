@@ -121,6 +121,7 @@
     <Compile Include="Activation\ActivationHandler.cs" />
     <Compile Include="Behaviors\NavigationViewHeaderBehavior.cs" />
     <Compile Include="Behaviors\NavigationViewHeaderMode.cs" />
+    <Compile Include="Helpers\BooleanToVisibilityConverter.cs" />
     <Compile Include="Helpers\ConcatStringConverter.cs" />
     <Compile Include="Helpers\EnumToBooleanConverter.cs" />
     <Compile Include="Helpers\ListToStringConverters.cs" />
@@ -132,7 +133,6 @@
     <Compile Include="Models\Movie.cs" />
     <Compile Include="Models\Role.cs" />
     <Compile Include="Models\SampleOrder.cs" />
-    <Compile Include="Models\SearchRequest.cs" />
     <Compile Include="Models\Season.cs" />
     <Compile Include="Models\TvShow.cs" />
     <Compile Include="Services\ActivationService.cs" />
