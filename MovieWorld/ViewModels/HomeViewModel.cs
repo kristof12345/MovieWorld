@@ -35,8 +35,11 @@ namespace MovieWorld.ViewModels
             TvShowClickCommand = new RelayCommand<TvShow>((TvShow selected) => { OnTvShowClick(selected); });
         }
 
-        private async void SearchAsync()
+        private async Task SearchAsync()
         {
+            SearchedMoviesSource.Clear();
+            SearchedShowsSource.Clear();
+
             if (SearchCategory == "movie")
             {
                 var result = await MovieDataService.SearchMoviesAsync(SearchText);
@@ -49,12 +52,13 @@ namespace MovieWorld.ViewModels
             }
         }
 
-        public void HandleCheck(object sender, RoutedEventArgs e)
+        public async void HandleCheck(object sender, RoutedEventArgs e)
         {
             RadioButton radioButton = sender as RadioButton;
             SearchCategory = radioButton.Name;
             RaisePropertyChanged("MovieGridVisibility");
             RaisePropertyChanged("ShowGridVisibility");
+            if(SearchText != "") { await SearchAsync(); }
         }
 
         internal async Task LoadDataAsync()

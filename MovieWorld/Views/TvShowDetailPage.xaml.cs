@@ -7,7 +7,7 @@ namespace MovieWorld.Views
 {
     public sealed partial class TvShowDetailPage : Page
     {
-        private TvShowDetailViewModel ViewModel
+        public TvShowDetailViewModel ViewModel
         {
             get { return ViewModelLocator.Current.TvShowDetailViewModel; }
         }
