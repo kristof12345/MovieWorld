@@ -1,4 +1,7 @@
-﻿using MovieWorld.ViewModels;
+﻿using Microsoft.Toolkit.Uwp;
+using MovieWorld.Models;
+using MovieWorld.Models.IncrementalSources;
+using MovieWorld.ViewModels;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 
@@ -20,6 +23,8 @@ namespace MovieWorld.Views
         {
             base.OnNavigatedTo(e);
             await ViewModel.LoadDataAsync();
+            var collection = new IncrementalLoadingCollection<MovieSourceByGenre, Movie>(new MovieSourceByGenre(new Genre { Id = 12 }));
+            //MovieGrid.ItemsSource = collection;
         }
     }
 }

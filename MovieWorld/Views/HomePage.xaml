@@ -47,6 +47,7 @@
         </StackPanel>
         <!--Genre list-->
         <controls:AdaptiveGridView
+          x:Name="contentGrid"
                         Grid.Row="1" Grid.Column="0"
                         ItemsSource="{x:Bind ViewModel.Genres, Mode=OneWay}"
                         ItemClickCommand="{x:Bind ViewModel.GenreClickCommand}"
@@ -67,9 +68,10 @@
         </controls:AdaptiveGridView>
         <!--Movie result grid-->
         <controls:AdaptiveGridView
+            x:Name="MovieGrid"
                         Visibility="{x:Bind ViewModel.MovieGridVisibility, Mode=OneWay}"
                         Grid.Column="0" Grid.Row="2"
-                        ItemsSource="{x:Bind ViewModel.SearchedMoviesSource, Mode=OneWay}"
+                        ItemsSource="{x:Bind ViewModel.MovieSource, Mode=OneWay}"
                         ItemClickCommand="{x:Bind ViewModel.MovieClickCommand}"
                         StretchContentForSingleRow="False"
                         SelectionMode="None"
@@ -101,7 +103,7 @@
         <controls:AdaptiveGridView
                         Visibility="{x:Bind ViewModel.ShowGridVisibility, Mode=OneWay}"
                         Grid.Row="2" Grid.Column="0"
-                        ItemsSource="{x:Bind ViewModel.SearchedShowsSource, Mode=OneWay}"
+                        ItemsSource="{x:Bind ViewModel.TvShowSource, Mode=OneWay}"
                         ItemClickCommand="{x:Bind ViewModel.TvShowClickCommand}"
                         StretchContentForSingleRow="False"
                         SelectionMode="None"

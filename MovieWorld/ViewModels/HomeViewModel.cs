@@ -1,7 +1,9 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using Microsoft.Toolkit.Uwp;
 using Microsoft.Toolkit.Uwp.UI.Animations;
 using MovieWorld.Models;
+using MovieWorld.Models.IncrementalSources;
 using MovieWorld.Services;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
@@ -21,19 +23,19 @@ namespace MovieWorld.ViewModels
         public string SearchText { get; set; } = "";
         public string SearchCategory { get; set; } = "movie";
 
-        public ObservableCollection<Movie> SearchedMoviesSource { get; } = new ObservableCollection<Movie>();
-        public ObservableCollection<TvShow> SearchedShowsSource { get; } = new ObservableCollection<TvShow>();
         public ObservableCollection<Genre> Genres { get { return MovieDataService.Genres; } }
+        public IncrementalLoadingCollection<MovieSourceByGenre, Movie> MovieSource;
+        public IncrementalLoadingCollection<TvShowSourceByGenre, TvShow> TvShowSource;
 
         public bool MovieGridVisibility { get { return SearchCategory == "movie"; } }
         public bool ShowGridVisibility { get { return SearchCategory == "tv"; } }
 
         public HomeViewModel()
         {
-            SearchCommand = new RelayCommand(() => { SearchAsync(); });
+            SearchCommand = new RelayCommand(() => { OnSearch(); });
             MovieClickCommand = new RelayCommand<Movie>((Movie selected) => { OnMovieClick(selected); });
             TvShowClickCommand = new RelayCommand<TvShow>((TvShow selected) => { OnTvShowClick(selected); });
-            GenreClickCommand = new RelayCommand<Genre>((Genre selected) => { OnGenreClickAsync(selected); });
+            GenreClickCommand = new RelayCommand<Genre>((Genre selected) => { OnGenreClick(selected); });
         }
 
         internal async Task LoadDataAsync()
@@ -41,11 +43,9 @@ namespace MovieWorld.ViewModels
             await MovieDataService.GetGenresAsync();
         }
 
-        private async Task SearchAsync()
+        private void OnSearch()
         {
-            SearchedMoviesSource.Clear();
-            SearchedShowsSource.Clear();
-
+            /*
             if (SearchCategory == "movie")
             {
                 var result = await MovieDataService.SearchMoviesAsync(SearchText);
@@ -55,32 +55,30 @@ namespace MovieWorld.ViewModels
             {
                 var result = await TvShowDataService.SearchShowsAsync(SearchText);
                 foreach (var show in result) { SearchedShowsSource.Add(show); }
-            }
+            }*/
         }
 
-        public async void HandleCheck(object sender, RoutedEventArgs e)
+        public void HandleCheck(object sender, RoutedEventArgs e)
         {
             RadioButton radioButton = sender as RadioButton;
             SearchCategory = radioButton.Name;
             RaisePropertyChanged("MovieGridVisibility");
             RaisePropertyChanged("ShowGridVisibility");
-            if (SearchText != "") { await SearchAsync(); }
+            if (SearchText != "") { OnSearch(); }
         }
 
-        private async Task OnGenreClickAsync(Genre clickedItem)
+        private void OnGenreClick(Genre clickedItem)
         {
             if (clickedItem != null)
             {
                 SearchText = "";
                 RaisePropertyChanged("SearchText");
-                SearchedMoviesSource.Clear();
-                SearchedShowsSource.Clear();
 
-                var result1 = await MovieDataService.GetMoviesByGenreAsync(clickedItem);
-                foreach (var movie in result1) { SearchedMoviesSource.Add(movie); }
+                MovieSource = new IncrementalLoadingCollection<MovieSourceByGenre, Movie>(new MovieSourceByGenre(clickedItem));
+                RaisePropertyChanged("MovieSource");
 
-                var result2 = await TvShowDataService.GetShowsByGenreAsync(clickedItem);
-                foreach (var show in result2) { SearchedShowsSource.Add(show); }
+                TvShowSource = new IncrementalLoadingCollection<TvShowSourceByGenre, TvShow>(new TvShowSourceByGenre(clickedItem));
+                RaisePropertyChanged("TvShowSource");
             }
         }
 

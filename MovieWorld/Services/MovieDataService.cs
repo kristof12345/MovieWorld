@@ -32,11 +32,11 @@ namespace MovieWorld.Services
         }
 
         //Legújabb filmek letöltése a szerverről
-        internal static async Task GetLatestMoviesAsync()
+        internal static async Task GetLatestMoviesAsync(int pageIndex)
         {
             if (LatestMoviesList.Count == 0)
             {
-                var list = await HttpService.ListLatestMoviesAsync();
+                var list = await HttpService.ListLatestMoviesAsync(pageIndex);
                 LatestMoviesList.Clear();
 
                 foreach (var movie in list)
@@ -59,9 +59,9 @@ namespace MovieWorld.Services
             CurrentMovie = movie;
         }
 
-        internal static Task<List<Movie>> SearchMoviesAsync(string searchParams)
+        internal static Task<List<Movie>> SearchMoviesAsync(string searchParams, int pageIndex)
         {
-            return HttpService.SearchMoviesAsync(searchParams);
+            return HttpService.SearchMoviesAsync(searchParams, pageIndex);
         }
 
         internal static async Task GetGenresAsync()
@@ -71,9 +71,9 @@ namespace MovieWorld.Services
             foreach (var g in genres) Genres.Add(g);
         }
 
-        internal static Task<List<Movie>> GetMoviesByGenreAsync(Genre genre)
+        internal static Task<List<Movie>> GetMoviesByGenreAsync(Genre genre, int pageIndex)
         {
-            return HttpService.GetMoviesByGenresAsync(genre.Id);
+            return HttpService.GetMoviesByGenresAsync(genre.Id, pageIndex);
         }
     }
 }

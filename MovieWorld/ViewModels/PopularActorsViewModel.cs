@@ -22,12 +22,12 @@ namespace MovieWorld.ViewModels
 
         public PopularActorsViewModel()
         {
-            SearchCommand = new RelayCommand(() => { SearchActors(); });
+            SearchCommand = new RelayCommand(() => { SearchActors(1); });
         }
 
-        private async void SearchActors()
+        private async void SearchActors(int pageIndex)
         {
-            await ActorDataService.Search(SearchText);
+            await ActorDataService.Search(SearchText, pageIndex);
         }
 
         private void OnItemClick(Actor clickedItem)
@@ -43,11 +43,11 @@ namespace MovieWorld.ViewModels
         {
             if (SearchText == "")
             {
-                await ActorDataService.GetPopularActorsAsync();
+                await ActorDataService.GetPopularActorsAsync(1);
             }
             else
             {
-                await ActorDataService.Search(SearchText);
+                await ActorDataService.Search(SearchText, 1);
             }
         }
     }

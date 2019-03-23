@@ -32,11 +32,11 @@ namespace MovieWorld.Services
         }
 
         //A legújabb sorozatok letöltése a szerverről
-        internal static async Task GetLatestShowsAsync()
+        internal static async Task GetLatestShowsAsync(int pageIndex)
         {
             if (LatestTvShowsList.Count == 0)
             {
-                var list = await HttpService.ListLatestShowsAsync();
+                var list = await HttpService.ListLatestShowsAsync(pageIndex);
                 LatestTvShowsList.Clear();
 
                 foreach (var show in list)
@@ -64,9 +64,9 @@ namespace MovieWorld.Services
             CurrentSeason = season;
         }
 
-        internal static Task<List<TvShow>> SearchShowsAsync(string searchParams)
+        internal static Task<List<TvShow>> SearchShowsAsync(string searchParams, int pageIndex)
         {
-            return HttpService.SearchShowsAsync(searchParams);
+            return HttpService.SearchShowsAsync(searchParams, pageIndex);
         }
 
         internal static async Task GetGenresAsync()
@@ -76,9 +76,9 @@ namespace MovieWorld.Services
             foreach (var g in genres) Genres.Add(g);
         }
 
-        internal static Task<List<TvShow>> GetShowsByGenreAsync(Genre genre)
+        internal static Task<List<TvShow>> GetShowsByGenreAsync(Genre genre, int pageIndex)
         {
-            return HttpService.GetTvShowsByGenresAsync(genre.Id);
+            return HttpService.GetTvShowsByGenresAsync(genre.Id, pageIndex);
         }
     }
 }

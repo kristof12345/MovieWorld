@@ -28,9 +28,9 @@ namespace MovieWorld.Services
         }
 
         //Népszerű színészek
-        internal static async Task GetPopularActorsAsync()
+        internal static async Task GetPopularActorsAsync(int pageIndex)
         {
-            var list = await HttpService.GetPopularActorsAsync();
+            var list = await HttpService.GetPopularActorsAsync(pageIndex);
             ActorsList.Clear();
             foreach(var actor in list)
             {
@@ -38,9 +38,9 @@ namespace MovieWorld.Services
             }
         }
 
-        internal static async Task Search(string searchText)
+        internal static async Task Search(string searchText, int pageIndex)
         {
-            var list = await HttpService.SearchActorsAsync(searchText);
+            var list = await HttpService.SearchActorsAsync(searchText, pageIndex);
             ActorsList.Clear();
             foreach (var actor in list)
             {

@@ -30,33 +30,30 @@ namespace MovieWorld.Services
             return data.Results;
         }
 
-        internal async Task<List<Actor>> GetPopularActorsAsync()
+        internal async Task<List<Actor>> GetPopularActorsAsync(int index)
         {
-            var response1 = await client.GetAsync($"person/popular?api_key={apiKey}");
-            var data1 = await response1.Content.ReadAsAsync<PersonList>();
-            var response2 = await client.GetAsync($"person/popular?api_key={apiKey}&page=2");
-            var data2 = await response2.Content.ReadAsAsync<PersonList>();
-            data1.Results.AddRange(data2.Results);
-            return data1.Results;
+            var response = await client.GetAsync($"person/popular?api_key={apiKey}&page={index}");
+            var data = await response.Content.ReadAsAsync<PersonList>();
+            return data.Results;
         }
 
-        internal async Task<List<Movie>> SearchMoviesAsync(string searchParams)
+        internal async Task<List<Movie>> SearchMoviesAsync(string searchParams, int index)
         {
-            var response = await client.GetAsync($"search/movie?api_key={apiKey}&query={searchParams}");
+            var response = await client.GetAsync($"search/movie?api_key={apiKey}&query={searchParams}&page={index}");
             var data = await response.Content.ReadAsAsync<MovieList>();
             return data.Results;
         }
 
-        internal async Task<List<TvShow>> SearchShowsAsync(string searchParams)
+        internal async Task<List<TvShow>> SearchShowsAsync(string searchParams, int index)
         {
-            var response = await client.GetAsync($"search/tv?api_key={apiKey}&query={searchParams}");
+            var response = await client.GetAsync($"search/tv?api_key={apiKey}&query={searchParams}&page={index}");
             var data = await response.Content.ReadAsAsync<TvShowList>();
             return data.Results;
         }
 
-        internal async Task<List<Movie>> ListLatestMoviesAsync()
+        internal async Task<List<Movie>> ListLatestMoviesAsync(int index)
         {
-            var response = await client.GetAsync($"movie/now_playing?api_key={apiKey}");
+            var response = await client.GetAsync($"movie/now_playing?api_key={apiKey}&page={index}");
             var data = await response.Content.ReadAsAsync<MovieList>();
             return data.Results;
         }
@@ -68,30 +65,30 @@ namespace MovieWorld.Services
             return data.Genres;
         }
 
-        internal async Task<List<TvShow>> GetTvShowsByGenresAsync(int id)
+        internal async Task<List<TvShow>> GetTvShowsByGenresAsync(int id, int index)
         {
-            var response = await client.GetAsync($"discover/tv?api_key={apiKey}&sort_by=popularity.desc&with_genres={id}");
+            var response = await client.GetAsync($"discover/tv?api_key={apiKey}&sort_by=popularity.desc&with_genres={id}&page={index}");
             var data = await response.Content.ReadAsAsync<TvShowList>();
             return data.Results;
         }
 
-        internal async Task<List<Movie>> GetMoviesByGenresAsync(int id)
+        internal async Task<List<Movie>> GetMoviesByGenresAsync(int id, int index)
         {
-            var response = await client.GetAsync($"genre/{id}/movies?api_key={apiKey}");
+            var response = await client.GetAsync($"genre/{id}/movies?api_key={apiKey}&page={index}&page={index}");
             var data = await response.Content.ReadAsAsync<MovieList>();
             return data.Results;
         }
 
-        internal async Task<List<TvShow>> ListLatestShowsAsync()
+        internal async Task<List<TvShow>> ListLatestShowsAsync(int index)
         {
-            var response = await client.GetAsync($"tv/airing_today?api_key={apiKey}");
+            var response = await client.GetAsync($"tv/airing_today?api_key={apiKey}&page={index}");
             var data = await response.Content.ReadAsAsync<TvShowList>();
             return data.Results;
         }
 
-        internal async Task<List<Actor>> SearchActorsAsync(string searchText)
+        internal async Task<List<Actor>> SearchActorsAsync(string searchText, int index)
         {
-            var response = await client.GetAsync($"search/person?api_key={apiKey}&query={searchText}");
+            var response = await client.GetAsync($"search/person?api_key={apiKey}&query={searchText}&page={index}");
             var data = await response.Content.ReadAsAsync<PersonList>();
             return data.Results;
         }

@@ -30,8 +30,8 @@ namespace MovieWorld.ViewModels
 
         internal async Task LoadDataAsync()
         {
-            await MovieDataService.GetLatestMoviesAsync();
-            await TvShowDataService.GetLatestShowsAsync();
+            await MovieDataService.GetLatestMoviesAsync(1);
+            await TvShowDataService.GetLatestShowsAsync(1);
         }
 
         private void OnMovieClick(Movie clickedItem)
