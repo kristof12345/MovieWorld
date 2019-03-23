@@ -1,5 +1,4 @@
 ﻿using MovieWorld.Models;
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -15,6 +14,7 @@ namespace MovieWorld.Services
         public static Season CurrentSeason { get; private set; }
         public static TvShow CurrentShow { get; private set; }
         public static ObservableCollection<TvShow> LatestTvShowsList { get; private set; } = new ObservableCollection<TvShow>();
+        public static ObservableCollection<Genre> Genres = new ObservableCollection<Genre>();
 
         //Top sorozatok letöltése a szerverről
         internal static async Task GetTopShowsAsync()
@@ -67,6 +67,18 @@ namespace MovieWorld.Services
         internal static Task<List<TvShow>> SearchShowsAsync(string searchParams)
         {
             return HttpService.SearchShowsAsync(searchParams);
+        }
+
+        internal static async Task GetGenresAsync()
+        {
+            Genres.Clear();
+            var genres = await HttpService.GetGenresAsync();
+            foreach (var g in genres) Genres.Add(g);
+        }
+
+        internal static Task<List<TvShow>> GetShowsByGenreAsync(Genre genre)
+        {
+            return HttpService.GetTvShowsByGenresAsync(genre.Id);
         }
     }
 }

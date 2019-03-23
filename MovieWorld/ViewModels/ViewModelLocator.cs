@@ -24,6 +24,7 @@ namespace MovieWorld.ViewModels
             Register<MovieDetailViewModel, MovieDetailPage>();
             Register<TvShowDetailViewModel, TvShowDetailPage>();
             Register<SeasonDetailViewModel, SeasonDetailPage>();
+            Register<NewReleasesViewModel, NewReleasesPage>();
             Register<SettingsViewModel, SettingsPage>();
         }
 
@@ -45,6 +46,8 @@ namespace MovieWorld.ViewModels
         public TopMoviesViewModel TopMoviesViewModel => SimpleIoc.Default.GetInstance<TopMoviesViewModel>();
 
         public HomeViewModel HomeViewModel => SimpleIoc.Default.GetInstance<HomeViewModel>();
+
+        public NewReleasesViewModel WhatsNewViewModel => SimpleIoc.Default.GetInstance<NewReleasesViewModel>();
 
         public ShellViewModel ShellViewModel => SimpleIoc.Default.GetInstance<ShellViewModel>();
 

@@ -32,6 +32,7 @@
             <winui:NavigationViewItem x:Uid="Shell_TopMovies" Icon="Document" helpers:NavHelper.NavigateTo="MovieWorld.ViewModels.TopMoviesViewModel" />
             <winui:NavigationViewItem x:Uid="Shell_TopSeries" Icon="Document" helpers:NavHelper.NavigateTo="MovieWorld.ViewModels.TopSeriesViewModel" />
             <winui:NavigationViewItem x:Uid="Shell_PopularActors" Icon="Document" helpers:NavHelper.NavigateTo="MovieWorld.ViewModels.PopularActorsViewModel" />
+            <winui:NavigationViewItem x:Uid="Shell_NewReleases" Icon="Document" helpers:NavHelper.NavigateTo="MovieWorld.ViewModels.NewReleasesViewModel" />
         </winui:NavigationView.MenuItems>
         <i:Interaction.Behaviors>
             <behaviors:NavigationViewHeaderBehavior

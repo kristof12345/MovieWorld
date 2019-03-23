@@ -61,6 +61,27 @@ namespace MovieWorld.Services
             return data.Results;
         }
 
+        internal async Task<List<Genre>> GetGenresAsync()
+        {
+            var response = await client.GetAsync($"genre/movie/list?api_key={apiKey}");
+            var data = await response.Content.ReadAsAsync<GenreList>();
+            return data.Genres;
+        }
+
+        internal async Task<List<TvShow>> GetTvShowsByGenresAsync(int id)
+        {
+            var response = await client.GetAsync($"discover/tv?api_key={apiKey}&sort_by=popularity.desc&with_genres={id}");
+            var data = await response.Content.ReadAsAsync<TvShowList>();
+            return data.Results;
+        }
+
+        internal async Task<List<Movie>> GetMoviesByGenresAsync(int id)
+        {
+            var response = await client.GetAsync($"genre/{id}/movies?api_key={apiKey}");
+            var data = await response.Content.ReadAsAsync<MovieList>();
+            return data.Results;
+        }
+
         internal async Task<List<TvShow>> ListLatestShowsAsync()
         {
             var response = await client.GetAsync($"tv/airing_today?api_key={apiKey}");

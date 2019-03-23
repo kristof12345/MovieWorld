@@ -141,18 +141,6 @@
     <value>The page '{0}' is unknown by the NavigationService</value>
     <comment>The page is unknown or not registered in navigation service</comment>
   </data>
-  <data name="Home_PivotItem1.Header" xml:space="preserve">  
-    <value>Search</value>
-    <comment>First Pivot item title for Home</comment>
-  </data>
-  <data name="Home_PivotItem2.Header" xml:space="preserve">
-    <value>Browse</value>
-    <comment>Second Pivot item title for Home</comment>
-  </data>
-  <data name="Home_PivotItem3.Header" xml:space="preserve">
-    <value>What's new</value>
-    <comment>Third Pivot item title for Home</comment>
-  </data>
   <data name="Shell_Home.Content" xml:space="preserve">
     <value>Movie World</value>
     <comment>Navigation view item name for Home</comment>
@@ -170,12 +158,16 @@
     <comment>No selection text for TopSeries</comment>
   </data>
   <data name="Shell_TopSeries.Content" xml:space="preserve">
-    <value>TopSeries</value>
+    <value>Top Series</value>
     <comment>Navigation view item name for TopSeries</comment>
   </data>
   <data name="Shell_PopularActors.Content" xml:space="preserve">
-    <value>PopularActors</value>
+    <value>Popular Actors</value>
     <comment>Navigation view item name for PopularActors</comment>
+  </data>
+  <data name="Shell_NewReleases.Content" xml:space="preserve">
+    <value>New Releases</value>
+    <comment>Navigation view item name for NewReleases</comment>
   </data>
   <data name="ExceptionSettingsStorageExtensionsFileNameIsNullOrEmpty" xml:space="preserve">
     <value>File name is null or empty. Specify a valid file name</value>

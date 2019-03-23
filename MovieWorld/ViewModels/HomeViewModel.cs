@@ -15,24 +15,30 @@ namespace MovieWorld.ViewModels
         public RelayCommand SearchCommand { get; set; }
         public RelayCommand<Movie> MovieClickCommand { get; private set; }
         public RelayCommand<TvShow> TvShowClickCommand { get; private set; }
+        public RelayCommand<Genre> GenreClickCommand { get; private set; }
         public NavigationServiceEx NavigationService => ViewModelLocator.Current.NavigationService;
 
         public string SearchText { get; set; } = "";
         public string SearchCategory { get; set; } = "movie";
+
         public ObservableCollection<Movie> SearchedMoviesSource { get; } = new ObservableCollection<Movie>();
         public ObservableCollection<TvShow> SearchedShowsSource { get; } = new ObservableCollection<TvShow>();
+        public ObservableCollection<Genre> Genres { get { return MovieDataService.Genres; } }
 
-        public ObservableCollection<Movie> LatestMovieSource { get { return MovieDataService.LatestMoviesList; } }
-        public ObservableCollection<TvShow> LatestShowsSource { get { return TvShowDataService.LatestTvShowsList; } }
-
-        public bool MovieGridVisibility { get{return SearchCategory=="movie";}}
+        public bool MovieGridVisibility { get { return SearchCategory == "movie"; } }
         public bool ShowGridVisibility { get { return SearchCategory == "tv"; } }
 
         public HomeViewModel()
         {
-            SearchCommand = new RelayCommand(() =>{SearchAsync();});
+            SearchCommand = new RelayCommand(() => { SearchAsync(); });
             MovieClickCommand = new RelayCommand<Movie>((Movie selected) => { OnMovieClick(selected); });
             TvShowClickCommand = new RelayCommand<TvShow>((TvShow selected) => { OnTvShowClick(selected); });
+            GenreClickCommand = new RelayCommand<Genre>((Genre selected) => { OnGenreClickAsync(selected); });
+        }
+
+        internal async Task LoadDataAsync()
+        {
+            await MovieDataService.GetGenresAsync();
         }
 
         private async Task SearchAsync()
@@ -43,7 +49,7 @@ namespace MovieWorld.ViewModels
             if (SearchCategory == "movie")
             {
                 var result = await MovieDataService.SearchMoviesAsync(SearchText);
-                foreach(var movie in result) { SearchedMoviesSource.Add(movie); }
+                foreach (var movie in result) { SearchedMoviesSource.Add(movie); }
             }
             else
             {
@@ -58,13 +64,24 @@ namespace MovieWorld.ViewModels
             SearchCategory = radioButton.Name;
             RaisePropertyChanged("MovieGridVisibility");
             RaisePropertyChanged("ShowGridVisibility");
-            if(SearchText != "") { await SearchAsync(); }
+            if (SearchText != "") { await SearchAsync(); }
         }
 
-        internal async Task LoadDataAsync()
+        private async Task OnGenreClickAsync(Genre clickedItem)
         {
-            await MovieDataService.GetLatestMoviesAsync();
-            await TvShowDataService.GetLatestShowsAsync();
+            if (clickedItem != null)
+            {
+                SearchText = "";
+                RaisePropertyChanged("SearchText");
+                SearchedMoviesSource.Clear();
+                SearchedShowsSource.Clear();
+
+                var result1 = await MovieDataService.GetMoviesByGenreAsync(clickedItem);
+                foreach (var movie in result1) { SearchedMoviesSource.Add(movie); }
+
+                var result2 = await TvShowDataService.GetShowsByGenreAsync(clickedItem);
+                foreach (var show in result2) { SearchedShowsSource.Add(show); }
+            }
         }
 
         private void OnMovieClick(Movie clickedItem)

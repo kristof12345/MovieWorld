@@ -130,9 +130,9 @@
     <Compile Include="Helpers\SettingsStorageExtensions.cs" />
     <Compile Include="Models\Actor.cs" />
     <Compile Include="Models\Episode.cs" />
+    <Compile Include="Models\Genre.cs" />
     <Compile Include="Models\Movie.cs" />
     <Compile Include="Models\Role.cs" />
-    <Compile Include="Models\SampleOrder.cs" />
     <Compile Include="Models\Season.cs" />
     <Compile Include="Models\TvShow.cs" />
     <Compile Include="Services\ActivationService.cs" />
@@ -141,7 +141,6 @@
     <Compile Include="Services\MovieDataService.cs" />
     <Compile Include="Services\HttpService.cs" />
     <Compile Include="Services\NavigationServiceEx.cs" />
-    <Compile Include="Services\SampleDataService.cs" />
     <Compile Include="Services\ThemeSelectorService.cs" />
     <Compile Include="Services\TvShowDataService.cs" />
     <Compile Include="ViewModels\HomeViewModel.cs" />
@@ -155,6 +154,7 @@
     <Compile Include="ViewModels\TopSeriesViewModel.cs" />
     <Compile Include="ViewModels\TvShowDetailViewModel.cs" />
     <Compile Include="ViewModels\ViewModelLocator.cs" />
+    <Compile Include="ViewModels\NewReleasesViewModel.cs" />
     <Compile Include="Views\HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
     </Compile>
@@ -190,6 +190,9 @@
     </Compile>
     <Compile Include="Views\TopSeriesPage.xaml.cs">
       <DependentUpon>TopSeriesPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NewReleasesPage.xaml.cs">
+      <DependentUpon>NewReleasesPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -266,6 +269,10 @@
     <Page Include="Views\TopSeriesPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\NewReleasesPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
