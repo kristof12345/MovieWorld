@@ -17,29 +17,33 @@
             <ColumnDefinition Width="1*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="1*" />
-            <RowDefinition Height="3*" />
-            <RowDefinition Height="10*" />
+            <RowDefinition Height="2*" />
+            <RowDefinition Height="5*" />
+            <RowDefinition Height="15*" />
         </Grid.RowDefinitions>
         <!--Search textbox-->
-        <StackPanel Grid.Column="0" Grid.Row="0"
-                                Orientation="Horizontal"
-                                Height = "50"
-                                VerticalAlignment="Top"
-                                HorizontalAlignment="Center">
-            <TextBox Width = "400"
-                                 Height="30"
-                                 Text="{x:Bind ViewModel.SearchText, Mode=TwoWay}">
-            </TextBox>
-
-            <RadioButton Margin = "5" Checked = "ViewModel.HandleCheck" GroupName="Selection" Content = "Movies" x:Name="movie" IsChecked="True"/>
-            <RadioButton Margin = "5" Checked = "ViewModel.HandleCheck" GroupName="Selection" Content = "TvShows" x:Name="tv" />
-
-            <Button Width = "100"
-                                Height="30"
-                                Content="Search"
-                                Command="{x:Bind ViewModel.SearchCommand}">
-            </Button>
+        <StackPanel Orientation="Vertical" Grid.Column="0" Grid.Row="0">
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Center">
+                <TextBox Width = "400"
+                     Height="30"
+                     Text="{x:Bind ViewModel.SearchText, Mode=TwoWay}"
+                         Margin="5,0,5,0">
+                </TextBox>
+                <Button
+                    Width = "100"
+                    Height="30"
+                    Content="Search"
+                    Command="{x:Bind ViewModel.SearchCommand}"
+                    Margin="5,0,5,0">
+                </Button>
+            </StackPanel>
+            <StackPanel
+                Orientation="Horizontal"
+                HorizontalAlignment="Center">
+                <RadioButton Margin = "5" Checked = "ViewModel.HandleCheck" GroupName="Selection" Content = "Movies" x:Name="movie" IsChecked="True"/>
+                <RadioButton Margin = "5" Checked = "ViewModel.HandleCheck" GroupName="Selection" Content = "TvShows" x:Name="tv" />
+            </StackPanel>
         </StackPanel>
         <!--Genre list-->
         <controls:AdaptiveGridView
@@ -49,14 +53,14 @@
                         StretchContentForSingleRow="False"
                         SelectionMode="None"
                         IsItemClickEnabled="True"
-                        Padding="{StaticResource SmallLeftRightMargin}"
             DesiredWidth="160"
-            ItemHeight="30">
+            ItemHeight="15">
             <controls:AdaptiveGridView.ItemTemplate>
                 <DataTemplate x:DataType="models:Genre">
-                    <TextBlock HorizontalAlignment="Center"
-                                           Text="{x:Bind Name}"
-                                           Style="{ThemeResource BodyTextStyle}">
+                    <TextBlock
+                        HorizontalAlignment="Center"
+                        Text="{x:Bind Name}"
+                        Height="15">
                     </TextBlock>
                 </DataTemplate>
             </controls:AdaptiveGridView.ItemTemplate>
@@ -76,8 +80,7 @@
                         DesiredWidth="180">
             <controls:AdaptiveGridView.ItemTemplate>
                 <DataTemplate x:DataType="models:Movie">
-                    <Grid
-                                VerticalAlignment="Top">
+                    <Grid VerticalAlignment="Top">
                         <StackPanel Orientation="Vertical" VerticalAlignment="Top">
                             <Image >
                                 <Image.Source>
@@ -85,9 +88,9 @@
                                 </Image.Source>
                             </Image>
                             <TextBlock
-                                            HorizontalAlignment="Center"
-                                            Text="{x:Bind Title}"
-                                            Style="{ThemeResource BodyTextStyle}">
+                                HorizontalAlignment="Center"
+                                Text="{x:Bind Title}"
+                                Style="{ThemeResource BodyTextStyle}">
                             </TextBlock>
                         </StackPanel>
                     </Grid>
@@ -110,7 +113,7 @@
             <controls:AdaptiveGridView.ItemTemplate>
                 <DataTemplate x:DataType="models:TvShow">
                     <Grid
-                                VerticalAlignment="Top">
+                        VerticalAlignment="Top">
                         <StackPanel Orientation="Vertical">
                             <Image >
                                 <Image.Source>
@@ -118,9 +121,9 @@
                                 </Image.Source>
                             </Image>
                             <TextBlock
-                                            HorizontalAlignment="Center"
-                                            Text="{x:Bind Name}"
-                                            Style="{ThemeResource BodyTextStyle}">
+                                HorizontalAlignment="Center"
+                                Text="{x:Bind Name}"
+                                Style="{ThemeResource BodyTextStyle}">
                             </TextBlock>
                         </StackPanel>
                     </Grid>
