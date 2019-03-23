@@ -30,7 +30,7 @@ namespace MovieWorld.Models
 
         public string Name { get; set; }
 
-        public Uri Image { get { return new Uri("http://image.tmdb.org/t/p/w185/" + Profile_path); } }
+        public Uri Image { get { return new Uri("http://image.tmdb.org/t/p/w500/" + Profile_path); } }
 
         public string Place_of_birth{get;set;}
 

@@ -32,18 +32,9 @@ namespace MovieWorld.Services
         }
 
         //A legújabb sorozatok letöltése a szerverről
-        internal static async Task GetLatestShowsAsync(int pageIndex)
+        internal static async Task<List<TvShow>> GetLatestShowsAsync(int pageIndex)
         {
-            if (LatestTvShowsList.Count == 0)
-            {
-                var list = await HttpService.ListLatestShowsAsync(pageIndex);
-                LatestTvShowsList.Clear();
-
-                foreach (var show in list)
-                {
-                    LatestTvShowsList.Add(show);
-                }
-            }
+            return await HttpService.ListLatestShowsAsync(pageIndex);
         }
 
         //Egy sorozat adatainak letöltése

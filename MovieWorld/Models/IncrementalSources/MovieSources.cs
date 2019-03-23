@@ -29,4 +29,12 @@ namespace MovieWorld.Models.IncrementalSources
             return await MovieDataService.SearchMoviesAsync(searchParams, pageIndex + 1);
         }
     }
+
+    public class MovieSourceByLatest : IIncrementalSource<Movie>
+    {
+        public async Task<IEnumerable<Movie>> GetPagedItemsAsync(int pageIndex, int pageSize, CancellationToken t)
+        {
+            return await MovieDataService.GetLatestMoviesAsync(pageIndex + 1);
+        }
+    }
 }

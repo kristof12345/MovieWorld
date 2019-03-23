@@ -1,10 +1,5 @@
-﻿using Microsoft.Toolkit.Collections;
-using MovieWorld.Services;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace MovieWorld.Models
 {
@@ -50,10 +45,10 @@ namespace MovieWorld.Models
         public string Overview { get; set; }
 
         //Kép
-        public Uri Image { get { return new Uri("http://image.tmdb.org/t/p/original/" + Poster_path); } }
+        public Uri Image { get { return new Uri("http://image.tmdb.org/t/p/w500/" + Poster_path); } }
 
         //Háttétkép
-        public Uri Backgroung { get { return new Uri("http://image.tmdb.org/t/p/origonal/" + Backdrop_path); } }
+        public Uri Backgroung { get { return new Uri("http://image.tmdb.org/t/p/original/" + Backdrop_path); } }
 
         //Egyéb adatok
         public string Backdrop_path { get; set; }

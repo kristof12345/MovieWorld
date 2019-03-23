@@ -16,10 +16,10 @@ namespace MovieWorld.Views
             get { return ViewModelLocator.Current.WhatsNewViewModel; }
         }
 
-        protected override async void OnNavigatedTo(NavigationEventArgs e)
+        protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-            await ViewModel.LoadDataAsync();
+            ViewModel.LoadData();
         }
     }
 }

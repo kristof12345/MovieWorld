@@ -1,13 +1,11 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using Microsoft.Toolkit.Collections;
+using Microsoft.Toolkit.Uwp;
 using Microsoft.Toolkit.Uwp.UI.Animations;
 using MovieWorld.Models;
+using MovieWorld.Models.IncrementalSources;
 using MovieWorld.Services;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace MovieWorld.ViewModels
@@ -18,8 +16,8 @@ namespace MovieWorld.ViewModels
         public RelayCommand<TvShow> TvShowClickCommand { get; private set; }
         public NavigationServiceEx NavigationService => ViewModelLocator.Current.NavigationService;
 
-        public ObservableCollection<Movie> LatestMovieSource { get { return MovieDataService.LatestMoviesList; } }
-        public ObservableCollection<TvShow> LatestShowsSource { get { return TvShowDataService.LatestTvShowsList; } }
+        public IncrementalLoadingCollection<IIncrementalSource<Movie>, Movie> LatestMovieSource;
+        public IncrementalLoadingCollection<IIncrementalSource<TvShow>, TvShow> LatestShowsSource;
 
 
         public NewReleasesViewModel()
@@ -28,10 +26,13 @@ namespace MovieWorld.ViewModels
             TvShowClickCommand = new RelayCommand<TvShow>((TvShow selected) => { OnTvShowClick(selected); });
         }
 
-        internal async Task LoadDataAsync()
+        internal void LoadData()
         {
-            await MovieDataService.GetLatestMoviesAsync(1);
-            await TvShowDataService.GetLatestShowsAsync(1);
+            LatestMovieSource = new IncrementalLoadingCollection<IIncrementalSource<Movie>, Movie>(new MovieSourceByLatest());
+            RaisePropertyChanged("MovieSource");
+
+            LatestShowsSource = new IncrementalLoadingCollection<IIncrementalSource<TvShow>, TvShow>(new TvShowSourceByLatest());
+            RaisePropertyChanged("TvShowSource");
         }
 
         private void OnMovieClick(Movie clickedItem)
