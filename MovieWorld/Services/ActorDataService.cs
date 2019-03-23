@@ -1,9 +1,6 @@
 ﻿using MovieWorld.Models;
-using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace MovieWorld.Services
@@ -11,8 +8,6 @@ namespace MovieWorld.Services
     class ActorDataService
     {
         private static HttpService HttpService { get; set; } = new HttpService();
-
-        public static ObservableCollection<Actor> ActorsList { get; private set; } = new ObservableCollection<Actor>();
         public static Actor CurrentActor { get; private set; }
 
         //Egy színész adatai
@@ -28,25 +23,15 @@ namespace MovieWorld.Services
         }
 
         //Népszerű színészek
-        internal static async Task GetPopularActorsAsync(int pageIndex)
+        internal static async Task<List<Actor>> GetPopularActorsAsync(int pageIndex)
         {
-            var list = await HttpService.GetPopularActorsAsync(pageIndex);
-            ActorsList.Clear();
-            foreach(var actor in list)
-            {
-                ActorsList.Add(actor);
-            }
+            return await HttpService.GetPopularActorsAsync(pageIndex);
         }
 
-        internal static async Task Search(string searchText, int pageIndex)
+        //Színészek keresése
+        internal static async Task<List<Actor>> SearchAsync(string searchText, int pageIndex)
         {
-            var list = await HttpService.SearchActorsAsync(searchText, pageIndex);
-            ActorsList.Clear();
-            foreach (var actor in list)
-            {
-                if(actor.Profile_path != null)
-                ActorsList.Add(actor);
-            }
+            return await HttpService.SearchActorsAsync(searchText, pageIndex);
         }
     }
 }

@@ -12,7 +12,7 @@
             <Button Content="Search people" Command="{x:Bind ViewModel.SearchCommand}" Margin="10,0,0,0"/>
         </StackPanel>
         <controls:AdaptiveGridView
-            ItemsSource="{x:Bind ViewModel.Source, Mode=OneWay}"
+            ItemsSource="{x:Bind ViewModel.ActorSource, Mode=OneWay}"
             ItemClickCommand="{x:Bind ViewModel.ItemClickCommand}"
             StretchContentForSingleRow="False"
             SelectionMode="None"

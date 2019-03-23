@@ -131,6 +131,7 @@
     <Compile Include="Models\Actor.cs" />
     <Compile Include="Models\Episode.cs" />
     <Compile Include="Models\Genre.cs" />
+    <Compile Include="Models\IncrementalSources\ActorSources.cs" />
     <Compile Include="Models\IncrementalSources\MovieSources.cs" />
     <Compile Include="Models\IncrementalSources\TvShowSources.cs" />
     <Compile Include="Models\Movie.cs" />

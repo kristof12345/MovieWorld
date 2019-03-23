@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
@@ -13,7 +12,6 @@ namespace MovieWorld.Services
 
         public static ObservableCollection<Movie> TopMoviesList { get; private set; } = new ObservableCollection<Movie>();
         public static Movie CurrentMovie { get; private set; }
-        public static ObservableCollection<Movie> LatestMoviesList { get; internal set; } = new ObservableCollection<Movie>();
         public static ObservableCollection<Genre> Genres = new ObservableCollection<Genre>();
 
         //Top filmek letöltése a szerverről
@@ -50,11 +48,13 @@ namespace MovieWorld.Services
             CurrentMovie = movie;
         }
 
+        //Filmek keresése
         internal static Task<List<Movie>> SearchMoviesAsync(string searchParams, int pageIndex)
         {
             return HttpService.SearchMoviesAsync(searchParams, pageIndex);
         }
 
+        //Műfajok letöltése
         internal static async Task GetGenresAsync()
         {
             Genres.Clear();
@@ -62,6 +62,7 @@ namespace MovieWorld.Services
             foreach (var g in genres) Genres.Add(g);
         }
 
+        //Filmek listázása műfaj alapján
         internal static Task<List<Movie>> GetMoviesByGenreAsync(Genre genre, int pageIndex)
         {
             return HttpService.GetMoviesByGenresAsync(genre.Id, pageIndex);

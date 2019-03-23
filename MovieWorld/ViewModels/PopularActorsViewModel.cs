@@ -1,11 +1,12 @@
-﻿using System;
-using System.Collections.ObjectModel;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using System.Windows.Input;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using Microsoft.Toolkit.Collections;
+using Microsoft.Toolkit.Uwp;
 using Microsoft.Toolkit.Uwp.UI.Animations;
 using MovieWorld.Models;
+using MovieWorld.Models.IncrementalSources;
 using MovieWorld.Services;
 
 namespace MovieWorld.ViewModels
@@ -18,16 +19,17 @@ namespace MovieWorld.ViewModels
         public ICommand ItemClickCommand => _itemClickCommand ?? (_itemClickCommand = new RelayCommand<Actor>(OnItemClick));
 
         public string SearchText { get; set; } = "";
-        public ObservableCollection<Actor> Source{get {  return ActorDataService.ActorsList;} }
+        public IncrementalLoadingCollection<IIncrementalSource<Actor>, Actor> ActorSource;
 
         public PopularActorsViewModel()
         {
-            SearchCommand = new RelayCommand(() => { SearchActors(1); });
+            SearchCommand = new RelayCommand(() => { OnSearch(); });
         }
 
-        private async void SearchActors(int pageIndex)
+        private void OnSearch()
         {
-            await ActorDataService.Search(SearchText, pageIndex);
+            ActorSource = new IncrementalLoadingCollection<IIncrementalSource<Actor>, Actor>(new ActorSourceBySearch(SearchText));
+            RaisePropertyChanged("ActorSource");
         }
 
         private void OnItemClick(Actor clickedItem)
@@ -43,11 +45,12 @@ namespace MovieWorld.ViewModels
         {
             if (SearchText == "")
             {
-                await ActorDataService.GetPopularActorsAsync(1);
+                ActorSource = new IncrementalLoadingCollection<IIncrementalSource<Actor>, Actor>(new ActorSourceBypopular());
+                RaisePropertyChanged("MovieSource");
             }
             else
             {
-                await ActorDataService.Search(SearchText, 1);
+                await ActorDataService.SearchAsync(SearchText, 1);
             }
         }
     }
