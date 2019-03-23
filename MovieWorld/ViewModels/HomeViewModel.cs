@@ -1,5 +1,6 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using Microsoft.Toolkit.Collections;
 using Microsoft.Toolkit.Uwp;
 using Microsoft.Toolkit.Uwp.UI.Animations;
 using MovieWorld.Models;
@@ -21,14 +22,13 @@ namespace MovieWorld.ViewModels
         public NavigationServiceEx NavigationService => ViewModelLocator.Current.NavigationService;
 
         public string SearchText { get; set; } = "";
-        public string SearchCategory { get; set; } = "movie";
 
         public ObservableCollection<Genre> Genres { get { return MovieDataService.Genres; } }
-        public IncrementalLoadingCollection<MovieSourceByGenre, Movie> MovieSource;
-        public IncrementalLoadingCollection<TvShowSourceByGenre, TvShow> TvShowSource;
+        public IncrementalLoadingCollection<IIncrementalSource<Movie>, Movie> MovieSource;
+        public IncrementalLoadingCollection<IIncrementalSource<TvShow>, TvShow> TvShowSource;
 
-        public bool MovieGridVisibility { get { return SearchCategory == "movie"; } }
-        public bool ShowGridVisibility { get { return SearchCategory == "tv"; } }
+        public bool MovieGridVisibility { get; set; }
+        public bool ShowGridVisibility { get { return !MovieGridVisibility; } }
 
         public HomeViewModel()
         {
@@ -45,23 +45,18 @@ namespace MovieWorld.ViewModels
 
         private void OnSearch()
         {
-            /*
-            if (SearchCategory == "movie")
-            {
-                var result = await MovieDataService.SearchMoviesAsync(SearchText);
-                foreach (var movie in result) { SearchedMoviesSource.Add(movie); }
-            }
-            else
-            {
-                var result = await TvShowDataService.SearchShowsAsync(SearchText);
-                foreach (var show in result) { SearchedShowsSource.Add(show); }
-            }*/
+            MovieSource = new IncrementalLoadingCollection<IIncrementalSource<Movie>, Movie>(new MovieSourceBySearch(SearchText));
+            RaisePropertyChanged("MovieSource");
+
+            TvShowSource = new IncrementalLoadingCollection<IIncrementalSource<TvShow>, TvShow>(new TvShowSourceBySearch(SearchText));
+            RaisePropertyChanged("TvShowSource");
         }
 
         public void HandleCheck(object sender, RoutedEventArgs e)
         {
             RadioButton radioButton = sender as RadioButton;
-            SearchCategory = radioButton.Name;
+            MovieGridVisibility = (radioButton.Name == "movie");
+
             RaisePropertyChanged("MovieGridVisibility");
             RaisePropertyChanged("ShowGridVisibility");
             if (SearchText != "") { OnSearch(); }
@@ -74,10 +69,10 @@ namespace MovieWorld.ViewModels
                 SearchText = "";
                 RaisePropertyChanged("SearchText");
 
-                MovieSource = new IncrementalLoadingCollection<MovieSourceByGenre, Movie>(new MovieSourceByGenre(clickedItem));
+                MovieSource = new IncrementalLoadingCollection<IIncrementalSource<Movie>, Movie>(new MovieSourceByGenre(clickedItem));
                 RaisePropertyChanged("MovieSource");
 
-                TvShowSource = new IncrementalLoadingCollection<TvShowSourceByGenre, TvShow>(new TvShowSourceByGenre(clickedItem));
+                TvShowSource = new IncrementalLoadingCollection<IIncrementalSource<TvShow>, TvShow>(new TvShowSourceByGenre(clickedItem));
                 RaisePropertyChanged("TvShowSource");
             }
         }
