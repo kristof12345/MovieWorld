@@ -21,7 +21,7 @@
         </Grid.RowDefinitions>
         <!--Search textbox-->
         <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,10,0,0">
-            <TextBlock TextAlignment="Center" Style="{StaticResource TitleTextBlockStyle}" Text="Movie World"/>
+            <TextBlock TextAlignment="Center" Style="{StaticResource TitleTextBlockStyle}" Text="Movie World" Margin="0,0,0,10"/>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                 <TextBox Width = "400"
                      Height="30"
