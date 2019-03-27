@@ -25,7 +25,9 @@ namespace MovieWorld.Services
         //Népszerű színészek
         internal static async Task<List<Actor>> GetPopularActorsAsync(int pageIndex)
         {
-            return await HttpService.GetPopularActorsAsync(pageIndex);
+            var list = await HttpService.GetPopularActorsAsync(pageIndex);
+            var actors = list.Where(a => a.Profile_path != null).ToList();
+            return actors;
         }
 
         //Színészek keresése

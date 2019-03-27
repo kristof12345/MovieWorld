@@ -8,8 +8,18 @@
     xmlns:models="using:MovieWorld.Models">
     <Grid x:Name="ContentArea">
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,10,0,0">
-            <TextBox Text="{x:Bind ViewModel.SearchText, Mode=TwoWay}" Width="200" Margin="0,0,10,0"/>
-            <Button Content="Search people" Command="{x:Bind ViewModel.SearchCommand}" Margin="10,0,0,0"/>
+            <TextBox Width = "400"
+                     Height="30"
+                     Text="{x:Bind ViewModel.SearchText, Mode=TwoWay}"
+                     Margin="5,0,5,0">
+            </TextBox>
+            <Button
+                    Width = "80"
+                    Height="30"
+                    Content="Search"
+                    Command="{x:Bind ViewModel.SearchCommand}"
+                    Margin="5,0,5,0">
+            </Button>
         </StackPanel>
         <controls:AdaptiveGridView
             ItemsSource="{x:Bind ViewModel.ActorSource, Mode=OneWay}"
@@ -26,7 +36,7 @@
                 <DataTemplate x:DataType="models:Actor">
                     <Grid
                         x:Name="itemThumbnail"
-                        Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
+                        Background="{ThemeResource SystemControlAcrylicElementBrush}">
                         <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
                             <Image VerticalAlignment="Top" >
                                 <Image.Source>

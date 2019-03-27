@@ -13,25 +13,11 @@
         <helpers:ConcatStringConverter x:Key="ConcatStringConverter"/>
     </Page.Resources>
     <ScrollViewer VerticalScrollMode="Enabled"
-        Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        Background="{ThemeResource SystemControlAcrylicElementBrush}">
         <Grid
         x:Name="ContentArea"
         Margin="{StaticResource MediumLeftRightMargin}"
         animations:Connected.AnchorElement="{x:Bind itemHero}">
-            <VisualStateManager.VisualStateGroups>
-                <VisualStateGroup>
-                    <VisualState>
-                        <VisualState.StateTriggers>
-                            <AdaptiveTrigger MinWindowWidth="600" />
-                        </VisualState.StateTriggers>
-                        <VisualState.Setters>
-                            <Setter Target="group.(RelativePanel.Below)" Value="itemHero" />
-                            <Setter Target="itemHero.(RelativePanel.Below)" Value="title" />
-                        </VisualState.Setters>
-                    </VisualState>
-                </VisualStateGroup>
-            </VisualStateManager.VisualStateGroups>
-
             <StackPanel>
                 <RelativePanel Margin="{StaticResource SmallTopMargin}">
                     <TextBlock x:Name="title"

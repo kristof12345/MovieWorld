@@ -13,7 +13,7 @@
     <ScrollViewer
         x:Name="ForegroundElement"
         VerticalScrollMode="Enabled"
-        Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+        Background="{ThemeResource SystemControlAcrylicElementBrush}"
         Padding="{StaticResource DetailPageMargin}" >
         <StackPanel Orientation="Vertical">
             <TextBlock Text="{x:Bind MasterMenuItem.Title, Mode=OneWay}" Style="{ThemeResource TitleTextBlockStyle}" />

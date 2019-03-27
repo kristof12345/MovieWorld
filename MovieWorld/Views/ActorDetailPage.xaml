@@ -9,40 +9,13 @@
     behaviors:NavigationViewHeaderBehavior.HeaderMode="Never">
     <Page.Resources>
         <helpers:ConcatStringConverter x:Key="ConcatStringConverter"/>
-        <!--Transparent button-->
-        <ResourceDictionary x:Key="Light">
-            <SolidColorBrush x:Key="ButtonBackground" Color="Transparent"/>
-            <SolidColorBrush x:Key="ButtonBackgroundPointerOver" Color="Transparent"/>
-            <SolidColorBrush x:Key="ButtonBackgroundPressed" Color="Transparent"/>
-            <SolidColorBrush x:Key="ButtonBorderBrushPointerOver" Color="Transparent"/>
-        </ResourceDictionary>
-        <ResourceDictionary x:Key="Dark">
-            <SolidColorBrush x:Key="ButtonBackground" Color="Transparent"/>
-            <SolidColorBrush x:Key="ButtonBackgroundPointerOver" Color="Transparent"/>
-            <SolidColorBrush x:Key="ButtonBackgroundPressed" Color="Transparent"/>
-            <SolidColorBrush x:Key="ButtonBorderBrushPointerOver" Color="Transparent"/>
-        </ResourceDictionary>
     </Page.Resources>
     <ScrollViewer VerticalScrollMode="Enabled"
-        Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        Background="{ThemeResource SystemControlAcrylicElementBrush}">
         <Grid
         x:Name="ContentArea"
         Margin="{StaticResource MediumLeftRightMargin}"
         animations:Connected.AnchorElement="{x:Bind itemHero}">
-            <VisualStateManager.VisualStateGroups>
-                <VisualStateGroup>
-                    <VisualState>
-                        <VisualState.StateTriggers>
-                            <AdaptiveTrigger MinWindowWidth="600" />
-                        </VisualState.StateTriggers>
-                        <VisualState.Setters>
-                            <Setter Target="group.(RelativePanel.Below)" Value="itemHero" />
-                            <Setter Target="itemHero.(RelativePanel.Below)" Value="title" />
-                        </VisualState.Setters>
-                    </VisualState>
-                </VisualStateGroup>
-            </VisualStateManager.VisualStateGroups>
-
             <StackPanel>
                 <RelativePanel>
                     <TextBlock

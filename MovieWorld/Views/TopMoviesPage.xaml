@@ -33,13 +33,13 @@
         </DataTemplate>
 
         <DataTemplate x:Key="DetailsTemplate">
-            <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+            <Grid Background="{ThemeResource SystemControlAcrylicElementBrush}">
                 <views:TopMoviesDetailControl MasterMenuItem="{Binding}"/>
             </Grid>
         </DataTemplate>
 
         <DataTemplate x:Key="NoSelectionContentTemplate">
-            <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+            <Grid Background="{ThemeResource SystemControlAcrylicElementBrush}">
                 <TextBlock
                     x:Uid="TopMovies_NoSelection"
                     Style="{StaticResource SubtitleTextBlockStyle}"

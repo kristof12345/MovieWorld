@@ -6,32 +6,27 @@
     xmlns:animations="using:Microsoft.Toolkit.Uwp.UI.Animations"
     xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
     xmlns:models="using:MovieWorld.Models"
-    xmlns:helpers="using:MovieWorld.Helpers"
     Style="{StaticResource PageStyle}">
-    <Page.Resources>
-        <helpers:BooleanToVisibilityConverter x:Key="BoolToVis" />
-    </Page.Resources>
     <!--Search-->
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="2*" />
             <RowDefinition Height="5*" />
-            <RowDefinition Height="15*" />
+            <RowDefinition Height="10*" />
+            <RowDefinition Height="30*" />
         </Grid.RowDefinitions>
         <!--Search textbox-->
-        <StackPanel Orientation="Vertical" Grid.Column="0" Grid.Row="0">
-            <StackPanel Orientation="Horizontal"
-                        HorizontalAlignment="Center">
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,10,0,0">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                 <TextBox Width = "400"
                      Height="30"
                      Text="{x:Bind ViewModel.SearchText, Mode=TwoWay}"
-                         Margin="5,0,5,0">
+                     Margin="5,0,5,0">
                 </TextBox>
                 <Button
-                    Width = "100"
+                    Width = "80"
                     Height="30"
                     Content="Search"
                     Command="{x:Bind ViewModel.SearchCommand}"
