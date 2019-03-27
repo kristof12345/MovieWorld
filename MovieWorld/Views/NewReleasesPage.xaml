@@ -6,6 +6,8 @@
     xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
     xmlns:models="using:MovieWorld.Models"
     xmlns:helpers="using:MovieWorld.Helpers"
+    xmlns:behaviors="using:MovieWorld.Behaviors"
+    behaviors:NavigationViewHeaderBehavior.HeaderMode="Minimal"
     Style="{StaticResource PageStyle}">
     <Page.Resources>
         <helpers:BooleanToVisibilityConverter x:Key="BoolToVis" />

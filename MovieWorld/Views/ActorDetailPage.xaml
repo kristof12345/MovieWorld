@@ -4,9 +4,9 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:animations="using:Microsoft.Toolkit.Uwp.UI.Animations"
-    xmlns:behaviors="using:MovieWorld.Behaviors"
     xmlns:helpers="using:MovieWorld.Helpers"
-    behaviors:NavigationViewHeaderBehavior.HeaderMode="Never">
+    xmlns:behaviors="using:MovieWorld.Behaviors"
+    behaviors:NavigationViewHeaderBehavior.HeaderMode="Minimal">
     <Page.Resources>
         <helpers:ConcatStringConverter x:Key="ConcatStringConverter"/>
     </Page.Resources>

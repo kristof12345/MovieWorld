@@ -6,7 +6,7 @@
     xmlns:animations="using:Microsoft.Toolkit.Uwp.UI.Animations"
     xmlns:behaviors="using:MovieWorld.Behaviors"
     xmlns:helpers="using:MovieWorld.Helpers"
-    behaviors:NavigationViewHeaderBehavior.HeaderMode="Never">
+    behaviors:NavigationViewHeaderBehavior.HeaderMode="Minimal">
     <Page.Resources>
         <helpers:GenreToStringConverter x:Key="GenreToStringConverter"/>
         <helpers:NetworkToStringConverter x:Key="NetworkToStringConverter"/>

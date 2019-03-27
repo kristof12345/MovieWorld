@@ -5,7 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:animations="using:Microsoft.Toolkit.Uwp.UI.Animations"
     xmlns:behaviors="using:MovieWorld.Behaviors"
-    behaviors:NavigationViewHeaderBehavior.HeaderMode="Never">
+    behaviors:NavigationViewHeaderBehavior.HeaderMode="Minimal">
     <ScrollViewer VerticalScrollMode="Enabled"
         Background="{ThemeResource SystemControlAcrylicElementBrush}">
         <Grid
