@@ -21,11 +21,19 @@
         SelectedItem="{x:Bind ViewModel.Selected, Mode=OneWay}"
         IsSettingsVisible="True">
         <winui:NavigationView.MenuItems>
-            <winui:NavigationViewItem x:Uid="Shell_Home" Icon="Document" helpers:NavHelper.NavigateTo="MovieWorld.ViewModels.HomeViewModel" />
-            <winui:NavigationViewItem x:Uid="Shell_TopMovies" Icon="Document" helpers:NavHelper.NavigateTo="MovieWorld.ViewModels.TopMoviesViewModel" />
-            <winui:NavigationViewItem x:Uid="Shell_TopSeries" Icon="Document" helpers:NavHelper.NavigateTo="MovieWorld.ViewModels.TopSeriesViewModel" />
-            <winui:NavigationViewItem x:Uid="Shell_PopularActors" Icon="Document" helpers:NavHelper.NavigateTo="MovieWorld.ViewModels.PopularActorsViewModel" />
-            <winui:NavigationViewItem x:Uid="Shell_NewReleases" Icon="Document" helpers:NavHelper.NavigateTo="MovieWorld.ViewModels.NewReleasesViewModel" />
+            <winui:NavigationViewItem x:Uid="Shell_Home" Icon="Home" helpers:NavHelper.NavigateTo="MovieWorld.ViewModels.HomeViewModel" />
+            <winui:NavigationViewItem x:Uid="Shell_TopMovies" helpers:NavHelper.NavigateTo="MovieWorld.ViewModels.TopMoviesViewModel" >
+                <winui:NavigationViewItem.Icon>
+                    <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE8B2;"/>
+                </winui:NavigationViewItem.Icon>
+            </winui:NavigationViewItem>
+            <winui:NavigationViewItem x:Uid="Shell_TopSeries" helpers:NavHelper.NavigateTo="MovieWorld.ViewModels.TopSeriesViewModel">
+                <winui:NavigationViewItem.Icon>
+                    <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE7F4;"/>
+                </winui:NavigationViewItem.Icon>
+            </winui:NavigationViewItem>
+            <winui:NavigationViewItem x:Uid="Shell_PopularActors" Icon="People" helpers:NavHelper.NavigateTo="MovieWorld.ViewModels.PopularActorsViewModel" />
+            <winui:NavigationViewItem x:Uid="Shell_NewReleases" Icon="Calendar" helpers:NavHelper.NavigateTo="MovieWorld.ViewModels.NewReleasesViewModel" />
         </winui:NavigationView.MenuItems>
         <i:Interaction.Behaviors>
             <behaviors:NavigationViewHeaderBehavior
