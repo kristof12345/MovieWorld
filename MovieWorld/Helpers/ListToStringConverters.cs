@@ -9,14 +9,12 @@ namespace MovieWorld.Helpers
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
+            var str = "";
             if (value is List<Genre>)
             {
-                var str = "";
-                foreach (var g in (List<Genre>)value) { str += g.Name; str+= " "; }
-
-                return str;
+                foreach (var g in (List<Genre>)value) { str += g.Name; str+= " "; } 
             }
-            throw new ArgumentException("Invalid genre.");
+            return str;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)
@@ -29,14 +27,12 @@ namespace MovieWorld.Helpers
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
+            var str = "";
             if (value is List<Language>)
             {
-                var str = "";
                 foreach (var g in (List<Language>)value) { str += g.Name; str += " "; }
-
-                return str;
             }
-            throw new ArgumentException("Invalid genre.");
+            return str;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)
@@ -49,14 +45,12 @@ namespace MovieWorld.Helpers
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
+            var str = "";
             if (value is List<Network>)
             {
-                var str = "";
                 foreach (var g in (List<Network>)value) { str += g.Name; str += " "; }
-
-                return str;
             }
-            throw new ArgumentException("Invalid genre.");
+            return str;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)
@@ -69,14 +63,12 @@ namespace MovieWorld.Helpers
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
+            var str = "";
             if (value is List<Company>)
             {
-                var str = "";
                 foreach (var g in (List<Company>)value) { str += g.Name; str += " "; }
-
-                return str;
             }
-            throw new ArgumentException("Invalid genre.");
+            return str;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)
