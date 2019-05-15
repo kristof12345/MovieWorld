@@ -24,11 +24,13 @@ namespace MovieWorld.ViewModels
 
         public TopSeriesViewModel()
         {
+            //Eseménykezelő a kiválasztásról való értesüléshez
             SelectionChanged += this.SelectedShowChanged;
             SelectSeasonCommand = new RelayCommand<int>((int id) =>{NavigateToSeason(id);});
             SelectShowCommand = new RelayCommand<int>((int id) => { NavigateToShow(id); });
         }
 
+        //Ha változott a kijelölt sorozat, akkor letölti a részleteit
         public async void SelectedShowChanged(object sender, SelectionChangedEventArgs e)
         {
             var selected = (TvShow)e.AddedItems.First();
@@ -39,22 +41,27 @@ namespace MovieWorld.ViewModels
             }
         }
 
+        //Kezdetben az első sorozat van kiválasztva
         public async Task LoadDataAsync(MasterDetailsViewState viewState)
         {
+            //Betölti a TOP sorozatokat
             await TvShowDataService.GetTopShowsAsync();
 
+            //Kiválasztja az elsőt
             if (viewState == MasterDetailsViewState.Both)
             {
                 Selected = Shows.First();
             }
         }
 
+        //Navigálás a kiválasztott évadhoz
         private void NavigateToSeason(int id)
         {
             var param = new SeasonId { ShowId = selected.Id, SeasonNumber = id };
             NavigationService.Navigate(typeof(SeasonDetailViewModel).FullName, param);
         }
 
+        //Navigálás a kiválasztott sorozathoz
         private void NavigateToShow(int id)
         {
             NavigationService.Navigate(typeof(TvShowDetailViewModel).FullName, id);

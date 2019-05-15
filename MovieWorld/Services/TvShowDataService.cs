@@ -17,11 +17,12 @@ namespace MovieWorld.Services
         //Top sorozatok letöltése a szerverről
         internal static async Task GetTopShowsAsync()
         {
+            //Ha már korábban letöltöttük, akkor nem akarjuk újra
             if (TopTvShowsList.Count == 0)
             {
                 var list = await HttpService.ListTopShowsAsync();
+                //Az observable collection miatt kell egyesével átrakni az elemeket
                 TopTvShowsList.Clear();
-
                 foreach (var show in list)
                 {
                     TopTvShowsList.Add(show);
@@ -39,6 +40,7 @@ namespace MovieWorld.Services
         internal static async Task GetShowDataAsync(int id)
         {
             var show = await HttpService.GetShowAsync(id);
+            //A hasonló sorozatokat is meg akarjuk jeleníteni
             var similar = await HttpService.GetSimilarShowsAsync(id);
             show.SimilarSeries = similar;
             CurrentShow = show;

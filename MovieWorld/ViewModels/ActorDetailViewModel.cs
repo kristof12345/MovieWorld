@@ -21,6 +21,7 @@ namespace MovieWorld.ViewModels
 
         public ActorDetailViewModel()
         {
+            //Command beállítása a navigáló függvényhez
             SelectMovieCommand = new RelayCommand<int>((int id) =>
             {
                 NavigateToMovie(id);
@@ -33,6 +34,7 @@ namespace MovieWorld.ViewModels
             Actor = ActorDataService.CurrentActor;
         }
 
+        //Navigálás a kiválasztott filmhez
         public void NavigateToMovie(int id)
         {
             NavigationService.Navigate(typeof(MovieDetailViewModel).FullName, id);

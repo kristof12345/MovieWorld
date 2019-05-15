@@ -12,6 +12,7 @@ namespace MovieWorld.Models.IncrementalSources
 
         public ActorSourceBySearch(string param) { searchParams = param; }
 
+        //Színészek betöltése oldalanként, aszinkron módon
         public async Task<IEnumerable<Actor>> GetPagedItemsAsync(int pageIndex, int pageSize, CancellationToken t)
         {
             return await ActorDataService.SearchAsync(searchParams, pageIndex + 1);
@@ -20,6 +21,7 @@ namespace MovieWorld.Models.IncrementalSources
 
     public class ActorSourceBypopular : IIncrementalSource<Actor>
     {
+        //A népszerű színészek betöltése oldalanként, aszinkron módon
         public async Task<IEnumerable<Actor>> GetPagedItemsAsync(int pageIndex, int pageSize, CancellationToken t)
         {
             return await ActorDataService.GetPopularActorsAsync(pageIndex);

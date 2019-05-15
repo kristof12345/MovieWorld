@@ -17,6 +17,7 @@ namespace MovieWorld.Services
             var roles = await HttpService.GetMoviesForActorAsync(id);
             if (roles != null)
             {
+                //A színész fontosabb szerepei
                 actor.Roles = roles.Where(c => c.Poster_path != null).ToList();
             }
             CurrentActor = actor;

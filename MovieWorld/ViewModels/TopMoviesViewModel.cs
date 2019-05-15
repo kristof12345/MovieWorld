@@ -24,11 +24,13 @@ namespace MovieWorld.ViewModels
 
         public TopMoviesViewModel()
         {
+            //Eseménykezelő a kiválasztásról való értesüléshez
             SelectionChanged += SelectedMovieChanged;
             SelectActorCommand = new RelayCommand<int>((int id) => {NavigateToActor(id);});
             SelectMovieCommand = new RelayCommand<int>((int id) =>{NavigateToMovie(id);});
         }
 
+        //Ha változott a kijelölt film, akkor letölti a részleteit
         private async void SelectedMovieChanged(object sender, SelectionChangedEventArgs e)
         {
             var selected = (Movie)e.AddedItems.First();
@@ -39,10 +41,13 @@ namespace MovieWorld.ViewModels
             }
         }
 
+        //Kezdetben az első film van kiválasztva
         public async Task LoadDataAsync(MasterDetailsViewState viewState)
         {
+            //Betölti a TOP filmeket
             await MovieDataService.GetTopMoviesAsync();
 
+            //Kiválasztja az elsőt
             if (viewState == MasterDetailsViewState.Both && Movies.Count > 0)
             {
                 await MovieDataService.GetMovieDataAsync(Movies.First().Id);
@@ -50,11 +55,13 @@ namespace MovieWorld.ViewModels
             }
         }
 
+        //Navigálás a kiválasztott színészhez
         private void NavigateToActor(int id)
         {
             NavigationService.Navigate(typeof(ActorDetailViewModel).FullName, id);
         }
 
+        //NAvigálás a kiválasztott filmhez
         private void NavigateToMovie(int id)
         {
             NavigationService.Navigate(typeof(MovieDetailViewModel).FullName, id);

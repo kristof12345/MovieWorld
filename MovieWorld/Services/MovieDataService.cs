@@ -17,11 +17,12 @@ namespace MovieWorld.Services
         //Top filmek letöltése a szerverről
         internal static async Task GetTopMoviesAsync()
         {
+            //Ha már korábban letöltöttük, akkor nem akarjuk újra
             if (TopMoviesList.Count == 0)
             {
                 var list = await HttpService.ListTopMoviesAsync();
+                //Az observable collection miatt kell egyesével átrakni az elemeket
                 TopMoviesList.Clear();
-
                 foreach (var movie in list)
                 {
                     TopMoviesList.Add(movie);
@@ -40,8 +41,9 @@ namespace MovieWorld.Services
         {
             var movie = await HttpService.GetMovieAsync(id);
             var cast = await HttpService.GetCastAsync(id);
+            //A hasonló filmeket is meg akarjuk jeleníteni
             var similar = await HttpService.GetSimilarMoviesAsync(id);
-            //Csak a fontosabb szereplők
+            //Csak a fontosabb szereplők (ahol van kép és max 18 db)
             movie.Cast = cast.Where(a => a.Profile_path != null).Take(18).ToList();
             //Csak az első 12 találat
             movie.SimilarMovies = similar.Take(12).ToList();

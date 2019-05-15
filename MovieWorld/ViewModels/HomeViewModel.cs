@@ -27,11 +27,13 @@ namespace MovieWorld.ViewModels
         public IncrementalLoadingCollection<IIncrementalSource<Movie>, Movie> MovieSource;
         public IncrementalLoadingCollection<IIncrementalSource<TvShow>, TvShow> TvShowSource;
 
+        //Megadják, hogy éppen a filmek vagy a sorozatok látszanak:
         public bool MovieGridVisibility { get; set; }
         public bool ShowGridVisibility { get { return !MovieGridVisibility; } }
 
         public HomeViewModel()
         {
+            //Commandok inicializálása
             SearchCommand = new RelayCommand(() => { OnSearch(); });
             MovieClickCommand = new RelayCommand<Movie>((Movie selected) => { OnMovieClick(selected); });
             TvShowClickCommand = new RelayCommand<TvShow>((TvShow selected) => { OnTvShowClick(selected); });
@@ -43,6 +45,7 @@ namespace MovieWorld.ViewModels
             await MovieDataService.GetGenresAsync();
         }
 
+        //Keresésnél a fimek és sorozatok listáját is letöltjük
         private void OnSearch()
         {
             MovieSource = new IncrementalLoadingCollection<IIncrementalSource<Movie>, Movie>(new MovieSourceBySearch(SearchText));
@@ -52,6 +55,7 @@ namespace MovieWorld.ViewModels
             RaisePropertyChanged("TvShowSource");
         }
 
+        //Váltás a film és sorozat nézet között
         public void HandleCheck(object sender, RoutedEventArgs e)
         {
             RadioButton radioButton = sender as RadioButton;
@@ -62,10 +66,12 @@ namespace MovieWorld.ViewModels
             if (SearchText != "") { OnSearch(); }
         }
 
+        //Műfaj kiválasztása
         private void OnGenreClick(Genre clickedItem)
         {
             if (clickedItem != null)
             {
+                //Új keresést indít
                 SearchText = "";
                 RaisePropertyChanged("SearchText");
 
@@ -77,19 +83,23 @@ namespace MovieWorld.ViewModels
             }
         }
 
+        //Film kiválasztása
         private void OnMovieClick(Movie clickedItem)
         {
             if (clickedItem != null)
             {
+                //Navigálás a kiválasztott filmhez
                 NavigationService.Frame.SetListDataItemForNextConnectedAnnimation(clickedItem);
                 NavigationService.Navigate(typeof(MovieDetailViewModel).FullName, clickedItem.Id);
             }
         }
 
+        //Sorozat kiválasztása
         private void OnTvShowClick(TvShow clickedItem)
         {
             if (clickedItem != null)
             {
+                //Navigálás a kiválasztott sorozathoz
                 NavigationService.Frame.SetListDataItemForNextConnectedAnnimation(clickedItem);
                 NavigationService.Navigate(typeof(TvShowDetailViewModel).FullName, clickedItem.Id);
             }

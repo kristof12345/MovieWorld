@@ -12,6 +12,7 @@ namespace MovieWorld.Models.IncrementalSources
 
         public MovieSourceByGenre(Genre param) { genre = param; }
 
+        //Adott műfajú filmek betöltése oldalanként, aszinkron módon
         public async Task<IEnumerable<Movie>> GetPagedItemsAsync(int pageIndex, int pageSize, CancellationToken t)
         {
             return await MovieDataService.GetMoviesByGenreAsync(genre, pageIndex + 1);
@@ -24,6 +25,7 @@ namespace MovieWorld.Models.IncrementalSources
 
         public MovieSourceBySearch(string param) { searchParams = param; }
 
+        //A keresett kifejezésnek megfelelő filmek betöltése oldalanként, aszinkron módon
         public async Task<IEnumerable<Movie>> GetPagedItemsAsync(int pageIndex, int pageSize, CancellationToken t)
         {
             return await MovieDataService.SearchMoviesAsync(searchParams, pageIndex + 1);
