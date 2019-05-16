@@ -23,7 +23,7 @@ namespace MovieWorld.Models
         public string Air_date { get; set; }
 
         //Epizódok száma
-        public int Episode_count { get; set; }
+        public int EpisodeCount { get { return Episodes.Count; } }
 
         //Hosszú leírás
         public string Overview { get; set; }

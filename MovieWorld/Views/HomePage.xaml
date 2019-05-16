@@ -30,7 +30,7 @@
                 </TextBox>
                 <Button
                     Width = "80"
-                    Height="30"
+                    Height="35"
                     Content="Search"
                     Command="{x:Bind ViewModel.SearchCommand}"
                     Margin="5,0,5,0">
